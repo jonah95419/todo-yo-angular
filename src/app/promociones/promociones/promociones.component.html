@@ -1,0 +1,33 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawers class="example-sidenav" mode="side" opened>
+        <h3>Tipo</h3>
+        <mat-nav-list>
+            <div style="width: 100%;">
+                <a class="navigation-item" routerLink="/promociones/texto" mat-list-item routerLinkActive="active" routerLinkActive #rla1p="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla1p.isActive}">
+                        <span class="navigation-item-label">Solo texto</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla1p.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/promociones/imagent" mat-list-item routerLinkActive="active" routerLinkActive #rla2p="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla2p.isActive}">
+                        <span class="navigation-item-label">Imagen y texto</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla2p.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/promociones/videot" mat-list-item routerLinkActive="active" routerLinkActive #rla3p="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla3p.isActive}">
+                        <span class="navigation-item-label">Video y  texto</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla3p.isActive}"></div>
+                    </div>
+                </a>
+            </div>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <router-outlet>
+        </router-outlet>
+    </div>
+
+</mat-drawer-container>
