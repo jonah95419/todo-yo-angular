@@ -1,0 +1,48 @@
+<div class="cotizacion-container">
+    <div class="cotizacion-sidenav">
+        <mat-toolbar>
+            <h3>Cotizaciones</h3>
+        </mat-toolbar>
+        <ng-container *ngIf="cotizaciones$ | async as cotizaciones; else loading">
+            <ng-container *ngIf="cotizaciones.length > 0; else lencot">
+                <a *ngFor="let cotizacion of cotizaciones" routerLink='./cotizaciones' [queryParams]="{key: cotizacion?.cotizacion?.key}" routerLinkActive="active" routerLinkActive #rla1sa="routerLinkActive">
+                    <mat-card class=" example-card " *ngIf="cotizacion " matRipple>
+                        <mat-card-header>
+                            <div mat-card-avatar [style.background-image]=" 'url('+ cotizacion.usuario?.foto + ')' " class="example-header-image "></div>
+                            <mat-card-title [style.color]="rla1sa.isActive ? '#f52828': 'black' ">{{cotizacion.usuario?.nombre}}</mat-card-title>
+                            <mat-card-subtitle>
+                                <div style="display: flex; width: 100%;">
+                                    <div [ngClass]="{'indicador-estado-activo': cotizacion?.cotizacion?.estado == 'true'}" class="indicador-estado-inactivo" [matTooltip]="cotizacion.cotizacion.estado == 'true'? 'abierto':'cerrado'"></div>
+                                    {{cotizacion.cotizacion?.fecha | date : 'MMM d, y':undefined:locale}}
+                                </div>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>
+                                {{cotizacion.cotizacion?.descripcion}}
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </a>
+            </ng-container>
+            <ng-template #lencot>
+                <div style="width: 100%; display: flex; justify-content: center; padding: 24px; ">
+                    Cargando cotizaciones...
+                </div>
+            </ng-template>
+        </ng-container>
+        <ng-template #loading>
+            <div style="width: 100%; display: flex; flex-direction: column; justify-content: center; padding: 24px; ">
+                Cargando cotizaciones...
+                <mat-spinner></mat-spinner>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <div class="example-sidenav-content ">
+        <router-outlet>
+        </router-outlet>
+    </div>
+
+</div>
