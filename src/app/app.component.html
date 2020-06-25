@@ -1,2 +1,35 @@
-<router-outlet>
-</router-outlet>
+<div class="example-container">
+    <div class="example-sidenav">
+        <mat-toolbar>
+            <h3>{{title}}</h3>
+        </mat-toolbar>
+        <mat-nav-list>
+            <div style="width: 100%;">
+                <a class="navigation-item" routerLink="/servicios" mat-list-item routerLinkActive="active" routerLinkActive #rla1="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla1.isActive}">
+                        <span class="navigation-item-label">Servicios</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla1.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/promociones" mat-list-item routerLinkActive="active" routerLinkActive #rla2="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla2.isActive}">
+                        <span class="navigation-item-label">Promociones</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla2.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/personal" mat-list-item routerLinkActive="active" routerLinkActive #rla3="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla3.isActive}">
+                        <span class="navigation-item-label">Personal</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla3.isActive}"></div>
+                    </div>
+                </a>
+            </div>
+        </mat-nav-list>
+    </div>
+
+    <div class="example-sidenav-content">
+        <router-outlet>
+        </router-outlet>
+    </div>
+
+</div>
