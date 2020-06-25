@@ -1,0 +1,53 @@
+<div class="servicios-container">
+    <div class="example-sidenav">
+        <mat-toolbar>
+            <h3>Categorias</h3>
+        </mat-toolbar>
+        <mat-nav-list>
+            <div style="width: 100%;">
+                <a class="navigation-item" routerLink="/servicios/albañileria" mat-list-item routerLinkActive="active" routerLinkActive #rla1s="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla1s.isActive}">
+                        <span class="navigation-item-label">Albañileria</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla1s.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/servicios/electricidad" mat-list-item routerLinkActive="active" routerLinkActive #rla2s="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla2s.isActive}">
+                        <span class="navigation-item-label">Electricidad</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla2s.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/servicios/gypsuma" mat-list-item routerLinkActive="active" routerLinkActive #rla3s="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla3s.isActive}">
+                        <span class="navigation-item-label">Gypsum A.</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla3s.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/servicios/mecanicai" mat-list-item routerLinkActive="active" routerLinkActive #rla4s="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla4s.isActive}">
+                        <span class="navigation-item-label">Mecánica I.</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla4s.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/servicios/plomeria" mat-list-item routerLinkActive="active" routerLinkActive #rla5s="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla5s.isActive}">
+                        <span class="navigation-item-label">Plomeria</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla5s.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/servicios/seguridade" mat-list-item routerLinkActive="active" routerLinkActive #rla6s="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla6s.isActive}">
+                        <span class="navigation-item-label">Seguridad E.</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla6s.isActive}"></div>
+                    </div>
+                </a>
+            </div>
+        </mat-nav-list>
+    </div>
+
+    <div class="example-sidenav-content">
+        <router-outlet>
+        </router-outlet>
+    </div>
+
+</div>
