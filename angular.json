@@ -19,6 +19,13 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "aot": true,
+                        "allowedCommonJsDependencies": [
+                            "@firebase/database",
+                            "@firebase/app",
+                            "angularfire2/storage",
+                            "firebase/app",
+                            "@angular/common/locales/es-EC"
+                        ],
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"

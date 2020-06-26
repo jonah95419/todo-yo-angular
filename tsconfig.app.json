@@ -1,5 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableIvy": true
+  },
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": []
