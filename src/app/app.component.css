@@ -28,6 +28,14 @@
     min-width: 160px;
 }
 
+::ng-deep.personal-sidenav {
+    padding: 6px;
+    width: 250px;
+    min-width: 250px;
+    height: 98%;
+    overflow: auto;
+}
+
 ::ng-deep.cotizacion-sidenav {
     padding: 6px;
     width: 280px;
@@ -125,4 +133,12 @@
 
 ::ng-deep.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
     background-color: #ffc8c8;
+}
+
+::ng-deep .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 12px;
+    display: block;
 }
