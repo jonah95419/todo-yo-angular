@@ -5,6 +5,7 @@ import { PromocionesComponent } from './promociones/promociones/promociones.comp
 import { PersonalComponent } from './personal/personal/personal.component';
 import { AlbanieleriaComponent } from './servicios/albanieleria/albanieleria.component';
 import { AlbanieleriaCotizacionComponent } from './servicios/albanieleria-cotizacion/albanieleria-cotizacion.component';
+import { PerfilComponent } from './personal/perfil/perfil.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'servicios', pathMatch: 'full' },
@@ -25,7 +26,9 @@ const routes: Routes = [
     { path: 'imagent', component: PersonalComponent},
     { path: 'videot', component: PersonalComponent},
   ]},
-  { path: 'personal', component: PersonalComponent},
+  { path: 'personal', component: PersonalComponent, children: [
+      {path: 'perfil', component: PerfilComponent}
+  ]},
 
 ];
 
