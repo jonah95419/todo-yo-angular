@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularModule } from './angular.module';
 import { PromocionesModule } from './promociones/promociones.module';
 import { ServiciosModule } from './servicios/servicios.module';
@@ -22,7 +23,11 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import localeES from '@angular/common/locales/es-EC';
 import { registerLocaleData } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PersonalService } from './personal/service/personal.service';
+import { InteraccionService } from './personal/service/interaccion.service';
 registerLocaleData(localeES, 'es');
+
+// import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -34,10 +39,12 @@ registerLocaleData(localeES, 'es');
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     ServiciosModule,
     PromocionesModule,
     PersonalModule,
     HttpClientModule,
+    // RatingModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -50,7 +57,9 @@ registerLocaleData(localeES, 'es');
     ServiciosAlbanieleriaService,
     CotizacionService,
     CotizacionDetallesService,
-    UsuariosService
+    UsuariosService,
+    PersonalService,
+    InteraccionService
   ],
   bootstrap: [AppComponent]
 })
