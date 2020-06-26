@@ -18,5 +18,39 @@ export function combinarTablas(key_cotizacion: String, cotizaciones, detalles){
           cd.detalles = detalle !== undefined ? detalle: {};
           return cd;
         })
+        .map( data => {
+          data.cotizacion.fotografias = procesarFotografias(data.cotizacion.fotografias);
+          data.detalles = procesarDetalles(data.detalles);
+          return data;
+        })
         .filter( (f: any) => { if(f) return f  })[0];
+}
+
+
+function procesarDetalles(detalles: Object): any[]  {
+  let jojo: any[] = [];
+  Object.keys(detalles).forEach(k => {
+    if(k !== "key" && k !== "visibilidad") {
+      jojo.push({cant: 0, detalle: k, subtotal: 0, key:"interestelar", tipo: k})
+      Object.keys(detalles[k]).forEach(kd => {
+        jojo.push({
+          cant: detalles[k][kd].cant || 0,
+          detalle: detalles[k][kd].detalle || "",
+          subtotal: detalles[k][kd].subtotal || 0,
+          key: kd || "",
+          tipo: k
+        })
+      })
+    }
+  });
+  return jojo;
+}
+
+function procesarFotografias (fotografias: Object): any[] {
+  return Object.keys(fotografias).map(k => { return {
+      image: fotografias[k],
+      thumbImage: fotografias[k],
+      title: ""
+    }
+  });
 }
