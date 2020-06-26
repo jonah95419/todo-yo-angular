@@ -1,0 +1,68 @@
+<ng-container>
+    <mat-toolbar>
+        <h3 style="display: flex;">
+            Información
+            <div *ngIf="informacion" style="display: flex;">
+                <mat-icon *ngIf="informacion.estado" style="margin: auto 6px; cursor: pointer;" matTooltip="Disponible" (click)="actualizarEstado(false)">visibility</mat-icon>
+                <mat-icon *ngIf="!informacion.estado" style="margin: auto 6px; cursor: pointer;" matTooltip="No disponible" (click)="actualizarEstado(true)">visibility_off</mat-icon>
+            </div>
+        </h3>
+        <span class="example-spacer"></span>
+        <button [disabled]="enUso" mat-mini-fab (click)="panel_personal.open();">
+              <mat-icon aria-hidden="false" aria-label="nuevo registro" [matTooltip]="!enUso? 'Eliminar registro' : 'No es posible eliminar, actualmente el registro se encuentra en uso'">person_remove</mat-icon>
+            </button>
+    </mat-toolbar>
+    <div *ngIf="informacion; else loading;">
+        <mat-expansion-panel #panel_personal class="mat-elevation-z0" style="background-color: whitesmoke; z-index: 0;">
+            <p>Seguro que deseas eliminar el registro de <b>{{informacion.nombre}}?</b></p>
+            <div style="display: flex;">
+                <button style="margin-left: auto;" mat-button (click)="panel_personal.close();">cancelar</button>
+                <button mat-stroked-button type="submit" (click)="eliminarPersonal()">confirmar</button>
+            </div>
+        </mat-expansion-panel>
+        <div style="margin: 24px 0; display: flex;">
+            <div appDrag (files)="filesDropped($event)" (click)="fileInput.click()" matTooltip="puedes arrastrar una imagen o presionar para cambiar el avatar" class="contorno-imagen">
+                <div mat-card-avatar [style.background-image]="'url('+ pathImagen + ')'" class="imagen">
+                </div>
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+            </div>
+            <div *ngIf="uploadEstado" style="margin: auto;">
+                <progress max="100" [value]="(uploadPercent | async)"></progress>
+            </div>
+        </div>
+        <form [formGroup]="informacionForm" (ngSubmit)="submit()" novalidate>
+            <div class="fields-container">
+                <div style="display: flex; flex-direction: column;">
+                    <mat-form-field appearance="fill" style="width: 90%;">
+                        <mat-label>Nombre</mat-label>
+                        <input type="text" class="form-control" formControlName="nombre" matInput required>
+                        <mat-error *ngIf="getErrorNombre()">{{getErrorNombre()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 90%;">
+                        <mat-label>Cargo</mat-label>
+                        <input type="text" class="form-control" formControlName="cargo" matInput required>
+                        <mat-error *ngIf="getErrorCargo()">{{getErrorCargo()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 90%;">
+                        <mat-label>Correo electrónico</mat-label>
+                        <input type="email" class="form-control" formControlName="mail" matInput>
+                        <mat-error *ngIf="getErrorEmail()">{{getErrorEmail()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 110px;">
+                        <mat-label>Teléfono</mat-label>
+                        <input type="text" class="form-control" formControlName="contacto" matInput>
+                        <mat-error *ngIf="getErrorContacto()">{{getErrorContacto()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-stroked-button type="submit"> actualizar</button>
+
+            </div>
+        </form>
+    </div>
+    <ng-template #loading>
+        <div style="padding: 8px;">
+            Cargando información del personal..
+        </div>
+    </ng-template>
+
+</ng-container>
