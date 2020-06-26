@@ -1,1 +1,57 @@
-<p>personal works!</p>
+<div class="servicios-container">
+    <div class="personal-sidenav">
+        <mat-toolbar style="z-index: 2; position: relative;">
+            <h3>Personal</h3>
+            <span class="example-spacer"></span>
+            <button mat-mini-fab matTooltip="nuevo registro" (click)="nuevoRegistro();">
+              <mat-icon aria-hidden="false" aria-label="nuevo registro">person_add_alt_1</mat-icon>
+            </button>
+        </mat-toolbar>
+        <mat-expansion-panel #panel_personal class="mat-elevation-z0" style="background-color: whitesmoke; z-index: 0;">
+            <form [formGroup]="informacionForm" (ngSubmit)="submit()" novalidate>
+                <div class="fields-container">
+                    <div style="display: flex; flex-direction: column;">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre</mat-label>
+                            <input type="text" class="form-control" formControlName="nombre" matInput required>
+                            <mat-error *ngIf="getErrorNombre()">{{getErrorNombre()}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cargo</mat-label>
+                            <input type="text" class="form-control" formControlName="cargo" matInput required>
+                            <mat-error *ngIf="getErrorCargo()">{{getErrorCargo()}}</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div style="display: flex;">
+                        <a style="margin-left: auto;" mat-button (click)="cancelarRegistro();">cancelar</a>
+                        <button mat-stroked-button type="submit">agregar</button>
+                    </div>
+                </div>
+            </form>
+        </mat-expansion-panel>
+        <mat-nav-list>
+            <ng-container *ngIf="personalApi.todos | async as personal; else loading">
+                <div style="width: 100%;" *ngIf="personal.length > 0; else lenp">
+                    <a class="navigation-item" *ngFor="let p of personal" [routerLink]="'./perfil'" [queryParams]="{id: p?.key}" mat-list-item routerLinkActive="active" routerLinkActive #rla1p="routerLinkActive">
+                        <img [src]="p?.foto || p?.foto != ''? p?.foto: pathImagen" class="avatar" alt="avatar personal">
+                        <div [ngClass]="{'item-seleccionado': rla1p.isActive}">
+                            <span class="navigation-item-label">{{p.nombre}}</span>
+                            <div [ngClass]="{'indicador-seleccionado': rla1p.isActive}"></div>
+                        </div>
+                    </a>
+                </div>
+                <ng-template #lenp>
+                    Cargando lista personal..
+                </ng-template>
+            </ng-container>
+            <ng-template #loading>
+                Lista vacia..
+            </ng-template>
+        </mat-nav-list>
+    </div>
+    <div class="example-sidenav-content">
+        <router-outlet>
+        </router-outlet>
+    </div>
+</div>
