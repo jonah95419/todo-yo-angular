@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { PromocionesComponent } from './promociones/promociones.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AngularModule } from '../angular.module';
-
+import { PromocionesService } from './service/promociones.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,10 +14,21 @@ import { AngularModule } from '../angular.module';
   imports: [
     AppRoutingModule,
     CommonModule,
-    AngularModule
+    AngularModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   exports: [
-    AngularModule
+    AngularModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
+  providers: [
+    PromocionesService,
+
   ]
 })
 export class PromocionesModule { }
