@@ -7,7 +7,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiciosComponent implements OnInit {
 
-  constructor() { }
+  navlist: any[];
+
+  constructor() {
+    this.navlist = [
+      {
+        link: './cotizacion/albañileria',
+        item: 'Albañileria'
+      },
+      {
+        link: './cotizacion/electricidad',
+        item: 'Electricidad'
+      },
+      {
+        link: './cotizacion/gypsuma',
+        item: 'Gypsum A.'
+      },
+      {
+        link: './cotizacion/mecanicai',
+        item: 'Mecánica I.'
+      },
+      {
+        link: './cotizacion/plomeria',
+        item: 'Plomeria'
+      },
+      {
+        link: './cotizacion/seguridade',
+        item: 'Seguridad E.'
+      }
+    ]
+
+   }
 
   ngOnInit(): void {
   }
