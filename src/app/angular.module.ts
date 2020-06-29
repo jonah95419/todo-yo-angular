@@ -25,7 +25,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatRippleModule} from '@angular/material/core';
+import {MatRippleModule, MatNativeDateModule} from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -55,7 +56,9 @@ import {MatRippleModule} from '@angular/material/core';
     MatDatepickerModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatRippleModule
+    MatRippleModule,
+    MatMenuModule,
+    MatNativeDateModule
   ]
 })
 export class AngularModule { }
