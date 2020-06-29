@@ -24,7 +24,9 @@
                             "@firebase/app",
                             "angularfire2/storage",
                             "firebase/app",
-                            "@angular/common/locales/es-EC"
+                            "@angular/common/locales/es-EC",
+                            "@firebase/util",
+                            "@firebase/component"
                         ],
                         "assets": [
                             "src/favicon.ico",
