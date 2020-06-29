@@ -3,17 +3,22 @@ import { CommonModule } from '@angular/common';
 import { ServiciosComponent } from './servicios/servicios.component';
 import { AngularModule } from '../angular.module';
 import { AppRoutingModule } from '../app-routing.module';
-import { AlbanieleriaComponent } from './albanieleria/albanieleria.component';
-import { AlbanieleriaCotizacionComponent } from './albanieleria-cotizacion/albanieleria-cotizacion.component';
+import { CotizacionComponent, DialogDataExampleDialog } from './cotizacion/cotizacion.component';
 
 import { NgImageSliderModule } from 'ng-image-slider';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CotizacionDetallesComponent } from './cotizacion-detalles/cotizacion-detalles.component';
+import { ChatModule } from '../chat/chat.module';
 
 
 @NgModule({
-  declarations: [ServiciosComponent, AlbanieleriaComponent, AlbanieleriaCotizacionComponent],
+  declarations: [
+    ServiciosComponent,
+    CotizacionComponent,
+    CotizacionDetallesComponent,
+    DialogDataExampleDialog],
   imports: [
     AppRoutingModule,
     CommonModule,
@@ -22,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    ChatModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
 
   ],
@@ -30,6 +36,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    //ChatModule
+  ],
+  entryComponents: [
+    DialogDataExampleDialog
   ]
 })
 export class ServiciosModule { }
