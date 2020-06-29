@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CotizacionService } from '../service/cotizacion.service';
 import { CotizacionDetallesService } from '../service/cotizacion_detalles.service';
@@ -17,7 +17,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
   templateUrl: './cotizacion-detalles.component.html',
   styleUrls: ['./cotizacion-detalles.component.css']
 })
-export class CotizacionDetallesComponent implements OnInit {
+export class CotizacionDetallesComponent implements OnInit, OnDestroy {
 
   @ViewChild("panel_material") panel_material: MatExpansionPanel;
   @ViewChild("panel_equipos") panel_equipos: MatExpansionPanel;
@@ -84,6 +84,12 @@ export class CotizacionDetallesComponent implements OnInit {
         const key = params.key;
         if(key) { this.obtenerCotizacionDetalle(key); }
       });
+  }
+
+  ngOnDestroy(): void {
+    if(this._translate != undefined) {
+      this._translate.unsubscribe();
+    }
   }
 
   actualizarEstado = ( event: MatSlideToggleChange, usuario: String) => this.cotizacionApi.actualizarEstadoCotizacion(usuario, this.key, event.checked);
