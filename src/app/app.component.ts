@@ -9,6 +9,7 @@ import { Servicio3Service } from './servicios/service/servicios3.service';
 import { Servicio4Service } from './servicios/service/servicios4.service';
 import { Servicio5Service } from './servicios/service/servicios5.service';
 import { Servicio6Service } from './servicios/service/servicios6.service';
+import { PromocionesService } from './promociones/service/promociones.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent {
     private cotizacionApi: CotizacionService,
     private usuariosApi: UsuariosService,
     private detallesCotizacionApi: CotizacionDetallesService,
-    private personalApi: PersonalService
+    private personalApi: PersonalService,
+    private promocionesApi: PromocionesService
   ){
     servicios1Api.cargarTodo();
     servicios2Api.cargarTodo();
@@ -40,6 +42,7 @@ export class AppComponent {
     usuariosApi.cargarTodo();
     detallesCotizacionApi.cargarTodo();
     personalApi.cargarTodo();
+    promocionesApi.cargarTodo();
   }
 
 }
