@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject, SnapshotAction } from '@angular/fire/database';  // Firebase modules for Database
-import { BehaviorSubject, Observable } from 'rxjs';
-import { personalI } from '../model/personal';
+import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { map } from 'rxjs/operators';
