@@ -130,7 +130,6 @@ export class CotizacionComponent implements OnInit, OnDestroy {
     .pipe(
       map( data => new obtenerCotizacion(data[0], data[1], data[2]).combinarTablas()),
       map( data => this.aplicarFiltros(data) ),
-      tap( data => console.log(data))
     );
   }
 
