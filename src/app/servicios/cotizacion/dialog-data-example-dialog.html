@@ -1,0 +1,30 @@
+<h3 mat-dialog-title>
+    <div style="margin: 0 12px; display: flex;">
+        <div>Filtrar lista</div>
+        <span class="example-spacer"></span>
+        <button mat-stroked-button (click)="cerrarDialog()">guardar</button>
+    </div>
+</h3>
+<div mat-dialog-content>
+    <mat-card style="padding: 0;">
+        <mat-calendar [selected]="filtro_fecha" (selectedChange)="onSelect($event)"></mat-calendar>
+    </mat-card>
+    <mat-divider style="margin: 12px 0;">
+    </mat-divider>
+    <div style="padding: 6px;">
+        <div style="display: flex; flex-direction: row; height: 38px; justify-content: space-between;">
+            <div style="display: flex;">
+                <div class="indicador-estado-activo"></div>
+                <div style="margin: 8px 0 0 6px;">Pendiente</div>
+            </div>
+            <mat-checkbox style="margin-top: 8px;" [(ngModel)]="filtro_pendiente"></mat-checkbox>
+        </div>
+        <div style="display: flex; flex-direction: row; height: 38px; justify-content: space-between;">
+            <div style="display: flex;">
+                <div class="indicador-estado-inactivo"></div>
+                <div style="margin: 8px 0 0 6px;">Cerrado</div>
+            </div>
+            <mat-checkbox style="margin-top: 8px;" [(ngModel)]="filtro_cerrado"></mat-checkbox>
+        </div>
+    </div>
+</div>
