@@ -1,34 +1,46 @@
-export function combinarTablasInteraccion(interacciones, usuarios){
-  return interacciones.map(ti => {
-    if(ti.key == "calificacion") {
-      return procesarCalf(ti);
-    }
-    if(ti.key == "comentario") {
-      return procesarComentarios(ti, usuarios);
-    }
-  })
-}
+export class obtenerInteracciones {
 
-function procesarCalf(data: Object) {
-  const total = Object.keys(data).map(d => d != "key"? data[d].valor : 0).reduce((acc, value) => acc + value, 0);
-  const cantidad = Object.keys(data).length - 1;
-  const media = total / cantidad;
-  return { total, cantidad, media , key: "calificacion"}
-}
+  private interacciones: any;
+  private usuarios: any;
 
-function procesarComentarios(data: Object, usuarios: any[]){
-  let valores = Object.keys(data).map(d => {
-    if(d != "key") {
-      let usu = usuarios.find(u => u.key == data[d].usuario);
-      let usuario = usu != undefined ? usu : {foto: '', nombre: 'desconocido'};
-      return {
-        key: d,
-        comentario : data[d].comentario,
-        fecha: data[d].fecha,
-        usuario
+  constructor(interacciones, usuarios) {
+    this.interacciones = interacciones;
+    this.usuarios = usuarios;
+  }
+
+  combinarTablas(){
+    return this.interacciones.map(ti => {
+      if(ti.key == "calificacion") {
+        return this.procesarCalf(ti);
       }
-    }
-  });
-  valores = valores.filter(Boolean);
-  return { valores, key: "comentario"}
+      if(ti.key == "comentario") {
+        return this.procesarComentarios(ti);
+      }
+    })
+  }
+
+  private procesarCalf(data: Object) {
+    const total = Object.keys(data).map(d => d != "key"? data[d].valor : 0).reduce((acc, value) => acc + value, 0);
+    const cantidad = Object.keys(data).length - 1;
+    const media = total / cantidad;
+    return { total, cantidad, media , key: "calificacion"}
+  }
+
+  private procesarComentarios(data: Object){
+    let valores = Object.keys(data).map(d => {
+      if(d != "key") {
+        let usu = this.usuarios.find(u => u.key == data[d].usuario);
+        let usuario = usu != undefined ? usu : {foto: '', nombre: 'desconocido'};
+        return {
+          key: d,
+          comentario : data[d].comentario,
+          fecha: data[d].fecha,
+          usuario
+        }
+      }
+    });
+    valores = valores.filter( Boolean );
+    return { valores, key: "comentario"}
+  }
+
 }
