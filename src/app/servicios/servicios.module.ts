@@ -11,6 +11,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CotizacionDetallesComponent } from './cotizacion-detalles/cotizacion-detalles.component';
 import { ChatModule } from '../chat/chat.module';
+import { Servicio1Service } from './service/servicios1.service';
+import { Servicio2Service } from './service/servicios2.service';
+import { Servicio3Service } from './service/servicios3.service';
+import { Servicio4Service } from './service/servicios4.service';
+import { Servicio5Service } from './service/servicios5.service';
+import { Servicio6Service } from './service/servicios6.service';
+import { CotizacionService } from './service/cotizacion.service';
+import { CotizacionDetallesService } from './service/cotizacion_detalles.service';
+import { UsuariosService } from './service/usuarios.service';
+
 
 
 @NgModule({
@@ -40,6 +50,17 @@ import { ChatModule } from '../chat/chat.module';
   ],
   entryComponents: [
     DialogDataExampleDialog
+  ],
+  providers: [
+    Servicio1Service,
+    Servicio2Service,
+    Servicio3Service,
+    Servicio4Service,
+    Servicio5Service,
+    Servicio6Service,
+    CotizacionService,
+    CotizacionDetallesService,
+    UsuariosService,
   ]
 })
 export class ServiciosModule { }
