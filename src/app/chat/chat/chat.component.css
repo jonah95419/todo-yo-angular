@@ -1,0 +1,49 @@
+.chat-content {
+    overflow: auto;
+    height: 400px;
+    bottom: 0;
+    /* position: fixed; */
+    width: inherit;
+    margin-bottom: 78px;
+    min-width: 250px;
+}
+
+mat-icon {
+    color: #E11513;
+}
+
+footer.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: inherit;
+    padding: 10px;
+    background-color: #ffffff;
+    border-top: solid 1px #efefef;
+    min-width: 250px;
+}
+
+.message-form-field {
+    width: 100%;
+    margin: 0 4% 0 2%;
+}
+
+.message-box {
+    float: left;
+    width: 98%;
+    margin: 5px 0 0 2%;
+}
+
+.contenedor-imagen {
+    width: 100%;
+    background-color: white;
+    height: 200px;
+    position: fixed;
+    bottom: 78px;
+}
+
+.btn-cerrar-imagen {
+    position: fixed;
+    right: 6px;
+    margin-top: 6px;
+    background: white;
+}

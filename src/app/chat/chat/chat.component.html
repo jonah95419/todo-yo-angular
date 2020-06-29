@@ -1,0 +1,56 @@
+<ng-container>
+    <mat-toolbar #toolbar>
+        <h3 style="margin-top: 0;">Chat directo</h3>
+    </mat-toolbar>
+    <div class="chat-content" #chat>
+        <div *ngIf="chats$ | async as chat; else loading">
+            <div *ngIf="chat.length > 0; else lenc">
+                <div *ngFor="let item of chat">
+                    <div class="chat-user" *ngIf="item.nombre == 'user'; else admin">
+                        <div *ngIf="item.tipoMensaje == '2'">
+                            <img (click)="openDialog(item.urlFoto)" style="cursor: pointer; width: 100%; height: auto;" [src]="item.urlFoto" alt="">
+                        </div>
+                        {{item.mensaje}}
+                    </div>
+                    <ng-template #admin>
+                        <div class="chat-admin">
+                            <div *ngIf="item.tipoMensaje == '2'">
+                                <img (click)="openDialog(item.urlFoto)" style="cursor: pointer; width: 100%; height: auto;" [src]="item.urlFoto" alt="">
+                            </div>
+                            {{item.mensaje}}
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <ng-template #lenc>
+                <div style="padding: 12px;">Sin mensajes</div>
+            </ng-template>
+        </div>
+        <ng-template #loading>
+            <div style="padding: 12px;"> Cargando conversación.. </div>
+        </ng-template>
+    </div>
+    <div class="contenedor-imagen" *ngIf="imagen">
+        <img style="width: auto; height: 200px;" [src]="imageSrc" alt="">
+        <button mat-mini-fab class="btn-cerrar-imagen" (click)="cancelarImagen()" matTooltip="cancelar"> <mat-icon>close</mat-icon></button>
+        <div *ngIf="uploadEstado" style="margin: auto;">
+            <progress max="100" [value]="(uploadPercent$ | async)"></progress>
+        </div>
+    </div>
+    <footer class="sticky-footer" #mensaje>
+        <form class="message-form" [formGroup]="chatForm" (ngSubmit)="onFormSubmit(chatForm.value)">
+            <mat-form-field class="message-form-field">
+                <input matInput placeholder="Escribe tu mensaje.." formControlName="mensaje">
+                <a (click)="fileInput.click()" mat-button matPrefix mat-icon-button aria-label="enviar">
+                    <mat-icon style="cursor: pointer;" matTooltip="agregar imagen">insert_photo</mat-icon>
+                </a>
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+
+                <button type="submit" [disabled]="!chatForm.valid" mat-button matSuffix mat-icon-button aria-label="enviar">
+
+    <mat-icon style="cursor: pointer;" matTooltip="enviar mensaje">send</mat-icon>
+  </button>
+            </mat-form-field>
+        </form>
+    </footer>
+</ng-container>
