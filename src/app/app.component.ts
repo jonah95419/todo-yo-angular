@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from './servicios/service/usuarios.service';
 import { CotizacionService } from './servicios/service/cotizacion.service';
-import { ServiciosAlbanieleriaService } from './servicios/service/servicios_albanieleria.service';
+import { Servicio1Service } from './servicios/service/servicios1.service';
 import { CotizacionDetallesService } from './servicios/service/cotizacion_detalles.service';
 import { PersonalService } from './personal/service/personal.service';
+import { Servicio2Service } from './servicios/service/servicios2.service';
+import { Servicio3Service } from './servicios/service/servicios3.service';
+import { Servicio4Service } from './servicios/service/servicios4.service';
+import { Servicio5Service } from './servicios/service/servicios5.service';
+import { Servicio6Service } from './servicios/service/servicios6.service';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +19,23 @@ export class AppComponent {
   title = 'todo-yo';
 
   constructor(
-    private serviciosAlbanieleriaApi: ServiciosAlbanieleriaService,
+    private servicios1Api: Servicio1Service,
+    private servicios2Api: Servicio2Service,
+    private servicios3Api: Servicio3Service,
+    private servicios4Api: Servicio4Service,
+    private servicios5Api: Servicio5Service,
+    private servicios6Api: Servicio6Service,
     private cotizacionApi: CotizacionService,
     private usuariosApi: UsuariosService,
     private detallesCotizacionApi: CotizacionDetallesService,
     private personalApi: PersonalService
   ){
-    serviciosAlbanieleriaApi.cargarTodo();
+    servicios1Api.cargarTodo();
+    servicios2Api.cargarTodo();
+    servicios3Api.cargarTodo();
+    servicios4Api.cargarTodo();
+    servicios5Api.cargarTodo();
+    servicios6Api.cargarTodo();
     cotizacionApi.cargarTodo();
     usuariosApi.cargarTodo();
     detallesCotizacionApi.cargarTodo();
