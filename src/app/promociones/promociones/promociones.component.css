@@ -1,0 +1,37 @@
+.example-container {
+    min-width: 280px;
+    width: 100%;
+    padding: 0px 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+mat-toolbar {
+    margin-top: 6px;
+}
+
+.mat-mini-fab {
+    margin-left: 3px;
+    color: #E11513;
+    background-color: white;
+}
+
+.example-card {
+    margin: 12px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.example-list {
+    height: 100%;
+    overflow: auto;
+}
+
+.btn-cerrar-imagen {
+    right: 6px;
+    margin-top: 6px;
+    background: white;
+}
