@@ -6,7 +6,6 @@ import { PersonalComponent } from './personal/personal/personal.component';
 import { CotizacionComponent } from './servicios/cotizacion/cotizacion.component';
 import { PerfilComponent } from './personal/perfil/perfil.component';
 import { CotizacionDetallesComponent } from './servicios/cotizacion-detalles/cotizacion-detalles.component';
-import { PromocionesDetallesComponent } from './promociones/promociones-detalles/promociones-detalles.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'servicios', pathMatch: 'full' },
@@ -16,12 +15,7 @@ const routes: Routes = [
       { path: 'detalles', component: CotizacionDetallesComponent},
     ]},
   ]},
-  { path: 'promociones', component: PromocionesComponent, children: [
-    { path: '', redirectTo: 'texto', pathMatch: 'full' },
-    { path: 'texto', component: PromocionesDetallesComponent},
-    { path: 'imagent', component: PromocionesDetallesComponent},
-    { path: 'videot', component: PromocionesDetallesComponent},
-  ]},
+  { path: 'promociones', component: PromocionesComponent},
   { path: 'personal', component: PersonalComponent, children: [
       {path: 'perfil', component: PerfilComponent}
   ]},
