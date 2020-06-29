@@ -3,22 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { ServiciosComponent } from './servicios/servicios/servicios.component';
 import { PromocionesComponent } from './promociones/promociones/promociones.component';
 import { PersonalComponent } from './personal/personal/personal.component';
-import { AlbanieleriaComponent } from './servicios/albanieleria/albanieleria.component';
-import { AlbanieleriaCotizacionComponent } from './servicios/albanieleria-cotizacion/albanieleria-cotizacion.component';
+import { CotizacionComponent } from './servicios/cotizacion/cotizacion.component';
 import { PerfilComponent } from './personal/perfil/perfil.component';
+import { CotizacionDetallesComponent } from './servicios/cotizacion-detalles/cotizacion-detalles.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'servicios', pathMatch: 'full' },
   { path: 'servicios', component: ServiciosComponent, children: [
-    { path: '', redirectTo: 'albañileria', pathMatch: 'full' },
-    { path: 'albañileria', component: AlbanieleriaComponent, children: [
-      { path: 'cotizaciones', component: AlbanieleriaCotizacionComponent},
+    { path: '', redirectTo: 'cotizacion', pathMatch: 'full' },
+    { path: 'cotizacion/:tipo', component: CotizacionComponent, children: [
+      { path: 'detalles', component: CotizacionDetallesComponent},
     ]},
-    { path: 'electricidad', component: PersonalComponent},
-    { path: 'gypsuma', component: PersonalComponent},
-    { path: 'mecanicai', component: PersonalComponent},
-    { path: 'plomeria', component: PersonalComponent},
-    { path: 'seguridade', component: PersonalComponent},
   ]},
   { path: 'promociones', component: PromocionesComponent, children: [
     { path: '', redirectTo: 'texto', pathMatch: 'full' },
