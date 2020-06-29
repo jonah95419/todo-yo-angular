@@ -12,6 +12,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DragDirective } from './informacion/dragDrop.Directive';
 import { RatingModule } from 'ng-starrating';
+import { ChatService } from '../chat/service/chat.service';
+import { InteraccionService } from './service/interaccion.service';
+import { PersonalService } from './service/personal.service';
 
 
 @NgModule({
@@ -31,6 +34,11 @@ import { RatingModule } from 'ng-starrating';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+  ],
+  providers: [
+    PersonalService,
+    InteraccionService,
+    ChatService,
   ]
 })
 export class PersonalModule { }
