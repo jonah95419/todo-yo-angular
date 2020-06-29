@@ -4,7 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { CotizacionDetallesService } from '../../servicios/service/cotizacion_detalles.service';
 import { CotizacionService } from '../../servicios/service/cotizacion.service';
 import { map, tap } from 'rxjs/operators';
-import { combinarTablasHistorial } from '../../utils/obtenerHistorial';
+import { obtenerInteracciones } from '../../utils/obtenerHistorial';
 
 @Component({
   selector: 'personal-historial',
@@ -34,7 +34,7 @@ export class HistorialComponent implements OnInit {
       this.cotizacionApi.todos,
       this.cotizacionDetalleApi.todos)
     .pipe(
-      map( data => combinarTablasHistorial(id, data[0], data[1])),
+      map( data => new obtenerInteracciones(id, data[0], data[1]).combinarTablas()),
     );
   }
 
