@@ -24,7 +24,6 @@ export class InformacionComponent implements OnInit {
   @ViewChild("panel_personal") panel_personal: MatExpansionPanel;
 
   uploadPercent: Observable<number>;
-  downloadURL: Observable<string>;
 
   id: string = "";
   pathImagen: string = NOT_FOUND;
