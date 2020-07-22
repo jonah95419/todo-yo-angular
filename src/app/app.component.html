@@ -1,6 +1,6 @@
 <div class="example-container">
     <div class="example-sidenav">
-        <mat-toolbar>
+        <mat-toolbar matTooltip="Todo YO" style="cursor: pointer;">
             <h3>{{title}}</h3>
         </mat-toolbar>
         <mat-nav-list>
@@ -21,6 +21,12 @@
                     <div [ngClass]="{'item-seleccionado': rla3.isActive}">
                         <span class="navigation-item-label">Personal</span>
                         <div [ngClass]="{'indicador-seleccionado': rla3.isActive}"></div>
+                    </div>
+                </a>
+                <a class="navigation-item" routerLink="/usuarios" mat-list-item routerLinkActive="active" routerLinkActive #rla4="routerLinkActive">
+                    <div [ngClass]="{'item-seleccionado': rla4.isActive}">
+                        <span class="navigation-item-label">Usuarios</span>
+                        <div [ngClass]="{'indicador-seleccionado': rla4.isActive}"></div>
                     </div>
                 </a>
             </div>

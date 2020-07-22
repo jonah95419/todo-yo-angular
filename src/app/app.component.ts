@@ -10,6 +10,7 @@ import { Servicio4Service } from './servicios/service/servicios4.service';
 import { Servicio5Service } from './servicios/service/servicios5.service';
 import { Servicio6Service } from './servicios/service/servicios6.service';
 import { PromocionesService } from './promociones/service/promociones.service';
+import { Servicio7Service } from './servicios/service/servicios7.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ import { PromocionesService } from './promociones/service/promociones.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todo-yo';
+  title = 'Todo-YO';
 
   constructor(
     private servicios1Api: Servicio1Service,
@@ -26,6 +27,7 @@ export class AppComponent {
     private servicios4Api: Servicio4Service,
     private servicios5Api: Servicio5Service,
     private servicios6Api: Servicio6Service,
+    private servicios7Api: Servicio7Service,
     private cotizacionApi: CotizacionService,
     private usuariosApi: UsuariosService,
     private detallesCotizacionApi: CotizacionDetallesService,
@@ -38,6 +40,7 @@ export class AppComponent {
     servicios4Api.cargarTodo();
     servicios5Api.cargarTodo();
     servicios6Api.cargarTodo();
+    servicios7Api.cargarTodo();
     cotizacionApi.cargarTodo();
     usuariosApi.cargarTodo();
     detallesCotizacionApi.cargarTodo();
