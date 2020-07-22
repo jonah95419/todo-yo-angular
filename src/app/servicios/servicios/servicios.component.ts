@@ -16,6 +16,10 @@ export class ServiciosComponent implements OnInit {
         item: 'Albañileria'
       },
       {
+        link: './cotizacion/alquiler',
+        item: 'Alquiler de H. & M.'
+      },
+      {
         link: './cotizacion/electricidad',
         item: 'Electricidad'
       },
