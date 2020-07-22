@@ -11,6 +11,7 @@ import { FormBuilder, FormControl, Validators, FormGroupDirective, NgForm } from
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { PersonalService } from '../../personal/service/personal.service';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { UsuariosService } from '../service/usuarios.service';
 
 @Component({
   selector: 'app-cotizacion-detalles',
@@ -24,6 +25,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   @ViewChild("panel_personal") panel_personal: MatExpansionPanel;
 
   key: String;
+  usuario: any;
   cotizacion$: Observable<any>
 
   btn_detalle_personal: boolean = false;
@@ -40,19 +42,19 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   matcher = new MyErrorStateMatcher();
 
   personalForm = this.fb.group({
-    cant: new FormControl('', [Validators.required, Validators.min(1)]),
+    cantidad: new FormControl('', [Validators.required, Validators.min(1)]),
     detalle: new FormControl('', [Validators.required]),
     subtotal: new FormControl('', [Validators.required, Validators.min(0)])
   })
 
   materialForm = this.fb.group({
-    cant: new FormControl('', [Validators.required, Validators.min(1)]),
+    cantidad: new FormControl('', [Validators.required, Validators.min(1)]),
     detalle: new FormControl('', [Validators.required]),
     subtotal: new FormControl('', [Validators.required, Validators.min(0)])
   })
 
   equipoForm = this.fb.group({
-    cant: new FormControl('', [Validators.required, Validators.min(1)]),
+    cantidad: new FormControl('', [Validators.required, Validators.min(1)]),
     detalle: new FormControl('', [Validators.required]),
     subtotal: new FormControl('', [Validators.required, Validators.min(0)])
   })
@@ -69,6 +71,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private cotizacionApi: CotizacionService,
     private cotizacionDetalleApi: CotizacionDetallesService,
+    private usuariosApi: UsuariosService,
     public personalApi: PersonalService) {
       translate.setDefaultLang('es');
       translate.use('es');
@@ -93,8 +96,6 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   }
 
   actualizarEstado = ( event: MatSlideToggleChange, usuario: String) => this.cotizacionApi.actualizarEstadoCotizacion(usuario, this.key, event.checked);
-
-  actualizarVisibilidad = (estado: boolean) => this.cotizacionDetalleApi.actualizarVisibilidadDetalle(this.key, estado);
 
   detalle = (detalleP: boolean, detalleM: boolean, detalleE: boolean): void => {
 
@@ -127,32 +128,32 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
 
   }
 
-  eliminarDetalle = (t: string, k: string) => this.cotizacionDetalleApi.eliminarDetalle(this.key, t, k);
+  eliminarDetalle = (usuario: String, t: string, k: string) => this.cotizacionDetalleApi.eliminarDetalle(this.key, usuario, t, k);
 
-  submitMaterial = () => {
+  submitMaterial = (usuario: String) => {
     if(this.materialForm.valid) {
-      this.cotizacionDetalleApi.registrarDetalle(this.key, "material", this.materialForm.value);
+      this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "material", this.materialForm.value);
       this.cancelarDetalle();
     }
   }
 
-  submitEquipos= () => {
+  submitEquipos= (usuario: String) => {
     if(this.equipoForm.valid) {
-      this.cotizacionDetalleApi.registrarDetalle(this.key, "equipo", this.equipoForm.value);
+      this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "equipo", this.equipoForm.value);
       this.cancelarDetalle();
     }
   }
 
-  submitPersonal = () => {
+  submitPersonal = (usuario: String) => {
     if(this.personalForm.valid) {
-      this.cotizacionDetalleApi.registrarDetalle(this.key, "personal", this.personalForm.value);
+      this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "personal", this.personalForm.value);
       this.cancelarDetalle();
     }
   }
 
   getErrorCantMaterial = () => {
-    if (this.materialForm.controls['cant'].hasError('required')) { return 'Requerido.'; }
-    return this.materialForm.controls['cant'].hasError('min') ? 'No válido' : '';
+    if (this.materialForm.controls['cantidad'].hasError('required')) { return 'Requerido.'; }
+    return this.materialForm.controls['cantidad'].hasError('min') ? 'No válido' : '';
   }
 
   getErrorSubtotalMaterial = () => {
@@ -165,8 +166,8 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   }
 
   getErrorCantEquipo = () => {
-    if (this.equipoForm.controls['cant'].hasError('required')) { return 'Req.'; }
-    return this.equipoForm.controls['cant'].hasError('min') ? 'No válido' : '';
+    if (this.equipoForm.controls['cantidad'].hasError('required')) { return 'Req.'; }
+    return this.equipoForm.controls['cantidad'].hasError('min') ? 'No válido' : '';
   }
 
   getErrorSubtotalEquipo = () => {
@@ -179,8 +180,8 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   }
 
   getErrorCantPersonal = () => {
-    if (this.personalForm.controls['cant'].hasError('required')) { return 'Req.'; }
-    return this.personalForm.controls['cant'].hasError('min') ? 'No válido' : '';
+    if (this.personalForm.controls['cantidad'].hasError('required')) { return 'Req.'; }
+    return this.personalForm.controls['cantidad'].hasError('min') ? 'No válido' : '';
   }
 
   getErrorSubtotalPersonal = () => {
@@ -198,13 +199,15 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     this.cotizacion$ = combineLatest(
       this.cotizacionApi.todos,
       this.cotizacionDetalleApi.todos,
-      this.personalApi.todos)
+      this.personalApi.todos,
+      this.usuariosApi.todos)
     .pipe(
-      map( data => new obtenerCotizacionDetalles(key, data[0], data[1], data[2]).combinarTablas()),
+      map( data => new obtenerCotizacionDetalles(key, data[0], data[1], data[2], data[3]).combinarTablas()),
       tap( data => { if(data !== undefined) {
         this.imageObject = this.procesarFotografias(data.cotizacion.fotografias)
         this.total = this.calcularTotal(data.detalles);
         this.dataSource = data.detalles;
+        this.usuario = data.usuario;
       }})
     )
   }
