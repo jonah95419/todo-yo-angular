@@ -1,6 +1,6 @@
 {
     "database": {
-        "rules": "dist/todo-yo/rules-firebase.json"
+        "rules": "database.rules.json"
     },
     "hosting": {
         "public": "dist/todo-yo",
@@ -15,6 +15,6 @@
         }]
     },
     "storage": {
-        "rules": "dist/todo-yo/storage.rules"
+        "rules": "storage.rules"
     }
 }
