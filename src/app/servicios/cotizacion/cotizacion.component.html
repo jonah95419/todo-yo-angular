@@ -19,8 +19,8 @@
                             <div [ngClass]="{'indicador-estado-activo': cotizacion?.cotizacion?.estado}" class="indicador-estado-inactivo" [matTooltip]="cotizacion.cotizacion.estado? 'pendiente':'cerrado'"></div>
                             <div style="padding: 16px;">
                                 <mat-card-header>
-                                    <div mat-card-avatar [style.background-image]=" 'url('+ cotizacion.usuario?.foto + ')' " class="example-header-image "></div>
-                                    <mat-card-title [style.color]="rla1sa.isActive ? '#f52828': 'black' ">{{cotizacion.usuario?.nombre}}</mat-card-title>
+                                    <div mat-card-avatar [style.background-image]=" 'url('+ cotizacion.usuario?.avatar + ')' " class="example-header-image "></div>
+                                    <mat-card-title [style.color]="rla1sa.isActive ? '#730603': 'black' ">{{cotizacion.usuario?.name}}</mat-card-title>
                                     <mat-card-subtitle>
                                         <div style="display: flex; width: 100%;">
                                             {{cotizacion.cotizacion?.fecha | date : 'MMM d, y':undefined:locale}}

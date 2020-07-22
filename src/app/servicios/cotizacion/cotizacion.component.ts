@@ -13,7 +13,7 @@ import { Servicio4Service } from '../service/servicios4.service';
 import { Servicio5Service } from '../service/servicios5.service';
 import { Servicio6Service } from '../service/servicios6.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { Servicio7Service } from '../service/servicios7.service';
 
 @Component({
   selector: 'app-cotizacion',
@@ -34,7 +34,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
 
   locale: string;
   tipo: string;
-  tipos: string[] = ['albañileria', 'electricidad', 'gypsuma', 'mecanicai', 'plomeria', 'seguridade'];
+  tipos: string[] = ['albañileria', 'electricidad', 'gypsuma', 'mecanicai', 'plomeria', 'seguridade', 'alquiler'];
 
   private _translate;
 
@@ -47,6 +47,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
     private servicio4Api: Servicio4Service,
     private servicio5Api: Servicio5Service,
     private servicio6Api: Servicio6Service,
+    private servicio7Api: Servicio7Service,
     private cotizacionApi: CotizacionService,
     private usuariosApi: UsuariosService,
     public dialog: MatDialog) {
@@ -119,6 +120,9 @@ export class CotizacionComponent implements OnInit, OnDestroy {
       if(this.tipo == this.tipos[5]) {
         this.obtenerCotizaciones(this.servicio6Api.todos);
       }
+      if(this.tipo == this.tipos[6]) {
+        this.obtenerCotizaciones(this.servicio7Api.todos);
+      }
     }
   }
 
@@ -129,25 +133,25 @@ export class CotizacionComponent implements OnInit, OnDestroy {
       this.usuariosApi.todos)
     .pipe(
       map( data => new obtenerCotizacion(data[0], data[1], data[2]).combinarTablas()),
-      map( data => this.aplicarFiltros(data) ),
+      map( data => this.aplicarFiltros(data) )
     );
   }
 
   private aplicarFiltros = (c) => {
     if(this.filtro_pendiente && this.filtro_cerrado) {
       return c.filter( d =>
-        this.compararFechas(d.cotizacion.fecha,this.filtro_fecha)
+        this.compararFechas(d.cotizacion.fecha, this.filtro_fecha)
       )
     } else {
       if (this.filtro_pendiente) {
         return c.filter( d =>
           d.cotizacion.estado &&
-          this.compararFechas(d.cotizacion.fecha,this.filtro_fecha)
+          this.compararFechas(d.cotizacion.fecha, this.filtro_fecha)
         )
       } else {
         return c.filter( d =>
           !d.cotizacion.estado &&
-          this.compararFechas(d.cotizacion.fecha,this.filtro_fecha)
+          this.compararFechas(d.cotizacion.fecha, this.filtro_fecha)
         )
       }
     }
