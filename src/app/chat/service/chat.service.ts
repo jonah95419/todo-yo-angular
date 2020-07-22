@@ -13,8 +13,8 @@ export class ChatService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  cargarTodo = (id: string): Observable<chatI[]> => {
-    return this.db.list('chat/' + id).snapshotChanges().pipe(
+  cargarTodo = (id: string, usuario: string): Observable<chatI[]> => {
+    return this.db.list('chat/' + usuario + "/" + id).snapshotChanges().pipe(
       map((data: any[]) => data.map( item => {
           let a = item.payload.toJSON();
           a['key'] = item.key;
@@ -24,12 +24,12 @@ export class ChatService {
     )
   }
 
-  enviarMensaje = (id: string, mensaje) => {
-    this.db.list('chat/' + id).push({mensaje, nombre: "admin", tipoMensaje: "1"})
+  enviarMensaje = (id: string, usuario: string, mensaje) => {
+    this.db.list('chat/' + usuario + "/" + id).push({mensaje, nombre: "admin", tipoMensaje: "1", local: -1})
   }
 
-  enviarMensajeImagen = (id: string, mensaje, urlFoto) => {
-    this.db.list('chat/' + id).push({mensaje, nombre: "admin", tipoMensaje: "2", urlFoto})
+  enviarMensajeImagen = (id: string, usuario: string, mensaje, urlFoto) => {
+    this.db.list('chat/' + usuario + "/" + id).push({mensaje, nombre: "admin", tipoMensaje: "2", urlFoto, local: -1})
   }
 
 }

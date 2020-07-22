@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
   @ViewChild('mensaje', {static: false}) mensaje: ElementRef;
 
   @Input() key: string;
+  @Input() usuario: any;
 
   chats$: Observable<chatI[]>;
   uploadPercent$: Observable<number>;
@@ -72,7 +73,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
     if(this.imagen) {
       this.cargarImagen(form.mensaje);
     } else {
-      this.chatApi.enviarMensaje(this.key, form.mensaje)
+      this.chatApi.enviarMensaje(this.key, this.usuario.key, form.mensaje)
     }
     this.chatForm = this.formBuilder.group({
       'mensaje' : [null, Validators.required]
@@ -112,7 +113,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
     task.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(downloadURL => {
-            this.chatApi.enviarMensajeImagen(this.key, mensaje, downloadURL)
+            this.chatApi.enviarMensajeImagen(this.key, this.usuario.key, mensaje, downloadURL)
             this.uploadEstado = false;
             this.imagen = false;
             this.file = undefined;
@@ -122,7 +123,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
   }
 
   private obtenerChat = () => {
-    this.chats$ = this.chatApi.cargarTodo(this.key);
+    this.chats$ = this.chatApi.cargarTodo(this.key, this.usuario.key);
   }
 
 }

@@ -1,33 +1,36 @@
 <ng-container>
     <mat-toolbar #toolbar>
-        <h3 style="margin-top: 0;">Chat directo</h3>
+        <h3 style="margin-top: 0;">Comentarios</h3>
     </mat-toolbar>
     <div class="chat-content" #chat>
         <div *ngIf="chats$ | async as chat; else loading">
             <div *ngIf="chat.length > 0; else lenc">
                 <div *ngFor="let item of chat">
                     <div class="chat-user" *ngIf="item.nombre == 'user'; else admin">
+
+                        <strong>{{usuario.name}}</strong> {{item.mensaje}}
                         <div *ngIf="item.tipoMensaje == '2'">
-                            <img (click)="openDialog(item.urlFoto)" style="cursor: pointer; width: 100%; height: auto;" [src]="item.urlFoto" alt="">
+                            <img (click)="openDialog(item.urlFoto)" style="cursor: pointer; width: 100%; height: auto; margin-top: 10px;" [src]="item.urlFoto" alt="">
                         </div>
-                        {{item.mensaje}}
                     </div>
                     <ng-template #admin>
                         <div class="chat-admin">
+                            <strong style="color: #730603;">Todo YO</strong> {{item.mensaje}}
                             <div *ngIf="item.tipoMensaje == '2'">
-                                <img (click)="openDialog(item.urlFoto)" style="cursor: pointer; width: 100%; height: auto;" [src]="item.urlFoto" alt="">
+                                <img (click)="openDialog(item.urlFoto)" style="cursor: pointer; width: 100%; height: auto; margin-top: 10px;" [src]="item.urlFoto" alt="">
                             </div>
-                            {{item.mensaje}}
                         </div>
                     </ng-template>
+                    <mat-divider style="height: 0.1px; background-color: #ffc8c8; width: 85%; margin: auto;">
+                    </mat-divider>
                 </div>
             </div>
             <ng-template #lenc>
-                <div style="padding: 12px;">Sin mensajes</div>
+                <div style="padding: 12px;">Sin comentarios</div>
             </ng-template>
         </div>
         <ng-template #loading>
-            <div style="padding: 12px;"> Cargando conversación.. </div>
+            <div style="padding: 12px;"> Cargando comentarios.. </div>
         </ng-template>
     </div>
     <div class="contenedor-imagen" *ngIf="imagen">
@@ -40,7 +43,7 @@
     <footer class="sticky-footer" #mensaje>
         <form class="message-form" [formGroup]="chatForm" (ngSubmit)="onFormSubmit(chatForm.value)">
             <mat-form-field class="message-form-field">
-                <input matInput placeholder="Escribe tu mensaje.." formControlName="mensaje">
+                <input matInput placeholder="Escribe un comentario.." formControlName="mensaje">
                 <a (click)="fileInput.click()" mat-button matPrefix mat-icon-button aria-label="enviar">
                     <mat-icon style="cursor: pointer;" matTooltip="agregar imagen">insert_photo</mat-icon>
                 </a>
@@ -48,7 +51,7 @@
 
                 <button type="submit" [disabled]="!chatForm.valid" mat-button matSuffix mat-icon-button aria-label="enviar">
 
-    <mat-icon style="cursor: pointer;" matTooltip="enviar mensaje">send</mat-icon>
+    <mat-icon style="cursor: pointer;" matTooltip="enviar comentario">send</mat-icon>
   </button>
             </mat-form-field>
         </form>
