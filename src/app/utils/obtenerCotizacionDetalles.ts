@@ -1,15 +1,19 @@
+import { obtenerLocal } from './obtenerLocal';
 export class obtenerCotizacionDetalles {
 
   private key_cotizacion:string;
   private cotizaciones: any;
   private detalles: any;
   private personal: any;
+  private usuarios: any;
 
-  constructor(key_cotizacion: string, cotizaciones, detalles, personal) {
+
+  constructor(key_cotizacion: string, cotizaciones, detalles, personal, usuarios) {
      this.key_cotizacion = key_cotizacion;
      this.cotizaciones = cotizaciones;
      this.detalles = detalles;
      this.personal = personal;
+     this.usuarios = usuarios;
   }
 
   combinarTablas(){
@@ -21,6 +25,7 @@ export class obtenerCotizacionDetalles {
             data.detalles = this.procesarDetalles(data.detalles);
             return data;
           })
+          .map( (cot: any) =>  this.procesarUsuario(cot))
           .filter( Boolean )[0];
   }
 
@@ -30,6 +35,7 @@ export class obtenerCotizacionDetalles {
     if(key !== undefined) {
       cotizacion = c[key];
       cotizacion.key = key;
+      cotizacion.id_local = new obtenerLocal(cotizacion.local).obtenerLocal();
       return { cotizacion, key_u: c['key'] }
     }
   }
@@ -37,9 +43,14 @@ export class obtenerCotizacionDetalles {
   private filtrarDetalles(c): any[] {
     let cd: any = {};
     cd = c;
-    const detalle = this.detalles.filter( (d: any) => {
-      if(d.key === this.key_cotizacion) { return cd; }
-    })[0];
+    const detalle = this.detalles
+      .map( (d: any) => {
+        if(c.key_u == d.key) {
+          const key = Object.keys(d).find( k => k === this.key_cotizacion);
+          return d[key];
+        }
+      })
+      .filter( Boolean )[0];
     cd.detalles = detalle !== undefined ? detalle: {};
     return cd;
   }
@@ -47,12 +58,12 @@ export class obtenerCotizacionDetalles {
   private procesarDetalles(detalles): any[]  {
     let jojo: any[] = [];
     Object.keys(detalles).forEach(k => {
-      if(k !== "key" && k !== "visibilidad") {
+      if(k !== "key") {
         jojo.push({cant: 0, detalle: k, subtotal: 0, key:"interestelar", tipo: k})
         Object.keys(detalles[k]).forEach(kd => {
           const d = k == "personal"? this.obtenerPersonal(detalles[k][kd].detalle) : detalles[k][kd].detalle;
           jojo.push({
-            cant: detalles[k][kd].cant || 0,
+            cant: detalles[k][kd].cantidad || 0,
             detalle: d || "",
             subtotal: detalles[k][kd].subtotal || 0,
             key: kd || "",
@@ -67,6 +78,16 @@ export class obtenerCotizacionDetalles {
   private obtenerPersonal(key: string) {
     const u = this.personal.find( data => data.key == key);
     return u? u.nombre : "no disponible";
+  }
+
+  private procesarUsuario(cot) {
+    let jojo: any = {};
+    jojo = cot;
+    const usuario = this.usuarios.find( (u: any) => {
+      return u.key == cot.key_u
+    })
+    jojo.usuario = usuario;
+    return jojo;
   }
 
 }

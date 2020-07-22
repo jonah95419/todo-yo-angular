@@ -23,7 +23,7 @@ export class obtenerCotizacion {
 
   private filtrarCorizaciones(s:string ,c: any) {
     let cotizacion: any = {};
-    let key = Object.keys(c).find( k => k === s);
+    let key = Object.keys(c).find( k => k == s);
     if(key !== undefined) {
       cotizacion = c[key];
       cotizacion.key = key;
