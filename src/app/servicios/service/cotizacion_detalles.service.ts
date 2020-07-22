@@ -27,10 +27,8 @@ export class CotizacionDetallesService {
     );
   }
 
-  registrarDetalle = (key: String, tipo: String, detalle: any) => this.db.list('detalle/' + key + "/" + tipo).push(detalle);
+  registrarDetalle = (key: String, usuario: String, tipo: String, detalle: any) => this.db.list('detalle/' + usuario + "/" + key + "/" + tipo).push(detalle);
 
-  eliminarDetalle = (key: String, tipo: String, key_detalle: String) => this.db.object('detalle/' + key + "/" + tipo + "/" + key_detalle).remove();
-
-  actualizarVisibilidadDetalle = (key: String, estado: Boolean) => this.db.object('detalle/' + key).update({visibilidad: estado});
+  eliminarDetalle = (key: String, usuario: String, tipo: String, detalle: String) => this.db.object('detalle/' + usuario + "/"  + key + "/" + tipo + "/" + detalle).remove();
 
 }
