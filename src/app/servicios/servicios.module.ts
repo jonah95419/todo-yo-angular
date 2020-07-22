@@ -20,6 +20,7 @@ import { Servicio6Service } from './service/servicios6.service';
 import { CotizacionService } from './service/cotizacion.service';
 import { CotizacionDetallesService } from './service/cotizacion_detalles.service';
 import { UsuariosService } from './service/usuarios.service';
+import { Servicio7Service } from './service/servicios7.service';
 
 
 
@@ -58,6 +59,7 @@ import { UsuariosService } from './service/usuarios.service';
     Servicio4Service,
     Servicio5Service,
     Servicio6Service,
+    Servicio7Service,
     CotizacionService,
     CotizacionDetallesService,
     UsuariosService,
