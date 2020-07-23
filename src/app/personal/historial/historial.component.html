@@ -11,7 +11,7 @@
                     <p> {{item.descripcion}}</p>
                 </mat-card-content>
                 <mat-card-header>
-                    <mat-card-subtitle style="font-size: x-small;">{{item.fecha}}</mat-card-subtitle>
+                    <mat-card-subtitle style="font-size: x-small;">{{item.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}</mat-card-subtitle>
                 </mat-card-header>
             </mat-card>
         </div>
