@@ -1,0 +1,87 @@
+<div class="container-fluid" *ngIf="!authenticationService.isLoggedIn">
+    <div style="display: flex; flex-direction: row;">
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <!-- <div style="margin-top: 30px; margin-left: 24px;">
+                <h1><i>Santino Flowers</i></h1>
+            </div> -->
+            <div style="margin-left: auto; margin-right: auto; margin-top: 75px;">
+                <img style="width: 450px;" src="data:image/jpeg;base64,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"
+                    alt="">
+            </div>
+        </div>
+        <div>
+            <mat-card style="margin-top: 25%;">
+                <mat-card-title>Bienvenido!</mat-card-title>
+                <mat-card-subtitle>Por favor inicia sesión o registrate con tu información personal. (correo electrónico y contraseña)</mat-card-subtitle>
+                <mat-card-content>
+                    <mat-form-field class="example-full-width1" style="margin-left: auto; margin-right: auto;">
+                        <input type="text" matInput class="formControl" placeholder="Correo electrónico" [(ngModel)]="email">
+                        <mat-icon matSuffix style="cursor: pointer;">email</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="example-full-width1" style="margin-left: auto; margin-right: auto;">
+                        <input type="password" matInput class="formControl" placeholder="Contraseña" [(ngModel)]="password">
+                        <mat-icon matSuffix style="cursor: pointer;">vpn_key</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <div class="forgotPassword">
+                        <a [routerLink]="['/psw-olvidada']" routerLinkActive="active">¿Has olvidado tu contraseña?</a>
+                    </div>
+
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button (click)="signIn()">Iniciar sesión </button>
+                    <button mat-button (click)="signUp()">Registrarse</button>
+                </mat-card-actions>
+            </mat-card>
+            <!-- <div class="displayTable">
+                <div class="displayTableCell">
+
+                    <div class="authBlock">
+                        <h3>Sign In</h3>
+                        <div class="formGroup">
+                            <input type="text" class="formControl" placeholder="Username" #userName required>
+                        </div>
+
+                        <div class="formGroup">
+                            <input type="password" class="formControl" placeholder="Password" #userPassword required>
+                        </div>
+
+                        <div class="formGroup">
+                            <input type="button" class="btn btnPrimary" value="Log in" (click)="authenticationService.SignIn(userName.value, userPassword.value)">
+                        </div>
+
+                        <div class="formGroup">
+                            <span class="or"><span class="orInner">Or</span></span>
+                        </div>
+
+                        <div class="formGroup">
+                            <button type="button" class="btn googleBtn" (click)="authenticationService.GoogleAuth()">
+                            <i class="fab fa-google-plus"></i> Log in with Google
+                            </button>
+                        </div>
+                        <div class="formGroup">
+                            <button type="button" (click)="authenticationService.FacebookAuth()">
+                               Log in with Facebook
+                               <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        <div class="forgotPassword">
+                            <a routerLink="/psw-olvidada">Forgot Password?</a>
+                        </div>
+
+                    </div>
+
+                    <div class="redirectToLogin">
+                        <span>Don't have an account?<span class="redirect" routerLink="/registro"> Sign Up</span></span>
+                    </div>
+
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <!-- aqui debe ir otro tipo de informacion...+. -->
+    </div>
+</div>
