@@ -11,6 +11,7 @@ import { Servicio5Service } from './servicios/service/servicios5.service';
 import { Servicio6Service } from './servicios/service/servicios6.service';
 import { PromocionesService } from './promociones/service/promociones.service';
 import { Servicio7Service } from './servicios/service/servicios7.service';
+import { AuthenticationService } from './registro/service/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +33,8 @@ export class AppComponent {
     private usuariosApi: UsuariosService,
     private detallesCotizacionApi: CotizacionDetallesService,
     private personalApi: PersonalService,
-    private promocionesApi: PromocionesService
+    private promocionesApi: PromocionesService,
+    public authenticationService: AuthenticationService
   ){
     servicios1Api.cargarTodo();
     servicios2Api.cargarTodo();
@@ -46,6 +48,7 @@ export class AppComponent {
     detallesCotizacionApi.cargarTodo();
     personalApi.cargarTodo();
     promocionesApi.cargarTodo();
+
   }
 
 }

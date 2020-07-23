@@ -1,6 +1,6 @@
 <div class="example-container">
-    <div class="example-sidenav">
-        <mat-toolbar matTooltip="Todo YO" style="cursor: pointer;">
+    <div class="example-sidenav" *ngIf="authenticationService.isLoggedIn">
+        <mat-toolbar matTooltip="Todo YO" style="cursor: pointer;" (click)="authenticationService.SignOut()">
             <h3>{{title}}</h3>
         </mat-toolbar>
         <mat-nav-list>
