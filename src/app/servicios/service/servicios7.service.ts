@@ -16,7 +16,11 @@ export class Servicio7Service {
   cargarTodo = () => {
      this.db.list('servicio/servicio7').snapshotChanges().subscribe(
       (data: any[]) => {
-        this.dataStore.usuarios = data.map( item => item.payload.toJSON());
+        this.dataStore.usuarios = data.map( item => {
+          let a = item.payload.toJSON();
+          a['key'] = item.key;
+          return a;
+        });
         this._todos.next(Object.assign({}, this.dataStore).usuarios);
       }
     );
