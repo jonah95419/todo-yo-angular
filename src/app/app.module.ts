@@ -23,6 +23,7 @@ registerLocaleData(localeES, 'es');
 // import { RatingModule } from 'ng-starrating';
 import { ChatModule } from './chat/chat.module';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
     ServiciosModule,
     PromocionesModule,
     PersonalModule,
+    UsuariosModule,
     HttpClientModule,
     ChatModule,
     // RatingModule,
