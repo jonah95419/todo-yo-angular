@@ -21,13 +21,15 @@ export class obtenerCotizacion {
           .filter( Boolean )
   }
 
-  private filtrarCorizaciones(s:string ,c: any) {
-    let cotizacion: any = {};
-    let key = Object.keys(c).find( k => k == s);
-    if(key !== undefined) {
-      cotizacion = c[key];
-      cotizacion.key = key;
-      return { cotizacion, key_u: c['key'] }
+  private filtrarCorizaciones(s:any ,c: any) {
+    if(s.key == c.key) {
+      let cotizacion: any = {};
+      let key = Object.keys(c).find( k => k == s[Object.keys(s).find(l => k == s[l])]);
+      if(key !== undefined) {
+        cotizacion = c[key];
+        cotizacion.key = key;
+        return { cotizacion, key_u: c['key'] }
+      }
     }
   }
 

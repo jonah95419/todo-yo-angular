@@ -1,15 +1,18 @@
 import { obtenerLocal } from './obtenerLocal';
+import { database } from 'firebase';
 export class obtenerCotizacionDetalles {
 
   private key_cotizacion:string;
+  private key_user:string;
   private cotizaciones: any;
   private detalles: any;
   private personal: any;
   private usuarios: any;
 
 
-  constructor(key_cotizacion: string, cotizaciones, detalles, personal, usuarios) {
+  constructor(key_cotizacion: string, user: string, cotizaciones, detalles, personal, usuarios) {
      this.key_cotizacion = key_cotizacion;
+     this.key_user = user;
      this.cotizaciones = cotizaciones;
      this.detalles = detalles;
      this.personal = personal;
@@ -20,23 +23,27 @@ export class obtenerCotizacionDetalles {
     return this.cotizaciones
           .map( (data: any[]) => this.filtrarCotizacion(data))
           .filter( Boolean )
-          .map( (data: any) => this.filtrarDetalles(data))
+          .map( (data: any) => this.filtrarDetalles(data) )
           .map( (data: any) => {
             data.detalles = this.procesarDetalles(data.detalles);
             return data;
           })
-          .map( (cot: any) =>  this.procesarUsuario(cot))
+          .map( (cot: any) =>  {
+            cot.usuario = this.usuarios.find( (u: any) =>  u.key == cot.key_u);
+            return cot;
+          })
           .filter( Boolean )[0];
   }
 
   private filtrarCotizacion(c: any) {
     let cotizacion: any = {};
-    const key = Object.keys(c).find( k => k === this.key_cotizacion);
+    let key = Object.keys(c).find( k => k === this.key_cotizacion && c['key'] == this.key_user);
     if(key !== undefined) {
       cotizacion = c[key];
       cotizacion.key = key;
       cotizacion.id_local = new obtenerLocal(cotizacion.local).obtenerLocal();
-      return { cotizacion, key_u: c['key'] }
+      let nuevo = { cotizacion, key_u: c['key'] }
+      return nuevo
     }
   }
 
@@ -78,16 +85,6 @@ export class obtenerCotizacionDetalles {
   private obtenerPersonal(key: string) {
     const u = this.personal.find( data => data.key == key);
     return u? u.nombre : "no disponible";
-  }
-
-  private procesarUsuario(cot) {
-    let jojo: any = {};
-    jojo = cot;
-    const usuario = this.usuarios.find( (u: any) => {
-      return u.key == cot.key_u
-    })
-    jojo.usuario = usuario;
-    return jojo;
   }
 
 }

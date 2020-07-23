@@ -30,7 +30,7 @@ export class obtenerInteracciones {
     let valores = Object.keys(data).map(d => {
       if(d != "key") {
         let usu = this.usuarios.find(u => u.key == data[d].usuario);
-        let usuario = usu != undefined ? usu : {foto: '', nombre: 'desconocido'};
+        let usuario = usu != undefined ? usu : {avatar: '', name: 'desconocido'};
         return {
           key: d,
           comentario : data[d].comentario,
