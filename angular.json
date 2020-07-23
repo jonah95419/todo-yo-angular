@@ -26,7 +26,12 @@
                             "firebase/app",
                             "@angular/common/locales/es-EC",
                             "@firebase/util",
-                            "@firebase/component"
+                            "@firebase/component",
+                            "firebase",
+                            "@firebase/firestore",
+                            "@firebase/functions",
+                            "@firebase/performance",
+                            "@firebase/remote-config"
                         ],
                         "assets": [
                             "src/favicon.ico",
