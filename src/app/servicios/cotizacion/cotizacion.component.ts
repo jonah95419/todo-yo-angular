@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef } from '@an
 import { Servicio1Service } from '../service/servicios1.service';
 import { CotizacionService } from '../service/cotizacion.service';
 import { Observable, combineLatest } from 'rxjs';
-import { UsuariosService } from '../service/usuarios.service';
+import { UsuariosService } from '../../usuarios/service/usuarios.service';
 import { map, tap } from 'rxjs/operators';
 import { obtenerCotizacion } from '../../utils/obtenerCotizacion';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';

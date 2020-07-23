@@ -13,7 +13,7 @@
         </div>
         <ng-container *ngIf="cotizaciones$ | async as cotizaciones; else loading">
             <ng-container *ngIf="cotizaciones.length > 0; else lencot">
-                <a *ngFor="let cotizacion of cotizaciones" routerLink='./detalles' [queryParams]="{key: cotizacion?.cotizacion?.key}" routerLinkActive="active" routerLinkActive #rla1sa="routerLinkActive">
+                <a *ngFor="let cotizacion of cotizaciones" routerLink='./detalles' [queryParams]="{key: cotizacion?.cotizacion?.key, user: cotizacion?.usuario?.key}" routerLinkActive="active" routerLinkActive #rla1sa="routerLinkActive">
                     <mat-card class=" example-card " *ngIf="cotizacion " matRipple style="padding: 0;">
                         <div style="display: flex;">
                             <div [ngClass]="{'indicador-estado-activo': cotizacion?.cotizacion?.estado}" class="indicador-estado-inactivo" [matTooltip]="cotizacion.cotizacion.estado? 'pendiente':'cerrado'"></div>
