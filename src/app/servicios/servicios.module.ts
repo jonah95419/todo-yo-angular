@@ -19,7 +19,7 @@ import { Servicio5Service } from './service/servicios5.service';
 import { Servicio6Service } from './service/servicios6.service';
 import { CotizacionService } from './service/cotizacion.service';
 import { CotizacionDetallesService } from './service/cotizacion_detalles.service';
-import { UsuariosService } from './service/usuarios.service';
+import { UsuariosService } from '../usuarios/service/usuarios.service';
 import { Servicio7Service } from './service/servicios7.service';
 
 
