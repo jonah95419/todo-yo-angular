@@ -16,24 +16,26 @@
             </div>
 
             <ng-template #contcalf>
-                <div style="text-align:center; margin: 12px;">
+                <div style="text-align:center; margin: 12px; background-color: white;">
                     <star-rating value={{interacciones[0].media}} totalstars={{totalstar}} checkedcolor="red " uncheckedcolor="black " size="24px " readonly="true"></star-rating>
                 </div>
             </ng-template>
             <ng-template #contcom>
-                <div style="text-align: center;">
+                <div style="text-align: center; background-color: white;">
                     <p>{{interacciones[1].valores.length}} Comentarios</p>
                 </div>
-                <mat-card *ngFor="let item of interacciones[1].valores">
-                    <mat-card-header>
-                        <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + item.usuario.foto + ')'}" class="example-header-image"></div>
-                        <mat-card-title style="font-size: small;">{{item.usuario.nombre}}</mat-card-title>
-                        <mat-card-subtitle style="font-size: x-small;">{{item.fecha}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p> {{item.comentario}}</p>
-                    </mat-card-content>
-                </mat-card>
+                <div style="background-color: white;">
+                    <mat-card *ngFor="let item of interacciones[1].valores">
+                        <mat-card-header>
+                            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + item.usuario.avatar + ')'}" class="example-header-image"></div>
+                            <mat-card-title style="font-size: small;">{{item.usuario.name}}</mat-card-title>
+                            <mat-card-subtitle style="font-size: x-small;">{{item.fecha}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p> {{item.comentario}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
             </ng-template>
 
         </div>
