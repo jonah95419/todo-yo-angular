@@ -11,7 +11,7 @@ import { FormBuilder, FormControl, Validators, FormGroupDirective, NgForm } from
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { PersonalService } from '../../personal/service/personal.service';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { UsuariosService } from '../service/usuarios.service';
+import { UsuariosService } from '../../usuarios/service/usuarios.service';
 
 @Component({
   selector: 'app-cotizacion-detalles',
@@ -24,7 +24,8 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   @ViewChild("panel_equipos") panel_equipos: MatExpansionPanel;
   @ViewChild("panel_personal") panel_personal: MatExpansionPanel;
 
-  key: String;
+  key: string;
+  id_user: string;
   usuario: any;
   cotizacion$: Observable<any>
 
@@ -85,7 +86,8 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe(
       (params: Params) => {
         const key = params.key;
-        if(key) { this.obtenerCotizacionDetalle(key); }
+        const user = params.user;
+        if(key) { this.obtenerCotizacionDetalle(key, user); }
       });
   }
 
@@ -193,7 +195,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     if (this.personalForm.controls['detalle'].hasError('required')) { return 'Requerido'; }
   }
 
-  private obtenerCotizacionDetalle = (key: string):void => {
+  private obtenerCotizacionDetalle = (key: string, user: string):void => {
     this.key = key;
     this.cancelarDetalle();
     this.cotizacion$ = combineLatest(
@@ -202,7 +204,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
       this.personalApi.todos,
       this.usuariosApi.todos)
     .pipe(
-      map( data => new obtenerCotizacionDetalles(key, data[0], data[1], data[2], data[3]).combinarTablas()),
+      map( data => new obtenerCotizacionDetalles(key, user, data[0], data[1], data[2], data[3]).combinarTablas()),
       tap( data => { if(data !== undefined) {
         this.imageObject = this.procesarFotografias(data.cotizacion.fotografias)
         this.total = this.calcularTotal(data.detalles);
