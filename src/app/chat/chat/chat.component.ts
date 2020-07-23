@@ -123,7 +123,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
   }
 
   private obtenerChat = () => {
-    this.chats$ = this.chatApi.cargarTodo(this.key, this.usuario.key);
+    this.chats$ = this.chatApi.cargarTodo(this.key, this.usuario?.key);
   }
 
 }
