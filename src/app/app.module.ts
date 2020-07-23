@@ -24,6 +24,8 @@ registerLocaleData(localeES, 'es');
 import { ChatModule } from './chat/chat.module';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { RegistroModule } from './registro/registro.module';
 
 @NgModule({
   declarations: [
@@ -36,12 +38,14 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
     ServiciosModule,
     PromocionesModule,
     PersonalModule,
     UsuariosModule,
     HttpClientModule,
     ChatModule,
+    RegistroModule,
     // RatingModule,
     TranslateModule.forRoot({
       loader: {
