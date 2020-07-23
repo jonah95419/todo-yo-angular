@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div>
+        <div class="authBlock">
+            <mat-card style="margin: auto; max-width: 450px; min-width: 450px; margin-top: 24px;">
+                <mat-card-title style="text-align: center;">Gracias por registrarte</mat-card-title>
+                <mat-card-subtitle style="text-align: center;">Oye, estás casi listo para empezar a disfrutar del POSTFENH. Si no te ha llegado el correo electrónico de verificación haz clic en el gran botón azul de abajo y te enviaremos un nuevo enlace a tu correo electrónico.</mat-card-subtitle>
+                <mat-card-content>
+                    <div class="formGroup" *ngIf="authenticationService.userData as user" style="margin-top: 24px;">
+                        <p class="text-center">Hemos enviado un correo electrónico de confirmación a <strong>{{user.email}}</strong>.</p>
+                        <p class="text-center">Por favor, comprueba tu correo electrónico y haga clic en el enlace para verificar tu dirección de correo electrónico.</p>
+                    </div>
+                    <div class="formGroup">
+                        <button mat-raised-button style="width: 350px; margin-left: 30px; background-color: #04021B; color: whitesmoke;" (click)="authenticationService.SendVerificationMail()">
+                            <i class="fas fa-redo-alt"></i>
+                            Reenviar correo electrónico de verificación
+                        </button>
+                    </div>
+                </mat-card-content>
+
+                <div class="forgotPassword" style="text-align: center; margin-top: 24px; margin-bottom: 12px;">
+                    <span>Volver a <a [routerLink]="['/ingreso']" routerLinkActive="active">inicio de sesión</a></span>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<!-- <div class="displayTable">
+    <div class="displayTableCell">
+
+        <div class="authBlock">
+            <h3>Thank You for Registering</h3>
+
+            <div class="formGroup" *ngIf="authService.userData as user">
+                <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+                <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+            </div>
+
+            <div class="formGroup">
+                <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
+            <i class="fas fa-redo-alt"></i>
+            Resend Verification Email
+          </button>
+            </div>
+
+        </div>
+
+        <div class="redirectToLogin">
+            <span>Go back to?<span class="redirect" routerLink="/sign-in"> Sign in</span></span>
+        </div>
+
+    </div>
+</div> -->
