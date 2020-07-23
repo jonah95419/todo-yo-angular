@@ -36,6 +36,14 @@
     overflow: auto;
 }
 
+::ng-deep.usuarios-sidenav {
+    padding: 6px;
+    width: 250px;
+    min-width: 250px;
+    height: 98%;
+    overflow: auto;
+}
+
 ::ng-deep.cotizacion-sidenav {
     padding: 6px;
     width: 280px;
