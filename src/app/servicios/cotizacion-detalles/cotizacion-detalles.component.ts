@@ -4,7 +4,7 @@ import { CotizacionService } from '../service/cotizacion.service';
 import { CotizacionDetallesService } from '../service/cotizacion_detalles.service';
 import { Observable, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { obtenerCotizacionDetalles } from '../../utils/obtenerCotizacionDetalles';
+import { ObtenerCotizacionDetalles } from '../../utils/ObtenerCotizacionDetalles';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { FormBuilder, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
@@ -204,7 +204,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
       this.personalApi.todos,
       this.usuariosApi.todos)
     .pipe(
-      map( data => new obtenerCotizacionDetalles(key, user, data[0], data[1], data[2], data[3]).combinarTablas()),
+      map( data => new ObtenerCotizacionDetalles(key, user, data[0], data[1], data[2], data[3]).combinarTablas()),
       tap( data => { if(data !== undefined) {
         this.imageObject = this.procesarFotografias(data.cotizacion.fotografias)
         this.total = this.calcularTotal(data.detalles);
