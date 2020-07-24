@@ -33,7 +33,7 @@ export class ObtenerInteracciones {
           return cot;
         }
       }).filter( Boolean )[0];
-      //return {...d, ...cot};
+       // return {...d, ...cot};
     });
   }
 }
