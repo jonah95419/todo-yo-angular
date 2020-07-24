@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InteraccionService } from '../service/interaccion.service';
 import { Params, ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
-import { obtenerInteracciones } from '../../utils/obtenerInteracciones';
+import { ObtenerInteracciones  } from '../../utils/obtenerInteracciones';
 import { combineLatest, Observable } from 'rxjs';
 import { UsuariosService } from 'src/app/usuarios/service/usuarios.service';
 
@@ -34,7 +34,7 @@ export class RendimientoComponent implements OnInit {
       this.interaccionApi.cargarTodo(id),
       this.usuariosApi.todos)
     .pipe(
-      map( data => new obtenerInteracciones(data[0], data[1]).combinarTablas()),
+      map( data => new ObtenerInteracciones(data[0], data[1]).combinarTablas()),
       map( data => {
         data[1].valores = data[1].valores.reverse();
         return data;

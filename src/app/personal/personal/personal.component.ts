@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PersonalService } from '../service/personal.service';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
-import { personalI } from '../model/personal';
 
 @Component({
   selector: 'app-personal',

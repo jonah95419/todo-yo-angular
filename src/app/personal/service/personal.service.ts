@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';  // Firebase modules for Database
 import { BehaviorSubject } from 'rxjs';
-import { personalI } from '../model/personal';
+import { PersonalI  } from '../model/personal';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireStorage } from 'angularfire2/storage';
 
@@ -10,8 +10,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 })
 export class PersonalService {
 
-  private _todos = new BehaviorSubject<personalI[]>([]);
-  private dataStore: { personal: personalI[] } = { personal: [] };
+  private _todos = new BehaviorSubject<PersonalI[]>([]);
+  private dataStore: { personal: PersonalI[] } = { personal: [] };
   readonly todos = this._todos.asObservable();
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage, private _snackBar: MatSnackBar) { }
@@ -30,7 +30,7 @@ export class PersonalService {
   }
 
   agregarPersonal = (informacion: any) => {
-    let nuevo: personalI = {
+    let nuevo: PersonalI = {
       nombre: informacion.nombre,
       cargo: informacion.cargo,
       mail: '',

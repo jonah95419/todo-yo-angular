@@ -1,4 +1,4 @@
-export interface personalI {
+export interface PersonalI {
   cargo: string;
   contacto: string;
   estado: boolean;
