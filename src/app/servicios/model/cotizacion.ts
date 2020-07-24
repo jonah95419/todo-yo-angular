@@ -1,7 +1,7 @@
 export interface cotizacionI {
-  descripcion: String,
-  estado: String,
+  descripcion: string,
+  estado: string,
   fecha: Date,
   fotografias: [],
-  id: String
+  id: string
 }
