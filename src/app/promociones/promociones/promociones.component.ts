@@ -54,7 +54,6 @@ export class PromocionesComponent implements OnInit, OnDestroy {
       translate.setDefaultLang('es');
       translate.use('es');
       this.cargarDatos();
-
   }
 
   ngOnInit(): void {
@@ -64,7 +63,7 @@ export class PromocionesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this._translate != undefined) {
+    if(this._translate !== undefined) {
       this._translate.unsubscribe();
     }
   }
