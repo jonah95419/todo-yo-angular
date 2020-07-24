@@ -10,7 +10,7 @@ import {
 } from '@angular/fire/storage';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChatService } from '../service/chat.service';
-import { chatI } from '../model/chat';
+import { ChatI  } from '../model/chat';
 
 @Component({
   selector: 'app-chat',
@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
   @Input() key: string;
   @Input() usuario: any;
 
-  chats$: Observable<chatI[]>;
+  chats$: Observable<ChatI[]>;
   uploadPercent$: Observable<number>;
 
   chatForm: FormGroup;

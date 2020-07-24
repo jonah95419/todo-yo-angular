@@ -1,4 +1,4 @@
-export interface chatI {
+export interface ChatI {
   mensaje: string;
   nombre: string;
   tipoMensaje: number;
