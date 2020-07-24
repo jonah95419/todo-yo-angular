@@ -40,7 +40,7 @@ export class HistorialComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this._translate != undefined) {
+    if(this._translate !== undefined) {
       this._translate.unsubscribe();
     }
   }
