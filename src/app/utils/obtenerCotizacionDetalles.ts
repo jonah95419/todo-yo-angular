@@ -1,4 +1,4 @@
-import { obtenerLocal } from './obtenerLocal';
+import { ObtenerLocal } from './obtenerLocal';
 import { database } from 'firebase';
 export class ObtenerCotizacionDetalles {
 
@@ -41,7 +41,7 @@ export class ObtenerCotizacionDetalles {
     if(key !== undefined) {
       cotizacion = c[key];
       cotizacion.key = key;
-      cotizacion.id_local = new obtenerLocal(cotizacion.local).obtenerLocal();
+      cotizacion.id_local = new ObtenerLocal(cotizacion.local).obtenerLocal();
       let nuevo = { cotizacion, key_u: c['key'] }
       return nuevo
     }

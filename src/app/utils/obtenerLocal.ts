@@ -1,4 +1,4 @@
-export class obtenerLocal {
+export class ObtenerLocal {
 
   private local: number;
 

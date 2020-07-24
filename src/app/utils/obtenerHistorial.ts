@@ -1,4 +1,4 @@
-export class obtenerInteracciones {
+export class ObtenerInteracciones {
 
   private id_personal: string;
   private cotizaciones: any;

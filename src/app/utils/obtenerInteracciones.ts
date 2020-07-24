@@ -1,4 +1,4 @@
-export class obtenerInteracciones {
+export class ObtenerInteracciones {
 
   private interacciones: any;
   private usuarios: any;
