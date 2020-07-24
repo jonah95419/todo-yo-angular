@@ -1,4 +1,4 @@
-export class obtenerCotizacion {
+export class ObtenerCotizacion {
 
   private servicios: any;
   private cotizaciones: any;
@@ -24,7 +24,7 @@ export class obtenerCotizacion {
   private filtrarCorizaciones(s:any ,c: any) {
     if(s.key === c.key) {
       let cotizacion: any = {};
-      let key = Object.keys(c).find( k => k == s[Object.keys(s).find(l => k === s[l])]);
+      let key = Object.keys(c).find( k => k === s[Object.keys(s).find(l => k === s[l])]);
       if(key !== undefined) {
         cotizacion = c[key];
         cotizacion.key = key;

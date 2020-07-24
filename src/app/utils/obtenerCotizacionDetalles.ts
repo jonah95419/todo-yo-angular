@@ -1,6 +1,6 @@
 import { obtenerLocal } from './obtenerLocal';
 import { database } from 'firebase';
-export class obtenerCotizacionDetalles {
+export class ObtenerCotizacionDetalles {
 
   private key_cotizacion:string;
   private key_user:string;
