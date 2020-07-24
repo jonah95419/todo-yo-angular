@@ -46,8 +46,7 @@ import { Servicio7Service } from './service/servicios7.service';
     AngularModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule,
-    //ChatModule
+    MatInputModule
   ],
   entryComponents: [
     DialogDataExampleDialog
