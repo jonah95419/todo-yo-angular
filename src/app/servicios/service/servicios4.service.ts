@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class Servicio4Service {
 
   private _todos = new BehaviorSubject<any[]>([]);
-  private dataStore: { usuarios: any[] } = { usuarios: [] };
+  private dataStore: { servicios4: any[] } = { servicios4: [] };
   readonly todos = this._todos.asObservable();
 
   constructor(private db: AngularFireDatabase) { }
@@ -16,12 +16,12 @@ export class Servicio4Service {
   cargarTodo = () => {
      this.db.list('servicio/servicio4').snapshotChanges().subscribe(
       (data: any[]) => {
-        this.dataStore.usuarios = data.map( item => {
+        this.dataStore.servicios4 = data.map( item => {
           let a = item.payload.toJSON();
           a['key'] = item.key;
           return a;
         });
-        this._todos.next(Object.assign({}, this.dataStore).usuarios);
+        this._todos.next(Object.assign({}, this.dataStore).servicios4);
       }
     );
   }
