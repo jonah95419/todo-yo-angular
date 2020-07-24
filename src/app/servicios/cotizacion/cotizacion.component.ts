@@ -90,7 +90,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
         hasBackdrop: true,
         panelClass: 'filter-popup'
     }).afterClosed().subscribe( data => {
-      if(data != undefined) {
+      if(data !== undefined) {
         this.filtro_cerrado = data.cerrado;
         this.filtro_pendiente = data.pendiente;
         this.filtro_fecha = new Date(data.fecha);
@@ -101,26 +101,26 @@ export class CotizacionComponent implements OnInit, OnDestroy {
 
   private establecerServicio = () => {
     this.cotizaciones$ = null;
-    if(this.tipos.find(t => t == this.tipo) !== undefined) {
-      if(this.tipo == this.tipos[0]) {
+    if(this.tipos.find(t => t === this.tipo) !== undefined) {
+      if(this.tipo === this.tipos[0]) {
         this.obtenerCotizaciones(this.servicio1Api.todos);
       }
-      if(this.tipo == this.tipos[1]) {
+      if(this.tipo === this.tipos[1]) {
         this.obtenerCotizaciones(this.servicio2Api.todos);
       }
-      if(this.tipo == this.tipos[2]) {
+      if(this.tipo === this.tipos[2]) {
         this.obtenerCotizaciones(this.servicio3Api.todos);
       }
-      if(this.tipo == this.tipos[3]) {
+      if(this.tipo === this.tipos[3]) {
         this.obtenerCotizaciones(this.servicio4Api.todos);
       }
-      if(this.tipo == this.tipos[4]) {
+      if(this.tipo === this.tipos[4]) {
         this.obtenerCotizaciones(this.servicio5Api.todos);
       }
-      if(this.tipo == this.tipos[5]) {
+      if(this.tipo === this.tipos[5]) {
         this.obtenerCotizaciones(this.servicio6Api.todos);
       }
-      if(this.tipo == this.tipos[6]) {
+      if(this.tipo === this.tipos[6]) {
         this.obtenerCotizaciones(this.servicio7Api.todos);
       }
     }
@@ -160,7 +160,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
   private compararFechas = (fecha1, fecha2) => {
     let f1 = new Date(fecha1);
     let f2 = new Date(fecha2);
-    return f1.getUTCDate() == f2.getUTCDate() && f1.getUTCMonth() == f2.getUTCMonth() && f1.getUTCFullYear() == f2.getUTCFullYear()
+    return f1.getUTCDate() === f2.getUTCDate() && f1.getUTCMonth() === f2.getUTCMonth() && f1.getUTCFullYear() === f2.getUTCFullYear()
   }
 
 }
