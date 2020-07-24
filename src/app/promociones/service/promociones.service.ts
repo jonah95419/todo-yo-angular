@@ -44,7 +44,7 @@ export class PromocionesService {
     .catch( error => { this.openSnackBar("Ah ocurrido un error", "Ok")})
   }
 
-  actualizarEstado = (key: string, estado: Boolean, historial: Boolean) => {
+  actualizarEstado = (key: string, estado: boolean, historial: boolean) => {
     this.db.object("promocion/" + key).update({estado, historial})
     .then(value => { this.openSnackBar("Registro actualizado", "Ok") })
     .catch( error => { this.openSnackBar("Ah ocurrido un error", "Ok")})
