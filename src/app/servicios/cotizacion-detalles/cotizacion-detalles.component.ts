@@ -92,12 +92,12 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this._translate != undefined) {
+    if(this._translate !== undefined) {
       this._translate.unsubscribe();
     }
   }
 
-  actualizarEstado = ( event: MatSlideToggleChange, usuario: String) => this.cotizacionApi.actualizarEstadoCotizacion(usuario, this.key, event.checked);
+  actualizarEstado = ( event: MatSlideToggleChange, usuario: string) => this.cotizacionApi.actualizarEstadoCotizacion(usuario, this.key, event.checked);
 
   detalle = (detalleP: boolean, detalleM: boolean, detalleE: boolean): void => {
 
@@ -130,23 +130,23 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
 
   }
 
-  eliminarDetalle = (usuario: String, t: string, k: string) => this.cotizacionDetalleApi.eliminarDetalle(this.key, usuario, t, k);
+  eliminarDetalle = (usuario: string, t: string, k: string) => this.cotizacionDetalleApi.eliminarDetalle(this.key, usuario, t, k);
 
-  submitMaterial = (usuario: String) => {
+  submitMaterial = (usuario: string) => {
     if(this.materialForm.valid) {
       this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "material", this.materialForm.value);
       this.cancelarDetalle();
     }
   }
 
-  submitEquipos= (usuario: String) => {
+  submitEquipos= (usuario: string) => {
     if(this.equipoForm.valid) {
       this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "equipo", this.equipoForm.value);
       this.cancelarDetalle();
     }
   }
 
-  submitPersonal = (usuario: String) => {
+  submitPersonal = (usuario: string) => {
     if(this.personalForm.valid) {
       this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "personal", this.personalForm.value);
       this.cancelarDetalle();
