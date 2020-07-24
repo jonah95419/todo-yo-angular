@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../service/usuarios.service';
 import { tap } from 'rxjs/operators';
-import { usuarioI } from '../model/usuario';
+import { UsuarioI  } from '../model/usuario';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ export class UsuariosComponent implements OnInit {
 
   pathImagen: string = NOT_FOUND;
 
-  user: usuarioI;
+  user: UsuarioI;
   servicio: any = {
     key:"2020",
     name: ""
@@ -24,7 +24,7 @@ export class UsuariosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  seleccionarChat = (usuario: usuarioI) =>  {
+  seleccionarChat = (usuario: UsuarioI) =>  {
     this.user = usuario;
     this.servicio.name = usuario.name;
   }
