@@ -27,7 +27,7 @@ export class CotizacionService {
     );
   }
 
-  actualizarEstadoCotizacion = (usuario: String, key: String, estado: Boolean) => this.db.object("cotizacion/" + usuario + "/" + key).update({estado: estado});
+  actualizarEstadoCotizacion = (usuario: string, key: string, estado: boolean) => this.db.object("cotizacion/" + usuario + "/" + key).update({estado: estado});
 
 
 }
