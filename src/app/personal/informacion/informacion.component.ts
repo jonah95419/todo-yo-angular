@@ -63,7 +63,7 @@ export class InformacionComponent implements OnInit {
   eliminarPersonal = () => {
     this.personalApi.eliminarPersonal(this.id);
     this.informacion = undefined;
-    if(this.panel_personal != undefined) {
+    if(this.panel_personal !== undefined) {
       this.panel_personal.close();
     }
   }
@@ -130,7 +130,7 @@ export class InformacionComponent implements OnInit {
   private obtenerInformacion = (id: string): void => {
     this.id = id;
     this.personalApi.todos.pipe(
-      map( (data: personalI[]) => data.filter((p:personalI) => String(p.key) == String(this.id) )[0] ),
+      map( (data: personalI[]) => data.filter((p:personalI) => String(p.key) === String(this.id) )[0] ),
       tap( d => this.revisarPersonalDetalles(d))
     ).toPromise();
   }
@@ -139,7 +139,7 @@ export class InformacionComponent implements OnInit {
     if(p != undefined) {
       this.cotizacionDetallesApi.todos.pipe(
         map( (data: any[]) => data.filter((d: any) => d.personal !== undefined) ),
-        map( (data: any[]) => data.filter((d: any) => Object.keys(d.personal).find( dp => d.personal[dp].detalle == p.key))),
+        map( (data: any[]) => data.filter((d: any) => Object.keys(d.personal).find( dp => d.personal[dp].detalle === p.key))),
         tap( (data: any[]) => this.cargarInformacionPersonal(data.length > 0, p))
       ).toPromise();
     }
@@ -149,7 +149,7 @@ export class InformacionComponent implements OnInit {
     this.enUso = uso;
     this.informacion = d;
     this.informacionForm.setValue(d);
-    this.pathImagen = d.foto != undefined && d.foto != "" ? d.foto : NOT_FOUND;
+    this.pathImagen = d.foto != undefined && d.foto !== "" ? d.foto : NOT_FOUND;
   }
 
 }
