@@ -4,7 +4,7 @@ import { CotizacionService } from '../service/cotizacion.service';
 import { Observable, combineLatest } from 'rxjs';
 import { UsuariosService } from '../../usuarios/service/usuarios.service';
 import { map, tap } from 'rxjs/operators';
-import { obtenerCotizacion } from '../../utils/obtenerCotizacion';
+import { ObtenerCotizacion } from '../../utils/obtenerCotizacion';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Servicio2Service } from '../service/servicios2.service';
@@ -132,7 +132,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
       this.cotizacionApi.todos,
       this.usuariosApi.todos)
     .pipe(
-      map( data => new obtenerCotizacion(data[0], data[1], data[2]).combinarTablas()),
+      map( data => new ObtenerCotizacion(data[0], data[1], data[2]).combinarTablas()),
       map( data => this.aplicarFiltros(data) )
     );
   }
