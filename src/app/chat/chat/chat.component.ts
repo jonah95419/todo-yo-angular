@@ -51,7 +51,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.key != undefined){
+    if(this.key !== undefined){
       this.obtenerChat();
     }
   }
