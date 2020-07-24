@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { PromocionesService } from '../service/promociones.service';
 import { Observable } from 'rxjs';
-import { promocionesI } from '../model/pomociones';
+import { PromocionesI  } from '../model/pomociones';
 import { map, finalize } from 'rxjs/operators';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -21,9 +21,9 @@ export class PromocionesComponent implements OnInit, OnDestroy {
 
   @ViewChild("panel_promocion") panel_promocion: MatExpansionPanel;
 
-  privadas$: Observable<promocionesI[]>;
-  publicas$: Observable<promocionesI[]>;
-  historial$: Observable<promocionesI[]>;
+  privadas$: Observable<PromocionesI[]>;
+  publicas$: Observable<PromocionesI[]>;
+  historial$: Observable<PromocionesI[]>;
 
   uploadPercent$: Observable<number>;
 

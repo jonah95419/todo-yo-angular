@@ -1,4 +1,4 @@
-export interface promocionesI {
+export interface PromocionesI {
   descripcion: string;
   estado: boolean;
   fecha: string;

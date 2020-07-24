@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';  // Firebase modules for Database
 import { BehaviorSubject } from 'rxjs';
-import { promocionesI } from '../model/pomociones';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PromocionesI } from '../model/pomociones';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromocionesService {
 
-  private _todos = new BehaviorSubject<promocionesI[]>([]);
-  private dataStore: { promociones: promocionesI[] } = { promociones: [] };
+  private _todos = new BehaviorSubject<PromocionesI[]>([]);
+  private dataStore: { promociones: PromocionesI[] } = { promociones: [] };
   readonly todos = this._todos.asObservable();
 
   constructor(private db: AngularFireDatabase, private _snackBar: MatSnackBar) { }
@@ -29,7 +29,7 @@ export class PromocionesService {
   }
 
   agregarPromocion = (p: any) => {
-    const nuevaPromo: promocionesI = {
+    const nuevaPromo: PromocionesI = {
       descripcion: p.descripcion,
       estado: false,
       fecha: new Date(p.fecha).toString(),
