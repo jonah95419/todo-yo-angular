@@ -24,7 +24,7 @@ export class InteraccionService {
   }
 
   actualizarEstadoPersonal = (id: string, estado: boolean) => {
-    this.db.object('personal/' + id).update({estado: estado})
+    this.db.object('personal/' + id).update({estado})
     .then(value => { this.openSnackBar("Registro actualizado", "Ok") })
     .catch( error => { this.openSnackBar("Ah ocurrido un error", "Ok")})
   }

@@ -44,18 +44,18 @@ export class PersonalService {
   }
 
   actualizarEstadoPersonal = (id: string, estado: boolean) => {
-    this.db.object('personal/' + id).update({estado: estado})
+    this.db.object('personal/' + id).update({estado})
     .then(value => { this.openSnackBar("Registro actualizado", "Ok") })
     .catch( error => { this.openSnackBar("Ah ocurrido un error", "Ok")})
   }
 
-  actualizarInformacion = (id: String, informacion: any) => {
+  actualizarInformacion = (id: string, informacion: any) => {
     this.db.object('personal/' + id).update(informacion)
     .then(value => { this.openSnackBar("Registro actualizado", "Ok") })
     .catch( error => { this.openSnackBar("Ah ocurrido un error", "Ok")})
   }
 
-  actualizarImagen = (id: String, url: string, url_anterior: string) => {
+  actualizarImagen = (id: string, url: string, url_anterior: string) => {
     this.db.object('personal/' + id).update({foto: url})
     .then(value => { this.delete(url_anterior); this.openSnackBar("Registro actualizado", "Ok") })
     .catch( error => { this.openSnackBar("Ah ocurrido un error", "Ok")})
