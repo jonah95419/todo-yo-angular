@@ -22,9 +22,9 @@ export class obtenerCotizacion {
   }
 
   private filtrarCorizaciones(s:any ,c: any) {
-    if(s.key == c.key) {
+    if(s.key === c.key) {
       let cotizacion: any = {};
-      let key = Object.keys(c).find( k => k == s[Object.keys(s).find(l => k == s[l])]);
+      let key = Object.keys(c).find( k => k == s[Object.keys(s).find(l => k === s[l])]);
       if(key !== undefined) {
         cotizacion = c[key];
         cotizacion.key = key;
@@ -36,7 +36,7 @@ export class obtenerCotizacion {
   private procesarUsuario(cot) {
     return cot.map( (c: any) => {
       let usuario = this.usuarios.find( (u: any) => {
-        return u.key == c.key_u
+        return u.key === c.key_u
       })
       return {cotizacion: c.cotizacion, usuario};
     })[0]

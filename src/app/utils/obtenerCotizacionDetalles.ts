@@ -29,7 +29,7 @@ export class obtenerCotizacionDetalles {
             return data;
           })
           .map( (cot: any) =>  {
-            cot.usuario = this.usuarios.find( (u: any) =>  u.key == cot.key_u);
+            cot.usuario = this.usuarios.find( (u: any) =>  u.key === cot.key_u);
             return cot;
           })
           .filter( Boolean )[0];
@@ -37,7 +37,7 @@ export class obtenerCotizacionDetalles {
 
   private filtrarCotizacion(c: any) {
     let cotizacion: any = {};
-    let key = Object.keys(c).find( k => k === this.key_cotizacion && c['key'] == this.key_user);
+    let key = Object.keys(c).find( k => k === this.key_cotizacion && c['key'] === this.key_user);
     if(key !== undefined) {
       cotizacion = c[key];
       cotizacion.key = key;
@@ -52,7 +52,7 @@ export class obtenerCotizacionDetalles {
     cd = c;
     const detalle = this.detalles
       .map( (d: any) => {
-        if(c.key_u == d.key) {
+        if(c.key_u === d.key) {
           const key = Object.keys(d).find( k => k === this.key_cotizacion);
           return d[key];
         }
@@ -68,7 +68,7 @@ export class obtenerCotizacionDetalles {
       if(k !== "key") {
         jojo.push({cant: 0, detalle: k, subtotal: 0, key:"interestelar", tipo: k})
         Object.keys(detalles[k]).forEach(kd => {
-          const d = k == "personal"? this.obtenerPersonal(detalles[k][kd].detalle) : detalles[k][kd].detalle;
+          const d = k === "personal"? this.obtenerPersonal(detalles[k][kd].detalle) : detalles[k][kd].detalle;
           jojo.push({
             cant: detalles[k][kd].cantidad || 0,
             detalle: d || "",
@@ -83,7 +83,7 @@ export class obtenerCotizacionDetalles {
   }
 
   private obtenerPersonal(key: string) {
-    const u = this.personal.find( data => data.key == key);
+    const u = this.personal.find( data => data.key === key);
     return u? u.nombre : "no disponible";
   }
 

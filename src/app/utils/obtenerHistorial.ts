@@ -13,8 +13,8 @@ export class obtenerInteracciones {
   combinarTablas() {
     return this.detalles
     .map( (d: any) => Object.keys(d).map( f => {
-        let r = Object.keys(d[f]).find( m => m == 'personal');
-        if(r != undefined) {
+        let r = Object.keys(d[f]).find( m => m === 'personal');
+        if(r !== undefined) {
           let det: any = d[f];
           det.key_d = f;
           det.key_u = d['key'];
@@ -23,11 +23,11 @@ export class obtenerInteracciones {
       }).filter( Boolean ) [0]
     )
     .filter( (d: any) => {
-      return Object.keys(d.personal).find(dp => d.personal[dp].detalle == this.id_personal);
+      return Object.keys(d.personal).find(dp => d.personal[dp].detalle === this.id_personal);
     })
     .map( (d: any) => {
       return this.cotizaciones.map( (c: any) => {
-        if(c.key == d.key_u) {
+        if(c.key === d.key_u) {
           let cot = c[d.key_d];
           cot.fecha = new Date(cot.fecha);
           return cot;
