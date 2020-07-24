@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';  // Firebase modules for Database
 import { BehaviorSubject } from 'rxjs';
-import { cotizacionI } from '../model/cotizacion';
 
 @Injectable({
   providedIn: 'root'

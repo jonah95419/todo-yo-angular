@@ -1,4 +1,4 @@
-export interface cotizacionI {
+export interface CotizacionI {
   descripcion: string,
   estado: string,
   fecha: Date,
