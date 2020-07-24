@@ -4,7 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { CotizacionDetallesService } from '../../servicios/service/cotizacion_detalles.service';
 import { CotizacionService } from '../../servicios/service/cotizacion.service';
 import { map, tap } from 'rxjs/operators';
-import { obtenerInteracciones } from '../../utils/obtenerHistorial';
+import { ObtenerInteracciones  } from '../../utils/obtenerHistorial';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
@@ -50,7 +50,7 @@ export class HistorialComponent implements OnInit, OnDestroy {
       this.cotizacionApi.todos,
       this.cotizacionDetalleApi.todos)
     .pipe(
-      map( data => new obtenerInteracciones(id, data[0], data[1]).combinarTablas())
+      map( data => new ObtenerInteracciones(id, data[0], data[1]).combinarTablas())
     );
   }
 

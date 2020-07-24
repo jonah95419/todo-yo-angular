@@ -3,7 +3,7 @@ import { PersonalService } from '../service/personal.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map, tap, finalize, filter } from 'rxjs/operators';
-import { personalI } from '../model/personal';
+import { PersonalI  } from '../model/personal';
 import { FileHandle } from './dragDrop.Directive';
 import { Observable } from 'rxjs';
 import {
@@ -30,7 +30,7 @@ export class InformacionComponent implements OnInit {
 
   uploadEstado: boolean = false;
 
-  informacion: personalI;
+  informacion: PersonalI;
   enUso: boolean = false;
 
   informacionForm = this.fb.group({
@@ -130,12 +130,12 @@ export class InformacionComponent implements OnInit {
   private obtenerInformacion = (id: string): void => {
     this.id = id;
     this.personalApi.todos.pipe(
-      map( (data: personalI[]) => data.filter((p:personalI) => String(p.key) === String(this.id) )[0] ),
+      map( (data: PersonalI[]) => data.filter((p:PersonalI) => String(p.key) === String(this.id) )[0] ),
       tap( d => this.revisarPersonalDetalles(d))
     ).toPromise();
   }
 
-  private revisarPersonalDetalles = (p: personalI): void => {
+  private revisarPersonalDetalles = (p: PersonalI): void => {
     if(p !== undefined) {
       this.cotizacionDetallesApi.todos.pipe(
         map( (data: any[]) => data.filter((d: any) => d.personal !== undefined) ),
@@ -145,7 +145,7 @@ export class InformacionComponent implements OnInit {
     }
   }
 
-  private cargarInformacionPersonal = (uso:boolean, d: personalI): void => {
+  private cargarInformacionPersonal = (uso:boolean, d: PersonalI): void => {
     this.enUso = uso;
     this.informacion = d;
     this.informacionForm.setValue(d);
