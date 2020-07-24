@@ -214,7 +214,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     )
   }
 
-  private procesarFotografias (fotografias: Object): any[] {
+  private procesarFotografias (fotografias: object): any[] {
     return Object.keys(fotografias).map(k => { return {
         image: fotografias[k],
         thumbImage: fotografias[k],
