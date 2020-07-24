@@ -3,11 +3,13 @@ export class ObtenerCotizacion {
   private servicios: any;
   private cotizaciones: any;
   private usuarios: any;
+  private serv: [];
 
   constructor(servicios, cotizaciones, usuarios) {
-    this.servicios = servicios;
+    this.servicios = this.estructuraServicios(servicios);
     this.cotizaciones = cotizaciones;
     this.usuarios = usuarios;
+
   }
 
   combinarTablas(){
@@ -21,15 +23,27 @@ export class ObtenerCotizacion {
           .filter( Boolean )
   }
 
+  private estructuraServicios(s: any ) {
+    let serv = [];
+    s.forEach( d => {
+      Object.keys(d).forEach( j => {
+        if(j !== 'key') {
+          serv.push({
+            id: d[j],
+            key: d['key']
+          })
+        }
+      })
+    })
+    return serv;
+  }
+
   private filtrarCorizaciones(s:any ,c: any) {
     if(s.key === c.key) {
       let cotizacion: any = {};
-      let key = Object.keys(c).find( k => k === s[Object.keys(s).find(l => k === s[l])]);
-      if(key !== undefined) {
-        cotizacion = c[key];
-        cotizacion.key = key;
-        return { cotizacion, key_u: c['key'] }
-      }
+      cotizacion = c[s.id];
+      cotizacion.key = s.id;
+      return { cotizacion, key_u: c['key'] }
     }
   }
 
