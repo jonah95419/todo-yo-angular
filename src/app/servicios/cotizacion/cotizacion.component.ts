@@ -34,7 +34,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
 
   locale: string;
   tipo: string;
-  tipos: string[] = ['albañileria', 'electricidad', 'gypsuma', 'mecanicai', 'plomeria', 'seguridade', 'alquiler'];
+  tipos: string[] = ['albañileria', 'electricidad', 'gypsuma', 'mecanicai', 'seguridade','plomeria', 'alquiler'];
 
   private _translate;
 
@@ -51,7 +51,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
     private cotizacionApi: CotizacionService,
     private usuariosApi: UsuariosService,
     public dialog: MatDialog) {
-      this.filtro_cerrado = false;
+      this.filtro_cerrado = true;
       this.filtro_pendiente = true;
       this.filtro_fecha = new Date();
       translate.setDefaultLang('es');
