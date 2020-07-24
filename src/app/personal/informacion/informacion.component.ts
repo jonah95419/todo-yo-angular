@@ -136,7 +136,7 @@ export class InformacionComponent implements OnInit {
   }
 
   private revisarPersonalDetalles = (p: personalI): void => {
-    if(p != undefined) {
+    if(p !== undefined) {
       this.cotizacionDetallesApi.todos.pipe(
         map( (data: any[]) => data.filter((d: any) => d.personal !== undefined) ),
         map( (data: any[]) => data.filter((d: any) => Object.keys(d.personal).find( dp => d.personal[dp].detalle === p.key))),
@@ -149,7 +149,7 @@ export class InformacionComponent implements OnInit {
     this.enUso = uso;
     this.informacion = d;
     this.informacionForm.setValue(d);
-    this.pathImagen = d.foto != undefined && d.foto !== "" ? d.foto : NOT_FOUND;
+    this.pathImagen = d.foto !== undefined && d.foto !== "" ? d.foto : NOT_FOUND;
   }
 
 }
