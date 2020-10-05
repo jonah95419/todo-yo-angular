@@ -3,13 +3,11 @@ export class ObtenerCotizacion {
   private servicios: any;
   private cotizaciones: any;
   private usuarios: any;
-  private serv: [];
 
   constructor(servicios, cotizaciones, usuarios) {
     this.servicios = this.estructuraServicios(servicios);
     this.cotizaciones = cotizaciones;
     this.usuarios = usuarios;
-
   }
 
   combinarTablas(){
@@ -42,6 +40,7 @@ export class ObtenerCotizacion {
     if(s.key === c.key) {
       let cotizacion: any = {};
       cotizacion = c[s.id];
+      if(!cotizacion) { return null}
       cotizacion.key = s.id;
       return { cotizacion, key_u: c['key'] }
     }
