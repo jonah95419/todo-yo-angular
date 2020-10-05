@@ -2,23 +2,42 @@
     <ng-container>
         <div class="contenedor-detalles">
             <div *ngIf="cotizacion$ | async as cotizacion; else loading">
-                <mat-toolbar>
+                <mat-toolbar style="background-color: #F9FAFC;">
                     <h3 style="margin-top: 0;">Descripción</h3>
-                    <span class="example-spacer"></span>
-                    <h3 style="margin-top: 0;">{{cotizacion.cotizacion.id_local}}</h3>
                 </mat-toolbar>
                 <div class="contenedor-descripcion">
-                    <div style="width: 100%; display: flex;">
-                        <div style="font-size: smaller; font-weight: 600;">{{cotizacion.cotizacion.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}</div>
-                        <mat-slide-toggle style="margin-left: auto;" [checked]="cotizacion.cotizacion.estado" (change)="actualizarEstado($event, cotizacion.key_u)">Estado</mat-slide-toggle>
+                    <div style="display: flex;">
+                        <div style="min-width: 90px; color: gray">
+                            Id:
+                        </div>
+                        {{cotizacion.cotizacion.id_local}}
                     </div>
-                    <div style="margin: 24px 0;">{{cotizacion.cotizacion.descripcion}}</div>
-
-                    <div style="width: 250px; height: 50px;">
-                        <ng-image-slider #nav [images]="imageObject" [imagePopup]="true" [infinite]="false" [autoSlide]="1" [imageSize]="{width: '25%', height: 50}" slideImage="1"></ng-image-slider>
+                    <div style="display: flex; margin: 4px 0px;">
+                        <div style="min-width: 90px; color: gray">
+                            Fecha:
+                        </div>
+                        {{cotizacion.cotizacion.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}
+                    </div>
+                    <div style="display: flex;">
+                        <div style="min-width: 90px; color: gray">
+                            Estado:
+                        </div>
+                        <mat-slide-toggle [checked]="cotizacion.cotizacion.estado" (change)="actualizarEstado($event, cotizacion.key_u)"></mat-slide-toggle>
+                    </div>
+                    <div style="margin-top: 2px; display: flex;">
+                        <div style="min-width: 90px; color: gray"> Descripcion:</div>
+                        {{cotizacion.cotizacion.descripcion}}
+                    </div>
+                    <div style="margin-top: 12px; display: flex; flex-direction: row;">
+                        <div style="min-width: 90px; color: gray">
+                            Adjuntos:
+                        </div>
+                        <div style="width: 250px; height: 50px; ">
+                            <ng-image-slider #nav [images]="imageObject" [imagePopup]="true" [infinite]="false" [autoSlide]="1" [imageSize]="{width: '25%', height: 50}" slideImage="1"></ng-image-slider>
+                        </div>
                     </div>
                 </div>
-                <mat-toolbar style="z-index: 2; position: relative;">
+                <mat-toolbar style="z-index: 2; position: relative; background-color: #F9FAFC;">
                     <h3 style="display: flex;">Detalles
                     </h3>
                     <span class="example-spacer"></span>
@@ -118,7 +137,7 @@
                     </form>
                 </mat-expansion-panel>
                 <div class="contenedor">
-                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
                         <ng-container matColumnDef="cant">
                             <th mat-header-row *matHeaderCellDef> Cant. </th>
@@ -161,7 +180,7 @@
         </div>
     </ng-container>
     <ng-container #contenedor_chat>
-        <div style="min-width: 250px; width: 45%; padding: 6px;">
+        <div style="min-width: 250px; width: 45%; padding: 6px; background-color: white;">
             <app-chat [key]="key" [usuario]="usuario"></app-chat>
         </div>
     </ng-container>

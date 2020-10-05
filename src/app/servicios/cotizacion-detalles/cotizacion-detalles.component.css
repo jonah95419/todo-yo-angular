@@ -1,13 +1,13 @@
 .contendenor-albanieleria-cotizacion {
-    width: calc(100vw - 636px);
+    width: calc(100vw - 580px);
     height: 100%;
     display: flex;
     z-index: 10;
 }
 
 .contenedor-detalles {
-    min-width: 320px;
-    width: 55%;
+    min-width: 350px;
+    width: 65%;
     padding: 6px 12px;
     height: 98%;
     overflow: auto;
@@ -16,7 +16,7 @@
 .contenedor-descripcion {
     display: flex;
     flex-direction: column;
-    margin: 24px;
+    margin: 12px 24px;
 }
 
 .contenedor {
