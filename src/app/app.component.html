@@ -1,41 +1,31 @@
 <div class="example-container">
-    <div class="example-sidenav" *ngIf="authenticationService.isLoggedIn">
-        <mat-toolbar matTooltip="Todo YO" style="cursor: pointer;" (click)="authenticationService.SignOut()">
-            <h3>{{title}}</h3>
-        </mat-toolbar>
+    <div style=" background-color: #730603;" *ngIf="authenticationService.isLoggedIn">
+        <div mat-card-avatar matTooltip="Todo YO" style="cursor: pointer; margin-left: 10px;" (click)="authenticationService.SignOut()" class="example-header-image "></div>
         <mat-nav-list>
             <div style="width: 100%;">
-                <a class="navigation-item" routerLink="/servicios" mat-list-item routerLinkActive="active" routerLinkActive #rla1="routerLinkActive">
-                    <div [ngClass]="{'item-seleccionado': rla1.isActive}">
-                        <span class="navigation-item-label">Servicios</span>
-                        <div [ngClass]="{'indicador-seleccionado': rla1.isActive}"></div>
+                <a class="navigation-item" routerLink="/servicios" matTooltip="Servicios" mat-list-item routerLinkActive="active" routerLinkActive #rla1="routerLinkActive">
+                    <div style="margin: auto; display: flex;" [style.color]="rla1.isActive ? 'cornsilk':'white'">
+                        <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla1.isActive}"><mat-icon >store</mat-icon></button>
                     </div>
                 </a>
-                <a class="navigation-item" routerLink="/promociones" mat-list-item routerLinkActive="active" routerLinkActive #rla2="routerLinkActive">
-                    <div [ngClass]="{'item-seleccionado': rla2.isActive}">
-                        <span class="navigation-item-label">Promociones</span>
-                        <div [ngClass]="{'indicador-seleccionado': rla2.isActive}"></div>
+                <a class="navigation-item" routerLink="/promociones" matTooltip="Promociones" mat-list-item routerLinkActive="active" routerLinkActive #rla2="routerLinkActive">
+                    <div style="margin: auto; display: flex;" [style.color]="rla2.isActive ? 'cornsilk':'white'">
+                        <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla2.isActive}"><mat-icon >redeem</mat-icon></button>
                     </div>
                 </a>
-                <a class="navigation-item" routerLink="/personal" mat-list-item routerLinkActive="active" routerLinkActive #rla3="routerLinkActive">
-                    <div [ngClass]="{'item-seleccionado': rla3.isActive}">
-                        <span class="navigation-item-label">Personal</span>
-                        <div [ngClass]="{'indicador-seleccionado': rla3.isActive}"></div>
+                <a class="navigation-item" routerLink="/personal" matTooltip="Personal" mat-list-item routerLinkActive="active" routerLinkActive #rla3="routerLinkActive">
+                    <div style="margin: auto; display: flex;" [style.color]="rla3.isActive ? 'cornsilk':'white'">
+                        <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla3.isActive}"><mat-icon >contacts</mat-icon></button>
                     </div>
                 </a>
-                <a class="navigation-item" routerLink="/usuarios" mat-list-item routerLinkActive="active" routerLinkActive #rla4="routerLinkActive">
-                    <div [ngClass]="{'item-seleccionado': rla4.isActive}">
-                        <span class="navigation-item-label">Usuarios</span>
-                        <div [ngClass]="{'indicador-seleccionado': rla4.isActive}"></div>
-                    </div>
+                <a class="navigation-item" routerLink="/usuarios" matTooltip="Usuarios" mat-list-item routerLinkActive="active" routerLinkActive #rla4="routerLinkActive">
+                    <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla4.isActive}"><mat-icon >people</mat-icon></button>
                 </a>
             </div>
         </mat-nav-list>
     </div>
-
     <div class="example-sidenav-content">
         <router-outlet>
         </router-outlet>
     </div>
-
 </div>

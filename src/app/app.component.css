@@ -1,3 +1,22 @@
+.example-header-image {
+    background-image: url('/assets/images/icono.png');
+    background-size: cover;
+    margin: 6px;
+    padding: 6px;
+    height: 36px;
+    width: 36px;
+}
+
+.seleccion {
+    background: #730603;
+    color: whitesmoke;
+}
+
+.seleccion2 {
+    color: #730603;
+    background: whitesmoke;
+}
+
 ::ng-deep.example-container {
     width: auto;
     height: 100%;
@@ -11,9 +30,10 @@
 }
 
 ::ng-deep.cotizacion-container {
-    width: calc(100vw - 352px);
+    width: calc(100vw - 288px);
     height: 100%;
     display: flex;
+    background-color: #F9FAFC;
 }
 
 ::ng-deep.example-sidenav-content {
@@ -24,8 +44,8 @@
 
 ::ng-deep.example-sidenav {
     padding: 6px;
-    width: 160px;
-    min-width: 160px;
+    width: 200px;
+    min-width: 200px;
 }
 
 ::ng-deep.personal-sidenav {
@@ -111,18 +131,20 @@
 
 ::ng-deep .indicador-estado-inactivo {
     width: 5px;
+    min-width: 5px;
     height: auto;
     background-color: #acacac;
 }
 
 ::ng-deep .indicador-estado-activo {
     width: 5px;
+    min-width: 5px;
     height: auto;
     background-color: #ffc8c8;
 }
 
 ::ng-deep .mat-toolbar {
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 ::ng-deep .example-spacer {
