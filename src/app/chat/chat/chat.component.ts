@@ -58,7 +58,7 @@ export class ChatComponent implements OnInit, OnChanges, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     const bottom_px = this.mensaje.nativeElement.offsetHeight;
-    const heigth = window.innerHeight - Number(bottom_px) - 70;
+    const heigth = window.innerHeight - Number(bottom_px) - 10;
     this.chat.nativeElement.style.height = heigth+'px';
     this.scrollToBottom();
   }

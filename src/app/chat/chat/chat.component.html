@@ -1,7 +1,4 @@
 <ng-container>
-    <mat-toolbar #toolbar>
-        <h3 style="margin-top: 0;">Comentarios</h3>
-    </mat-toolbar>
     <div class="chat-content" #chat>
         <div *ngIf="chats$ | async as chat; else loading">
             <div *ngIf="chat.length > 0; else lenc">
@@ -21,7 +18,7 @@
                             </div>
                         </div>
                     </ng-template>
-                    <mat-divider style="height: 0.1px; background-color: #ffc8c8; width: 85%; margin: auto;">
+                    <mat-divider style="height: 0.05px; background-color: #ffc8c8; width: 85%; margin: auto;">
                     </mat-divider>
                 </div>
             </div>
@@ -33,6 +30,7 @@
             <div style="padding: 12px;"> Cargando comentarios.. </div>
         </ng-template>
     </div>
+
     <div class="contenedor-imagen" *ngIf="imagen">
         <img style="width: auto; height: 200px;" [src]="imageSrc" alt="">
         <button mat-mini-fab class="btn-cerrar-imagen" (click)="cancelarImagen()" matTooltip="cancelar"> <mat-icon>close</mat-icon></button>
@@ -40,6 +38,7 @@
             <progress max="100" [value]="(uploadPercent$ | async)"></progress>
         </div>
     </div>
+
     <footer class="sticky-footer" #mensaje>
         <form class="message-form" [formGroup]="chatForm" (ngSubmit)="onFormSubmit(chatForm.value)">
             <mat-form-field class="message-form-field">
