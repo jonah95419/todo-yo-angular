@@ -4,7 +4,7 @@
             <h3>Categorias</h3>
         </mat-toolbar>
         <mat-nav-list>
-            <div style="width: 100%;">
+            <div style="width: 100%; margin-left: 12px;">
                 <div *ngFor="let item of navlist">
                     <a class="navigation-item" [routerLink]="item.link" mat-list-item routerLinkActive="active" routerLinkActive #rla1s="routerLinkActive">
                         <div [ngClass]="{'item-seleccionado': rla1s.isActive}">
