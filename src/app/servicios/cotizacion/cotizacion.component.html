@@ -1,20 +1,17 @@
 <div class="cotizacion-container">
     <div class="cotizacion-sidenav">
-        <mat-toolbar>
-            <h3>Cotizaciones</h3>
+        <mat-toolbar style="background-color: #F9FAFC;">
+            <span style="font-weight: normal; font-size: medium;">{{filtro_fecha | date}}</span>
             <span class="example-spacer"></span>
             <div style="display: flex; flex-direction: column;">
                 <mat-icon (click)="openDialog()" class="example-icon" aria-hidden="false" aria-label="filtrar lista">filter_list</mat-icon>
             </div>
             <span #filterIcon></span>
         </mat-toolbar>
-        <div style="padding: 6px;">
-            {{filtro_fecha | date}}
-        </div>
         <ng-container *ngIf="cotizaciones$ | async as cotizaciones; else loading">
             <ng-container *ngIf="cotizaciones.length > 0; else lencot">
                 <a *ngFor="let cotizacion of cotizaciones" routerLink='./detalles' [queryParams]="{key: cotizacion?.cotizacion?.key, user: cotizacion?.usuario?.key}" routerLinkActive="active" routerLinkActive #rla1sa="routerLinkActive">
-                    <mat-card class=" example-card " *ngIf="cotizacion " matRipple style="padding: 0;">
+                    <mat-card class="example-card " *ngIf="cotizacion " matRipple style="padding: 0;">
                         <div style="display: flex;">
                             <div [ngClass]="{'indicador-estado-activo': cotizacion?.cotizacion?.estado}" class="indicador-estado-inactivo" [matTooltip]="cotizacion.cotizacion.estado? 'pendiente':'cerrado'"></div>
                             <div style="padding: 16px;">

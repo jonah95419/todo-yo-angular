@@ -127,17 +127,18 @@ export class CotizacionComponent implements OnInit, OnDestroy {
   }
 
   private obtenerCotizaciones = (o:Observable<any[]>): void => {
-    this.cotizaciones$ = combineLatest(
+    this.cotizaciones$ = combineLatest([
       o,
       this.cotizacionApi.todos,
-      this.usuariosApi.todos)
-    .pipe(
+      this.usuariosApi.todos
+    ]).pipe(
       map( data => new ObtenerCotizacion(data[0], data[1], data[2]).combinarTablas()),
       map( data => this.aplicarFiltros(data) )
     );
   }
 
   private aplicarFiltros = (c) => {
+    //console.log(c);
     if(this.filtro_pendiente && this.filtro_cerrado) {
       return c.filter( d =>
         this.compararFechas(d.cotizacion.fecha, this.filtro_fecha)
@@ -160,7 +161,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
   private compararFechas = (fecha1, fecha2) => {
     let f1 = new Date(fecha1);
     let f2 = new Date(fecha2);
-    return f1.getUTCDate() === f2.getUTCDate() && f1.getUTCMonth() === f2.getUTCMonth() && f1.getUTCFullYear() === f2.getUTCFullYear()
+    return f1.getDate() === f2.getDate() && f1.getMonth() === f2.getMonth() && f1.getFullYear() === f2.getFullYear()
   }
 
 }
