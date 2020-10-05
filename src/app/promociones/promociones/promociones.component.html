@@ -1,15 +1,15 @@
 <div class="servicios-container">
-    <div style="display: flex;" cdkDropListGroup>
-        <div class="example-container ">
-            <div cdkDropList #listaBorrador="cdkDropList" class="example-list">
-                <mat-toolbar style="z-index: 2; position: relative;">
-                    <h3>Privadas</h3>
+    <div style="display: flex;">
+        <div class="example-container " style="background-color:  #F9FAFC;">
+            <div class="example-list">
+                <mat-toolbar style="z-index: 2; position: relative; background-color:  #F9FAFC;">
+                    <h3>Borrador</h3>
                     <span class="example-spacer"></span>
                     <button mat-mini-fab matTooltip="nueva promoción" (click)="nuevoRegistro();">
               <mat-icon aria-hidden="false" aria-label="nueva promoción">playlist_add</mat-icon>
             </button>
                 </mat-toolbar>
-                <mat-expansion-panel #panel_promocion class="mat-elevation-z0" style="background-color: whitesmoke; z-index: 0;">
+                <mat-expansion-panel class="mat-elevation-z0" style="background-color: whitesmoke; z-index: 0;">
                     <form [formGroup]="informacionForm" (ngSubmit)="submit()" novalidate>
                         <div class="fields-container">
                             <div style="display: flex; flex-direction: column;">
@@ -56,7 +56,7 @@
                 </mat-expansion-panel>
                 <div *ngIf="privadas$ | async as privadas; else loadingpr">
                     <div *ngIf="privadas.length > 0; else lengpu">
-                        <mat-card class="example-card mat-elevation-z8" *ngFor="let item of privadas">
+                        <mat-card class="example-card mat-elevation-z1" style="background-color:  #F9FAFC;" *ngFor="let item of privadas">
                             <mat-card-header>
                                 <mat-card-title>{{item.nombre1}}</mat-card-title>
                                 <mat-card-subtitle>{{item.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}</mat-card-subtitle>
@@ -87,12 +87,12 @@
 
         <div class="example-container">
             <mat-toolbar>
-                <h3>Públicas</h3>
+                <h3>Público</h3>
             </mat-toolbar>
-            <div cdkDropList #listPublicadas="cdkDropList" class="example-list">
+            <div class="example-list">
                 <div *ngIf="publicas$ | async as publicas; else loadingpu">
                     <div *ngIf="publicas.length > 0; else lengpu">
-                        <mat-card class="example-card mat-elevation-z8" *ngFor="let item of publicas">
+                        <mat-card class="example-card mat-elevation-z2" *ngFor="let item of publicas">
                             <mat-card-header>
                                 <mat-card-title>{{item.nombre1}}</mat-card-title>
                                 <mat-card-subtitle>{{item.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}</mat-card-subtitle>
@@ -122,14 +122,14 @@
         </div>
     </div>
 
-    <div class="example-container">
-        <mat-toolbar>
-            <h3>Historial</h3>
+    <div class="example-container" style="background-color:  #F9FAFC;">
+        <mat-toolbar style="background-color:  #F9FAFC;">
+            <h3>Archivo</h3>
         </mat-toolbar>
         <div class="example-list">
             <div *ngIf="historial$ | async as historial; else loadinghi">
                 <div *ngIf="historial.length > 0; else lenghi">
-                    <mat-card class="example-card mat-elevation-z8" *ngFor="let item of historial">
+                    <mat-card class="example-card mat-elevation-z1" style="background-color:  #F9FAFC; " *ngFor="let item of historial">
                         <mat-card-header>
                             <mat-card-title>{{item.nombre1}}</mat-card-title>
                             <mat-card-subtitle>{{item.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}</mat-card-subtitle>
