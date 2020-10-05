@@ -24,7 +24,7 @@
 }
 
 ::ng-deep.servicios-container {
-    width: calc(100vw - 176px);
+    width: calc(100vw - 75px);
     height: 100%;
     display: flex;
 }
