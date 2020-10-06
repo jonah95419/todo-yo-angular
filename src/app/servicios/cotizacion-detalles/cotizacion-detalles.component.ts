@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CotizacionService } from '../service/cotizacion.service';
 import { CotizacionDetallesService } from '../service/cotizacion_detalles.service';
 import { Observable, combineLatest } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { ObtenerCotizacionDetalles } from '../../utils/ObtenerCotizacionDetalles';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
@@ -74,30 +74,30 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     private cotizacionDetalleApi: CotizacionDetallesService,
     private usuariosApi: UsuariosService,
     public personalApi: PersonalService) {
-      translate.setDefaultLang('es');
-      translate.use('es');
+    translate.setDefaultLang('es');
+    translate.use('es');
   }
 
   ngOnInit(): void {
     this.locale = this.translate.currentLang;
-    this._translate =  this.translate.onLangChange
-    .subscribe((langChangeEvent: LangChangeEvent) => {this.locale = langChangeEvent.lang;})
+    this._translate = this.translate.onLangChange
+      .subscribe((langChangeEvent: LangChangeEvent) => { this.locale = langChangeEvent.lang; })
 
     this.route.queryParams.subscribe(
       (params: Params) => {
         const key = params.key;
         const user = params.user;
-        if(key) { this.obtenerCotizacionDetalle(key, user); }
+        if (key) { this.obtenerCotizacionDetalle(key, user); }
       });
   }
 
   ngOnDestroy(): void {
-    if(this._translate !== undefined) {
+    if (this._translate !== undefined) {
       this._translate.unsubscribe();
     }
   }
 
-  actualizarEstado = ( event: MatSlideToggleChange, usuario: string) => this.cotizacionApi.actualizarEstadoCotizacion(usuario, this.key, event.checked);
+  actualizarEstado = (event: MatSlideToggleChange, usuario: string) => this.cotizacionApi.actualizarEstadoCotizacion(usuario, this.key, event.checked);
 
   detalle = (detalleP: boolean, detalleM: boolean, detalleE: boolean): void => {
 
@@ -105,23 +105,23 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     this.btn_detalle_material = detalleM;
     this.btn_detalle_personal = detalleP;
 
-    if(!detalleP) { this.panel_personal.open(); }
+    if (!detalleP) { this.panel_personal.open(); }
 
-    if(!detalleM) { this.panel_material.open(); }
+    if (!detalleM) { this.panel_material.open(); }
 
-    if(!detalleE) { this.panel_equipos.open(); }
+    if (!detalleE) { this.panel_equipos.open(); }
   }
 
   cancelarDetalle = (): void => {
-    if(this.panel_material !== undefined) {
+    if (this.panel_material !== undefined) {
       this.panel_material.close();
       this.materialForm.reset();
     }
-    if(this.panel_equipos !== undefined) {
+    if (this.panel_equipos !== undefined) {
       this.panel_equipos.close();
       this.equipoForm.reset();
     }
-    if(this.panel_personal !== undefined) {
+    if (this.panel_personal !== undefined) {
       this.panel_personal.close();
     }
     this.btn_detalle_equipo = false;
@@ -133,21 +133,21 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   eliminarDetalle = (usuario: string, t: string, k: string) => this.cotizacionDetalleApi.eliminarDetalle(this.key, usuario, t, k);
 
   submitMaterial = (usuario: string) => {
-    if(this.materialForm.valid) {
+    if (this.materialForm.valid) {
       this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "material", this.materialForm.value);
       this.cancelarDetalle();
     }
   }
 
-  submitEquipos= (usuario: string) => {
-    if(this.equipoForm.valid) {
+  submitEquipos = (usuario: string) => {
+    if (this.equipoForm.valid) {
       this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "equipo", this.equipoForm.value);
       this.cancelarDetalle();
     }
   }
 
   submitPersonal = (usuario: string) => {
-    if(this.personalForm.valid) {
+    if (this.personalForm.valid) {
       this.cotizacionDetalleApi.registrarDetalle(this.key, usuario, "personal", this.personalForm.value);
       this.cancelarDetalle();
     }
@@ -195,35 +195,44 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     if (this.personalForm.controls['detalle'].hasError('required')) { return 'Requerido'; }
   }
 
-  private obtenerCotizacionDetalle = (key: string, user: string):void => {
+  private obtenerCotizacionDetalle = (key: string, user: string): void => {
     this.key = key;
     this.cancelarDetalle();
-    this.cotizacion$ = combineLatest(
+    this.cotizacion$ = combineLatest([
       this.cotizacionApi.todos,
       this.cotizacionDetalleApi.todos,
       this.personalApi.todos,
-      this.usuariosApi.todos)
-    .pipe(
-      map( data => new ObtenerCotizacionDetalles(key, user, data[0], data[1], data[2], data[3]).combinarTablas()),
-      tap( data => { if(data !== undefined) {
-        this.imageObject = this.procesarFotografias(data.cotizacion.fotografias)
-        this.total = this.calcularTotal(data.detalles);
-        this.dataSource = data.detalles;
-        this.usuario = data.usuario;
-      }})
-    )
+      this.usuariosApi.todos])
+      .pipe(
+        map(data => new ObtenerCotizacionDetalles(key, user, data[0], data[1], data[2], data[3]).combinarTablas()),
+        map( data => {
+          data.detalles = data.detalles.filter(d => Number(d.cant) !== 0);
+          return data;
+        }),
+        tap(data => {
+          if (data !== undefined) {
+            this.imageObject = this.procesarFotografias(data.cotizacion.fotografias)
+            this.total = this.calcularTotal(data.detalles);
+            this.dataSource = data.detalles;
+            this.usuario = data.usuario;
+          }
+        })
+      )
   }
 
-  private procesarFotografias (fotografias: object): any[] {
-    return Object.keys(fotografias).map(k => { return {
+  private procesarFotografias = (fotografias: object): any[] =>
+    Object.keys(fotografias).map(k => {
+      return {
         image: fotografias[k],
         thumbImage: fotografias[k],
         title: ""
       }
     });
-  }
 
-  private calcularTotal = (detalles): number => detalles.map(t => Number(t.subtotal) * Number(t.cant)).reduce((acc, value) => acc + value, 0)
+
+  private calcularTotal = (detalles: any): number => detalles
+  .map((t: any) => Number(t.subtotal) * Number(t.cant))
+  .reduce((acc: number, value: number) => acc + value, 0)
 
 }
 
