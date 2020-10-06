@@ -8,16 +8,16 @@ import { AuthenticationService } from '../registro/service/authentication.servic
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(
-    public authenticationService: AuthenticationService,
-    public router: Router
-  ){ }
+  constructor(private authenticationService: AuthenticationService, private router: Router ){ }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+    Observable<boolean | UrlTree> |
+    Promise<boolean | UrlTree> |
+    boolean |
+    UrlTree {
       if(!this.authenticationService.isLoggedIn) {
-        this.router.navigate(['ingreso'])
+        this.router.navigate(['ingreso']);
+        return false;
       }
     return true;
   }
