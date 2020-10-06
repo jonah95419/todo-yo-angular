@@ -24,10 +24,9 @@ export class AuthenticationService {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+        localStorage.removeItem('user');
       }
     })
   }
@@ -35,11 +34,12 @@ export class AuthenticationService {
   async SignIn(email, password) {
     return await this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
+        localStorage.setItem('user',  JSON.stringify({emailVerified: true}));
         this.ngZone.run(() => {
-          this.router.navigateByUrl('/servicios');
+          this.router.navigate(['/servicios']);
         });
       }).catch((error) => {
-        window.alert('No hay ningún registro de usuario que corresponda al correo electrónico ingresado. El usuario puede haber sido eliminado. (Si te registraste con una cuenta de Google o Facebook, puedes proban haciendo click en el boton correspondiente)')
+        window.alert('No hay ningún registro de usuario que corresponda al correo electrónico ingresado.')
       })
   }
 
