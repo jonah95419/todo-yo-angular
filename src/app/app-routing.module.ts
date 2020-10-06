@@ -15,20 +15,26 @@ import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/servicios', pathMatch: 'full' },
-  { path: 'servicios', component: ServiciosComponent, canActivate: [AuthGuard] , children: [
-    { path: '', redirectTo: 'cotizacion', pathMatch: 'full' },
-    { path: 'cotizacion/:tipo', component: CotizacionComponent, children: [
-      { path: 'detalles', component: CotizacionDetallesComponent},
-    ]},
-  ]},
-  { path: 'promociones', component: PromocionesComponent, canActivate: [AuthGuard]},
-  { path: 'personal', component: PersonalComponent, canActivate: [AuthGuard], children: [
-      {path: 'perfil', component: PerfilComponent}
-  ]},
-  { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard]},
+  {
+    path: 'servicios', component: ServiciosComponent, canActivate: [AuthGuard], children: [
+      { path: '', redirectTo: 'cotizacion', pathMatch: 'full' },
+      {
+        path: 'cotizacion/:tipo', component: CotizacionComponent, children: [
+          { path: 'detalles', component: CotizacionDetallesComponent },
+        ]
+      },
+    ]
+  },
+  { path: 'promociones', component: PromocionesComponent, canActivate: [AuthGuard] },
+  {
+    path: 'personal', component: PersonalComponent, canActivate: [AuthGuard], children: [
+      { path: 'perfil', component: PerfilComponent }
+    ]
+  },
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard] },
   { path: 'ingreso', component: IngresoComponent, canActivate: [SecureInnerPagesGuard] },
-  { path: 'psw-olvidada', component: PswOlvidadaComponent, canActivate: [SecureInnerPagesGuard] },
-  { path: 'email-verificacion', component: EmailVerificacionComponent, canActivate: [SecureInnerPagesGuard] },
+  // { path: 'psw-olvidada', component: PswOlvidadaComponent, canActivate: [SecureInnerPagesGuard] },
+  // { path: 'email-verificacion', component: EmailVerificacionComponent, canActivate: [SecureInnerPagesGuard] },
 ];
 
 @NgModule({
