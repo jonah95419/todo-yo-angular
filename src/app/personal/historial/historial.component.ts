@@ -47,8 +47,8 @@ export class HistorialComponent implements OnInit, OnDestroy {
 
   private obtenerInformacion = (id: string): void => {
     this.historial$ = combineLatest(
-      this.cotizacionApi.todos,
-      this.cotizacionDetalleApi.todos)
+      [this.cotizacionApi.todos,
+      this.cotizacionDetalleApi.todos])
     .pipe(
       map( data => new ObtenerInteracciones(id, data[0], data[1]).combinarTablas())
     );
