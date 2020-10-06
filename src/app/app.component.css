@@ -54,6 +54,7 @@
     min-width: 250px;
     height: 98%;
     overflow: auto;
+    background-color: #F9FAFC;
 }
 
 ::ng-deep.usuarios-sidenav {
