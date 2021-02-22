@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';  // Firebase modules for Database
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { PersonalI  } from '../model/personal';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,9 @@ export class PersonalService {
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage, private _snackBar: MatSnackBar) { }
 
   cargarTodo = () => {
-     this.db.list('personal').snapshotChanges().subscribe(
+     this.db.list('personal').snapshotChanges()
+     .pipe(catchError(this.handleError))
+     .subscribe(
       (data: any[]) => {
         this.dataStore.personal = data.map( item => {
           let a = item.payload.toJSON();
@@ -73,6 +77,10 @@ export class PersonalService {
 
   private openSnackBar = (message: string, action: string) => {
     this._snackBar.open(message, action, { duration: 5000 });
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    return throwError( 'Algo a salido mal, puedes intentarlo nuevamente!');
   }
 
 }

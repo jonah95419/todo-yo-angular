@@ -8,7 +8,6 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from 'angularfire2/storage';
 import { PromocionesModule } from './promociones/promociones.module';
 import { ServiciosModule } from './servicios/servicios.module';
 import { PersonalModule } from './personal/personal.module';
@@ -26,6 +25,8 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { RegistroModule } from './registro/registro.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -34,11 +35,12 @@ import { RegistroModule } from './registro/registro.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig, "todo-yo"),
+    AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    BrowserAnimationsModule,
     ServiciosModule,
     PromocionesModule,
     PersonalModule,
@@ -55,7 +57,8 @@ import { RegistroModule } from './registro/registro.module';
       }
   })],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'es-EC'}
+    {provide: MAT_DATE_LOCALE, useValue: 'es-EC'},
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })
