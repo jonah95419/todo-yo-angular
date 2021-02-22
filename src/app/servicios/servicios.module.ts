@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServiciosComponent } from './servicios/servicios.component';
 import { AngularModule } from '../angular.module';
-import { AppRoutingModule } from '../app-routing.module';
 import { CotizacionComponent, DialogDataExampleDialog } from './cotizacion/cotizacion.component';
 
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -21,8 +20,7 @@ import { CotizacionService } from './service/cotizacion.service';
 import { CotizacionDetallesService } from './service/cotizacion_detalles.service';
 import { UsuariosService } from '../usuarios/service/usuarios.service';
 import { Servicio7Service } from './service/servicios7.service';
-
-
+import { ServiciosRoutingModule } from './servicios-routing.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +29,7 @@ import { Servicio7Service } from './service/servicios7.service';
     CotizacionDetallesComponent,
     DialogDataExampleDialog],
   imports: [
-    AppRoutingModule,
+    ServiciosRoutingModule,
     CommonModule,
     AngularModule,
     NgImageSliderModule,
@@ -50,18 +48,32 @@ import { Servicio7Service } from './service/servicios7.service';
   ],
   entryComponents: [
     DialogDataExampleDialog
-  ],
-  providers: [
-    Servicio1Service,
-    Servicio2Service,
-    Servicio3Service,
-    Servicio4Service,
-    Servicio5Service,
-    Servicio6Service,
-    Servicio7Service,
-    CotizacionService,
-    CotizacionDetallesService,
-    UsuariosService,
   ]
 })
-export class ServiciosModule { }
+export class ServiciosModule {
+  constructor(@Optional() @SkipSelf() parentModule?: ServiciosModule) {
+
+    if (parentModule) {
+      throw new Error(
+        'ServiciosModule is already loaded. Import it in the AppModule only');
+    }
+  }
+
+  static forRoot(): ModuleWithProviders<ServiciosModule> {
+    return {
+      ngModule: ServiciosModule,
+      providers: [
+        {provide: Servicio1Service },
+        {provide: Servicio2Service },
+        {provide: Servicio3Service },
+        {provide: Servicio4Service },
+        {provide: Servicio5Service },
+        {provide: Servicio6Service },
+        {provide: Servicio7Service },
+        {provide: CotizacionService },
+        {provide: CotizacionDetallesService },
+        {provide: UsuariosService }
+      ]
+    };
+  }
+}

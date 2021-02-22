@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PersonalComponent } from './personal/personal.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AngularModule } from '../angular.module';
-import { AppRoutingModule } from '../app-routing.module';
 import { InformacionComponent } from './informacion/informacion.component';
 import { RendimientoComponent } from './rendimiento/rendimiento.component';
 import { HistorialComponent } from './historial/historial.component';
@@ -20,12 +19,13 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../../environments/environment.prod';
+import { PersonalRoutingModule } from './personal-routing.module';
 
 
 @NgModule({
   declarations: [PersonalComponent, PerfilComponent, InformacionComponent, RendimientoComponent, HistorialComponent, DragDirective],
   imports: [
-    AppRoutingModule,
+    PersonalRoutingModule,
     CommonModule,
     AngularModule,
     FormsModule,

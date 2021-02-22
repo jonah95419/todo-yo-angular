@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { EmailVerificacionComponent } from './email-verificacion/email-verificacion.component';
 import { PswOlvidadaComponent } from './psw-olvidada/psw-olvidada.component';
 import { IngresoComponent } from './ingreso/ingreso.component';
-import { AppRoutingModule } from '../app-routing.module';
 import { AngularModule } from '../angular.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthenticationService } from './service/authentication.service';
+import { RegistroRoutingModule } from './registro-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { AuthenticationService } from './service/authentication.service';
     EmailVerificacionComponent,
   ],
   imports: [
-    AppRoutingModule,
+    RegistroRoutingModule,
     CommonModule,
     AngularModule,
     FormsModule,

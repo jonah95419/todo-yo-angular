@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from './usuarios/service/usuarios.service';
 import { CotizacionService } from './servicios/service/cotizacion.service';
 import { Servicio1Service } from './servicios/service/servicios1.service';
-import { CotizacionDetallesService } from './servicios/service/cotizacion_detalles.service';
-import { PersonalService } from './personal/service/personal.service';
+import { PromocionesService } from './promociones/service/promociones.service';
+import { Servicio7Service } from './servicios/service/servicios7.service';
+import { AuthenticationService } from './registro/service/authentication.service';
 import { Servicio2Service } from './servicios/service/servicios2.service';
 import { Servicio3Service } from './servicios/service/servicios3.service';
 import { Servicio4Service } from './servicios/service/servicios4.service';
 import { Servicio5Service } from './servicios/service/servicios5.service';
 import { Servicio6Service } from './servicios/service/servicios6.service';
-import { PromocionesService } from './promociones/service/promociones.service';
-import { Servicio7Service } from './servicios/service/servicios7.service';
-import { AuthenticationService } from './registro/service/authentication.service';
+import { CotizacionDetallesService } from './servicios/service/cotizacion_detalles.service';
+import { PersonalService } from './personal/service/personal.service';
 
 @Component({
   selector: 'app-root',
