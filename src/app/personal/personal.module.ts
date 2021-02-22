@@ -15,6 +15,11 @@ import { RatingModule } from 'ng-starrating';
 import { ChatService } from '../chat/service/chat.service';
 import { InteraccionService } from './service/interaccion.service';
 import { PersonalService } from './service/personal.service';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../../environments/environment.prod';
 
 
 @NgModule({
@@ -28,6 +33,10 @@ import { PersonalService } from './service/personal.service';
     MatInputModule,
     RatingModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
   ],
   exports: [
     AngularModule,
