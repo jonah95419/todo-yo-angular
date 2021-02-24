@@ -1,27 +1,41 @@
-.contendenor-albanieleria-cotizacion {
+.contendenor-servicio-cotizacion {
     width: calc(100vw - 580px);
     height: 100%;
     display: flex;
     z-index: 10;
 }
 
-.contenedor-detalles {
+.contenedor-descripcion {
     min-width: 350px;
     width: 65%;
-    padding: 6px 12px;
-    height: 98%;
+    padding: 6px;
+}
+
+.contenedor-detalles {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0 0 0;
+    background-color: white;
+    height: calc(100% - 70px);
     overflow: auto;
 }
 
-.contenedor-descripcion {
+.detalles {
+    padding: 12px;
+}
+
+.detalle {
     display: flex;
-    flex-direction: column;
-    margin: 12px 24px;
+    flex-direction: row;
+    width: 100%;
+}
+
+.subtitle-detalle {
+    min-width: 90px;
+    color: gray;
 }
 
 .contenedor {
-    display: flex;
-    flex-direction: column;
     margin: 24px 0;
 }
 

@@ -1,29 +1,35 @@
 <div class="example-container">
-    <div style=" background-color: #730603;" *ngIf="authenticationService.isLoggedIn">
-        <div mat-card-avatar matTooltip="Todo YO" style="cursor: pointer; margin-left: 10px;" (click)="authenticationService.SignOut()" class="example-header-image "></div>
-        <mat-nav-list>
-            <div style="width: 100%;">
-                <a class="navigation-item" routerLink="/servicios" matTooltip="Servicios" mat-list-item routerLinkActive="active" routerLinkActive #rla1="routerLinkActive">
-                    <div style="margin: auto; display: flex;" [style.color]="rla1.isActive ? 'cornsilk':'white'">
-                        <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla1.isActive}"><mat-icon >store</mat-icon></button>
-                    </div>
-                </a>
-                <a class="navigation-item" routerLink="/promociones" matTooltip="Promociones" mat-list-item routerLinkActive="active" routerLinkActive #rla2="routerLinkActive">
-                    <div style="margin: auto; display: flex;" [style.color]="rla2.isActive ? 'cornsilk':'white'">
-                        <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla2.isActive}"><mat-icon >redeem</mat-icon></button>
-                    </div>
-                </a>
-                <a class="navigation-item" routerLink="/personal" matTooltip="Personal" mat-list-item routerLinkActive="active" routerLinkActive #rla3="routerLinkActive">
-                    <div style="margin: auto; display: flex;" [style.color]="rla3.isActive ? 'cornsilk':'white'">
-                        <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla3.isActive}"><mat-icon >contacts</mat-icon></button>
-                    </div>
-                </a>
-                <a class="navigation-item" routerLink="/usuarios" matTooltip="Usuarios" mat-list-item routerLinkActive="active" routerLinkActive #rla4="routerLinkActive">
-                    <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla4.isActive}"><mat-icon >people</mat-icon></button>
-                </a>
-            </div>
-        </mat-nav-list>
-    </div>
+    <ng-container *ngIf="authenticationService.isLoggedIn">
+        <div style="padding: 6px 0;">
+            <mat-toolbar>
+                <div mat-card-avatar matTooltip="Todo YO" style="cursor: pointer;" (click)="authenticationService.SignOut()" class="example-header-image "></div>
+            </mat-toolbar>
+            <mat-nav-list>
+                <div class="cont-opciones">
+                    <a class="navigation-item" routerLink="/servicios" matTooltip="Servicios" mat-list-item routerLinkActive="active" routerLinkActive #rla1="routerLinkActive">
+                        <div style="margin: auto; display: flex;" [style.color]="rla1.isActive ? 'cornsilk':'white'">
+                            <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla1.isActive}"><mat-icon>apps</mat-icon></button>
+                        </div>
+                    </a>
+                    <a class="navigation-item" routerLink="/promociones" matTooltip="Promociones" mat-list-item routerLinkActive="active" routerLinkActive #rla2="routerLinkActive">
+                        <div style="margin: auto; display: flex;" [style.color]="rla2.isActive ? 'cornsilk':'white'">
+                            <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla2.isActive}"><mat-icon>local_offer</mat-icon></button>
+                        </div>
+                    </a>
+                    <a class="navigation-item" routerLink="/personal" matTooltip="Personal" mat-list-item routerLinkActive="active" routerLinkActive #rla3="routerLinkActive">
+                        <div style="margin: auto; display: flex;" [style.color]="rla3.isActive ? 'cornsilk':'white'">
+                            <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla3.isActive}"><mat-icon>engineering</mat-icon></button>
+                        </div>
+                    </a>
+                    <a class="navigation-item" routerLink="/usuarios" matTooltip="Usuarios" mat-list-item routerLinkActive="active" routerLinkActive #rla4="routerLinkActive">
+                        <div style="margin: auto; display: flex;" [style.color]="rla3.isActive ? 'cornsilk':'white'">
+                            <button class="seleccion" mat-icon-button [ngClass]="{'seleccion2': rla4.isActive}"><mat-icon>people</mat-icon></button>
+                        </div>
+                    </a>
+                </div>
+            </mat-nav-list>
+        </div>
+    </ng-container>
     <div class="example-sidenav-content">
         <router-outlet>
         </router-outlet>

@@ -1,26 +1,31 @@
 .example-header-image {
     background-image: url('/assets/images/icono.png');
     background-size: cover;
-    margin: 6px;
-    padding: 6px;
-    height: 36px;
-    width: 36px;
+    height: 2.5rem;
+    width: 2.5rem;
 }
 
 .seleccion {
-    background: #730603;
-    color: whitesmoke;
+    color: black;
 }
 
 .seleccion2 {
-    color: #730603;
-    background: whitesmoke;
+    background-color: #730603;
+    color: whitesmoke;
+}
+
+.mat-nav-list {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 70px);
+    background-color: #fff;
 }
 
 ::ng-deep.example-container {
     width: auto;
     height: 100%;
     display: flex;
+    background-color: #F6F7F9;
 }
 
 ::ng-deep.servicios-container {
@@ -33,7 +38,8 @@
     width: calc(100vw - 288px);
     height: 100%;
     display: flex;
-    background-color: #F9FAFC;
+    flex-direction: row;
+    background-color: #F6F7F9;
 }
 
 ::ng-deep.example-sidenav-content {
@@ -67,40 +73,31 @@
 }
 
 ::ng-deep.cotizacion-sidenav {
-    padding: 6px;
+    padding: 6px 0;
     width: 280px;
     min-width: 280px;
-    height: 98%;
-    overflow: auto;
 }
 
 ::ng-deep.item-seleccionado {
-    display: flex;
-    width: 100%;
-    color: #730603;
+    background-color: #e26d692a !important;
 }
 
-::ng-deep.indicador-seleccionado {
-    margin-left: auto;
-    width: 7px;
-    height: 7px;
-    background-color: #730603;
-    border-radius: 50%;
-    margin-top: 6px;
-    margin-right: 3px;
+::ng-deep.item-seleccionado:hover {
+    background-color: whitesmoke !important;
 }
 
 ::ng-deep.example-header-image {
     background-size: cover;
 }
 
-::ng-deep.example-card {
+::ng-deep.mat-card {
     margin: 3px;
     cursor: pointer;
 }
 
-
-/* unvisited link */
+::ng-deep .mat-card-header-text {
+    width: 100% !important;
+}
 
 ::ng-deep a:link {
     color: inherit;
@@ -132,17 +129,33 @@
 }
 
 ::ng-deep .indicador-estado-inactivo {
-    width: 5px;
-    min-width: 5px;
-    height: auto;
-    background-color: #acacac;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    margin: auto 0 auto auto;
+    background-color: #F6F7F9;
 }
 
 ::ng-deep .indicador-estado-activo {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    margin: auto 0 auto auto;
+    background-color: #730603;
+}
+
+::ng-deep .indicador-inactivo {
     width: 5px;
     min-width: 5px;
     height: auto;
-    background-color: #ffc8c8;
+    background-color: #fff;
+}
+
+::ng-deep .indicador-activo {
+    width: 5px;
+    min-width: 5px;
+    height: auto;
+    background-color: #730603;
 }
 
 ::ng-deep .mat-toolbar {

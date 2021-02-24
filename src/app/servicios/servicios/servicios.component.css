@@ -1,0 +1,9 @@
+.cont-servicios {
+    width: 100%;
+    background-color: white;
+    height: 100%;
+}
+
+.mat-nav-list {
+    height: calc(100% - 70px);
+}

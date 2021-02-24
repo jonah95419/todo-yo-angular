@@ -38,17 +38,16 @@ import { ServiciosRoutingModule } from './servicios-routing.module';
     MatInputModule,
     ChatModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-
   ],
   exports: [
-    AngularModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule
   ],
   entryComponents: [
     DialogDataExampleDialog
-  ]
+  ],
+
 })
 export class ServiciosModule {
   constructor(@Optional() @SkipSelf() parentModule?: ServiciosModule) {

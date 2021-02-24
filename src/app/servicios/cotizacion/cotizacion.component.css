@@ -14,5 +14,148 @@ mat-icon {
 .mat-mini-fab {
     margin-left: 3px;
     color: #730603;
+}
+
+dl {
+    margin: 8px 0 0 0;
+    height: calc(100% - 70px);
+    overflow: auto;
+}
+
+.mat-mini-fab,
+.cotizacion,
+dl {
     background-color: white;
 }
+
+.cotizacion {
+    display: flex;
+}
+
+.cotizacion:hover {
+    background-color: whitesmoke !important;
+}
+
+.cotizacion:hover .indicador-inactivo {
+    background-color: whitesmoke !important;
+}
+
+.mensaje {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+/*
+
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+
+:root {
+  --background-color: #79a3b1;
+  --blob-color: #456268;
+  --container-size: 300px;
+}
+
+@property --countdown {
+  initial-value: 200;
+  inherits: false;
+  syntax: '<integer>';
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Nerko One', cursive;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: var(--container-size);
+  height: var(--container-size);
+  color: white;
+  font-size: 125px;
+}
+
+.container svg {
+  position: absolute;
+  z-index: 1;
+  animation: rotating 6s linear infinite;
+}
+
+svg path {
+  fill: var(--blob-color);
+}
+
+.circle.big {
+  transform: scale(1.2);
+}
+
+.count {
+  counter-reset: countdown var(--countdown);
+  animation-name: countdown;
+  animation-duration: calc(var(--countdown) * 1s);
+  animation-timing-function: steps(var(--countdown));
+  animation-fill-mode: forwards;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 1;
+  pointer-events: none;
+  line-height: var(--container-size);
+  text-align: center;
+}
+
+.count:after {
+  content: counter(countdown);
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.secondary-counter:after {
+  transition: all ease 0.9s;
+  animation: fade 1s;
+  animation-iteration-count: calc(var(--countdown));
+  transform-origin: center;
+}
+
+@keyframes fade {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes countdown {
+  to {
+    --countdown: 0;
+  }
+}
+
+*/

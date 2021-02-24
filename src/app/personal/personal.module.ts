@@ -39,7 +39,6 @@ import { PersonalRoutingModule } from './personal-routing.module';
     AngularFireAuthModule,
   ],
   exports: [
-    AngularModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,

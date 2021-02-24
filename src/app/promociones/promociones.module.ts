@@ -21,7 +21,6 @@ import { PromocionesRoutingModule } from './promociones-routing.module';
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   exports: [
-    AngularModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,

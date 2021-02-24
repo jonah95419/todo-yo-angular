@@ -205,7 +205,8 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
       this.usuariosApi.todos])
       .pipe(
         map(data => new ObtenerCotizacionDetalles(key, user, data[0], data[1], data[2], data[3]).combinarTablas()),
-        map( data => {
+        filter(Boolean),
+        map( (data: any) => {
           data.detalles = data.detalles.filter(d => Number(d.cant) !== 0);
           return data;
         }),

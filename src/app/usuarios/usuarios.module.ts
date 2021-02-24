@@ -23,7 +23,6 @@ import { UsuariosRoutingModule } from './usuarios-routing.module';
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   exports: [
-    AngularModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,

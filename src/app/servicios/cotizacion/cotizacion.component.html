@@ -1,7 +1,7 @@
 <div class="cotizacion-container">
     <div class="cotizacion-sidenav">
-        <mat-toolbar style="background-color: #F9FAFC;">
-            <span style="font-weight: normal; font-size: medium;">{{filtro_fecha | date}}</span>
+        <mat-toolbar>
+            <span style="font-size: medium;">{{filtro_fecha | date}}</span>
             <span class="example-spacer"></span>
             <div style="display: flex; flex-direction: column;">
                 <mat-icon (click)="openDialog()" class="example-icon" aria-hidden="false" aria-label="filtrar lista">filter_list</mat-icon>
@@ -10,49 +10,50 @@
         </mat-toolbar>
         <ng-container *ngIf="cotizaciones$ | async as cotizaciones; else loading">
             <ng-container *ngIf="cotizaciones.length > 0; else lencot">
-                <a *ngFor="let cotizacion of cotizaciones" routerLink='./detalles' [queryParams]="{key: cotizacion?.cotizacion?.key, user: cotizacion?.usuario?.key}" routerLinkActive="active" routerLinkActive #rla1sa="routerLinkActive">
-                    <mat-card class="example-card " *ngIf="cotizacion " matRipple style="padding: 0;">
-                        <div style="display: flex;">
-                            <div [ngClass]="{'indicador-estado-activo': cotizacion?.cotizacion?.estado}" class="indicador-estado-inactivo" [matTooltip]="cotizacion.cotizacion.estado? 'pendiente':'cerrado'"></div>
-                            <div style="padding: 16px;">
-                                <mat-card-header>
-                                    <div mat-card-avatar [style.background-image]=" 'url('+ cotizacion.usuario?.avatar + ')' " class="example-header-image "></div>
-                                    <mat-card-title [style.color]="rla1sa.isActive ? '#730603': 'black' ">{{cotizacion.usuario?.name}}</mat-card-title>
-                                    <mat-card-subtitle>
-                                        <div style="display: flex; width: 100%;">
-                                            {{cotizacion.cotizacion?.fecha | date : 'MMM d, y':undefined:locale}}
-                                        </div>
-                                    </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <p>
-                                        {{cotizacion.cotizacion?.descripcion}}
-                                    </p>
-                                </mat-card-content>
+                <dl>
+                    <dt *ngFor="let cotizacion of cotizaciones">
+                      <ng-container *ngIf="cotizacion">
+                        <a routerLink='./detalles' [queryParams]="{key: cotizacion?.cotizacion?.key, user: cotizacion?.usuario?.key}" routerLinkActive="active" routerLinkActive #rla1sa="routerLinkActive">
+                          <div [ngClass]="{'item-seleccionado': rla1sa.isActive}" class="cotizacion" mat-card matRipple>
+                            <div [ngClass]="{'indicador-activo': rla1sa.isActive}" class="indicador-inactivo"></div>
+                            <div style="padding: 16px; width: 100%;">
+                              <mat-card-header>
+                                <div mat-card-avatar [style.background-image]=" 'url('+ cotizacion.usuario?.avatar + ')' " class="example-header-image "></div>
+                                <mat-card-title >{{cotizacion.usuario?.name}}</mat-card-title>
+                                <mat-card-subtitle>
+                                  <div style="display: flex; width: 100%;">
+                                      {{cotizacion.cotizacion?.fecha | date : 'MMM d, y':undefined:locale}}
+                                      <div [ngClass]="{'indicador-estado-activo': cotizacion?.cotizacion?.estado}" class="indicador-estado-inactivo" [matTooltip]="cotizacion.cotizacion.estado? 'pendiente':'cerrado'"></div>
+                                  </div>
+                                </mat-card-subtitle>
+                              </mat-card-header>
+                              <mat-card-content>
+                                <p>
+                                  {{cotizacion.cotizacion?.descripcion}}
+                                </p>
+                              </mat-card-content>
                             </div>
-                        </div>
-
-                    </mat-card>
-                </a>
+                          </div>
+                        </a>
+                      </ng-container>
+                    </dt>
+                </dl>
             </ng-container>
             <ng-template #lencot>
-                <div style="width: 100%; display: flex; justify-content: center; padding: 24px; ">
+                <div class="mensaje">
                     Sin cotizaciones
                 </div>
             </ng-template>
         </ng-container>
         <ng-template #loading>
-            <div style="width: 100%; display: flex; flex-direction: column; justify-content: center; padding: 24px; ">
+            <div class="mensaje">
                 <div style="margin: 0 0 24px 0;">Cargando cotizaciones...</div>
                 <mat-spinner color="warn" style="margin: auto;" [diameter]="60"></mat-spinner>
             </div>
         </ng-template>
-
     </div>
-
-    <div class="example-sidenav-content ">
+    <div class="example-sidenav-content">
         <router-outlet>
         </router-outlet>
     </div>
-
 </div>

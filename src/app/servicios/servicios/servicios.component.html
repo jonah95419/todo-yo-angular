@@ -1,16 +1,13 @@
 <div class="servicios-container">
     <div class="example-sidenav">
         <mat-toolbar>
-            <h3>Categorias</h3>
+            <h3>Servicios</h3>
         </mat-toolbar>
         <mat-nav-list>
-            <div style="width: 100%; margin-left: 12px;">
+            <div class="cont-servicios">
                 <div *ngFor="let item of navlist">
-                    <a class="navigation-item" [routerLink]="item.link" mat-list-item routerLinkActive="active" routerLinkActive #rla1s="routerLinkActive">
-                        <div [ngClass]="{'item-seleccionado': rla1s.isActive}">
-                            <span class="navigation-item-label">{{item.item}}</span>
-                            <div [ngClass]="{'indicador-seleccionado': rla1s.isActive}"></div>
-                        </div>
+                    <a class="navigation-item" [ngClass]="{'item-seleccionado': rla1s.isActive}" [routerLink]="item.link" mat-list-item routerLinkActive="active" routerLinkActive #rla1s="routerLinkActive">
+                        <span class="navigation-item-label">{{item.item}}</span>
                     </a>
                 </div>
             </div>
