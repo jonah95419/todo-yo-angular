@@ -39,11 +39,6 @@ import { ServiciosRoutingModule } from './servicios-routing.module';
     ChatModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
-  exports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
   entryComponents: [
     DialogDataExampleDialog
   ],

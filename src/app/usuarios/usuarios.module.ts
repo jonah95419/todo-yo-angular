@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuariosService } from './service/usuarios.service';
@@ -21,15 +21,27 @@ import { UsuariosRoutingModule } from './usuarios-routing.module';
     MatInputModule,
     ChatModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-  ],
-  exports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
-  providers: [
-    UsuariosService,
-    ChatService,
   ]
 })
-export class UsuariosModule { }
+export class UsuariosModule {
+
+  constructor(@Optional() @SkipSelf() parentModule?: UsuariosModule) {
+
+    if (parentModule) {
+      throw new Error(
+        'UsuariosModule is already loaded. Import it in the AppModule only');
+    }
+  }
+
+  static forRoot(): ModuleWithProviders<UsuariosModule> {
+    return {
+      ngModule: UsuariosModule,
+      providers: [
+        {provide: UsuariosService },
+        {provide: ChatService }
+      ]
+    };
+  }
+
+}
+

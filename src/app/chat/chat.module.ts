@@ -18,9 +18,6 @@ import { MatInputModule } from '@angular/material/input';
   ],
   exports: [
     ChatComponent,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
   ],
   entryComponents: [
     DialogContentExampleDialog

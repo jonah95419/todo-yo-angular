@@ -25,11 +25,6 @@ import { RegistroRoutingModule } from './registro-routing.module';
     MatInputModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
-  exports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
   providers: [
     AuthenticationService,
 

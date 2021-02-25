@@ -30,16 +30,16 @@ import { AngularModule } from './angular.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ChatModule,
+    AngularModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "todo-yo"),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ChatModule,
-    AngularModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -49,8 +49,8 @@ import { AngularModule } from './angular.module';
     })],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-EC' },
     AngularFirestore,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-EC' },
     { provide: LocationStrategy, useClass: PathLocationStrategy },
   ],
   bootstrap: [AppComponent]

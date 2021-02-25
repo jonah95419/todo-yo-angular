@@ -20,11 +20,6 @@ import { PromocionesRoutingModule } from './promociones-routing.module';
     MatInputModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
-  exports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
   providers: [
     PromocionesService,
 
