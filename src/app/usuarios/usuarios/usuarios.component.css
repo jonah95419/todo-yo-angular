@@ -11,9 +11,6 @@ dl {
     margin: 8px 0 0 0;
     height: calc(100% - 70px);
     overflow: auto;
-}
-
-dl {
     background-color: white;
 }
 

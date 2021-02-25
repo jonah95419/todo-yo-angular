@@ -1,33 +1,8 @@
-.example-container {
-    min-width: 280px;
-    width: 100%;
-    padding: 0px 6px;
-    display: flex;
-    flex-direction: column;
-}
-
-mat-toolbar {
-    margin-top: 6px;
-}
-
 .mat-mini-fab {
     margin-left: 3px;
     color: #730603;
     background-color: white;
-}
-
-.example-card {
-    margin: 12px;
-}
-
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-}
-
-.example-list {
-    height: 100%;
-    overflow: auto;
+    cursor: pointer;
 }
 
 .btn-cerrar-imagen {
@@ -36,7 +11,10 @@ mat-toolbar {
     background: white;
 }
 
+dl {
+    margin: 0;
+}
+
 mat-card {
-    max-width: 400px;
-    width: 450px;
+    margin-bottom: 8px;
 }
