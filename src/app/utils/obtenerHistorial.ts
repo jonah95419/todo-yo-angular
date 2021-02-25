@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 export class ObtenerInteracciones {
 
   private id_personal: string;
@@ -22,6 +23,7 @@ export class ObtenerInteracciones {
         }
       }).filter( Boolean ) [0]
     )
+    .filter(Boolean)
     .filter( (d: any) => {
       return Object.keys(d.personal).find(dp => d.personal[dp].detalle === this.id_personal);
     })

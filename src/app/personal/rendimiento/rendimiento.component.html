@@ -1,11 +1,11 @@
-<ng-container>
+<div>
     <mat-toolbar>
         <h3>
             Rendimiento
         </h3>
     </mat-toolbar>
-    <div *ngIf="interacciones$ | async as interacciones; else loading">
-        <div *ngIf="interacciones.length > 0; else leni">
+    <ng-container *ngIf="interacciones$ | async as interacciones; else loading">
+        <ng-container *ngIf="interacciones.length > 0; else leni">
 
             <div *ngIf="interacciones.length == 1">
                 <div *ngIf="interacciones[0].key == 'calificacion'; then contcalf; else contcom"></div>
@@ -16,38 +16,41 @@
             </div>
 
             <ng-template #contcalf>
-                <div style="text-align:center; margin: 12px; background-color: white;">
+                <div style="text-align:center; margin: 12px;">
                     <star-rating value={{interacciones[0].media}} totalstars={{totalstar}} checkedcolor="red " uncheckedcolor="black " size="24px " readonly="true"></star-rating>
                 </div>
             </ng-template>
             <ng-template #contcom>
-                <div style="text-align: center; background-color: white;">
+                <div style="text-align: center;">
                     <p>{{interacciones[1].valores.length}} Comentarios</p>
                 </div>
-                <div style="background-color: white;">
-                    <mat-card *ngFor="let item of interacciones[1].valores">
+                <dl>
+                    <dt *ngFor="let item of interacciones[1].valores">
+                    <ng-container *ngIf="item">
+                      <mat-card >
                         <mat-card-header>
-                            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + item.usuario.avatar + ')'}" class="example-header-image"></div>
-                            <mat-card-title style="font-size: small;">{{item.usuario.name}}</mat-card-title>
-                            <mat-card-subtitle style="font-size: x-small;">{{item.fecha}}</mat-card-subtitle>
+                            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + (item.usuario.avatar? item.usuario.avatar : pathImagen )+ ')'}" class="example-header-image"></div>
+                            <mat-card-title>{{item.usuario.name}}</mat-card-title>
+                            <mat-card-subtitle align="end">{{item.fecha}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
                             <p> {{item.comentario}}</p>
                         </mat-card-content>
-                    </mat-card>
-                </div>
+                      </mat-card>
+                    </ng-container>
+                  </dt>
+                </dl>
             </ng-template>
-
-        </div>
+        </ng-container>
         <ng-template #leni>
             <div style="padding: 8px; ">
-                <p>Datos insuficientes..</p>
+                <p>Datos insuficientes para calcular el rendimiento..</p>
             </div>
         </ng-template>
-    </div>
+    </ng-container>
     <ng-template #loading>
         <div style="padding: 8px; ">
             <p>Cargando rendimiento..</p>
         </div>
     </ng-template>
-</ng-container>
+</div>

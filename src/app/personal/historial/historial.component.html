@@ -1,29 +1,35 @@
-<ng-container>
+<div>
     <mat-toolbar>
         <h3>
             Historial
         </h3>
     </mat-toolbar>
-    <div *ngIf=" historial$ | async as historial; else loading">
-        <div *ngIf="historial.length > 0; else leni">
-            <mat-card *ngFor="let item of historial">
-                <mat-card-content>
-                    <p> {{item.descripcion}}</p>
-                </mat-card-content>
-                <mat-card-header>
-                    <mat-card-subtitle style="font-size: x-small;">{{item.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}</mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
+    <ng-container *ngIf=" historial$ | async as historial; else loading">
+        <ng-container *ngIf="historial.length > 0; else leni">
+            <dl>
+                <dt *ngFor="let item of historial">
+                <ng-container *ngIf="item">
+                  <mat-card >
+                    <mat-card-content>
+                        <p> {{item.descripcion}}</p>
+                    </mat-card-content>
+                    <mat-card-header align="end">
+                        <mat-card-subtitle>{{item.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                </ng-container>
+              </dt>
+            </dl>
+        </ng-container>
+    </ng-container>
+    <ng-template #leni>
+        <div style="padding: 8px; ">
+            <p>Sin Historial..</p>
         </div>
-        <ng-template #leni>
-            <div style="padding: 8px; ">
-                <p>Datos insuficientes..</p>
-            </div>
-        </ng-template>
-    </div>
+    </ng-template>
     <ng-template #loading>
         <div style="padding: 8px; ">
             <p>Cargando historial..</p>
         </div>
     </ng-template>
-</ng-container>
+</div>

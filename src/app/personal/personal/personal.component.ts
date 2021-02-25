@@ -12,7 +12,7 @@ export class PersonalComponent implements OnInit {
 
   @ViewChild("panel_personal") panel_personal: MatExpansionPanel;
 
-  pathImagen: string = NOT_FOUND;
+  pathImagen: string = "/assets/images/person.svg";
 
   informacionForm = this.fb.group({
     nombre: new FormControl('', [Validators.required]),
@@ -53,5 +53,3 @@ export class PersonalComponent implements OnInit {
   }
 
 }
-
-const NOT_FOUND = "https://toppng.com/uploads/preview/user-font-awesome-nuevo-usuario-icono-11563566658mjtfvilgcs.png";

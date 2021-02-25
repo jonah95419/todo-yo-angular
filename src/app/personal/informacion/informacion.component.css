@@ -18,3 +18,17 @@
     color: #730603;
     background-color: white;
 }
+
+.icon-informacion {
+    margin: auto 6px;
+    cursor: pointer;
+}
+
+.mat-form-field {
+    width: 80%;
+}
+
+p {
+    text-align: end;
+    margin-right: 10%;
+}

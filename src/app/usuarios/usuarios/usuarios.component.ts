@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../service/usuarios.service';
-import { tap } from 'rxjs/operators';
 import { UsuarioI  } from '../model/usuario';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',

@@ -1,14 +1,14 @@
 .row {
     display: flex;
     flex-direction: row;
-    width: calc(100vw - 435px);
+    width: inherit;
     height: 100%;
 }
 
 .col {
     width: 100%;
     min-width: 250px;
-    padding: 6px;
-    height: 98%;
+    margin: 6px 0 0 6px;
     overflow: auto;
+    background-color: white;
 }

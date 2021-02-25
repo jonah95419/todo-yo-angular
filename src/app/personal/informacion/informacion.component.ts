@@ -154,4 +154,4 @@ export class InformacionComponent implements OnInit {
 
 }
 
-const NOT_FOUND = "https://toppng.com/uploads/preview/user-font-awesome-nuevo-usuario-icono-11563566658mjtfvilgcs.png";
+const NOT_FOUND = "/assets/images/person.svg";

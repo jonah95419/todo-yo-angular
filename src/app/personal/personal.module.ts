@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonalComponent } from './personal/personal.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -15,11 +15,12 @@ import { ChatService } from '../chat/service/chat.service';
 import { InteraccionService } from './service/interaccion.service';
 import { PersonalService } from './service/personal.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../../environments/environment.prod';
 import { PersonalRoutingModule } from './personal-routing.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -33,15 +34,32 @@ import { PersonalRoutingModule } from './personal-routing.module';
     MatInputModule,
     RatingModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig, "todo-yo"),
+    AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-  ],
-  providers: [
-    PersonalService,
-    InteraccionService,
-    ChatService,
   ]
 })
-export class PersonalModule { }
+export class PersonalModule {
+
+  constructor(@Optional() @SkipSelf() parentModule?: PersonalModule) {
+
+    if (parentModule) {
+      throw new Error(
+        'PersonalModule is already loaded. Import it in the AppModule only');
+    }
+  }
+
+  static forRoot(): ModuleWithProviders<PersonalModule> {
+    return {
+      ngModule: PersonalModule,
+      providers: [
+        {provide: PersonalService },
+        {provide: InteraccionService },
+        {provide: ChatService }
+      ]
+    };
+  }
+
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InteraccionService } from '../service/interaccion.service';
 import { Params, ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ObtenerInteracciones  } from '../../utils/obtenerInteracciones';
 import { combineLatest, Observable } from 'rxjs';
 import { UsuariosService } from 'src/app/usuarios/service/usuarios.service';
@@ -15,6 +15,8 @@ export class RendimientoComponent implements OnInit {
 
   interacciones$: Observable<any[]>;
   totalstar = 5;
+
+  pathImagen: string = "/assets/images/person.svg";
 
   constructor(
     private route: ActivatedRoute,
@@ -30,13 +32,13 @@ export class RendimientoComponent implements OnInit {
   ngOnInit(): void {  }
 
   private obtenerInformacion = (id: string) => {
-    this.interacciones$ = combineLatest(
+    this.interacciones$ = combineLatest([
       this.interaccionApi.cargarTodo(id),
-      this.usuariosApi.todos)
-    .pipe(
+      this.usuariosApi.todos
+      ]).pipe(
       map( data => new ObtenerInteracciones(data[0], data[1]).combinarTablas()),
       map( data => {
-        data[1].valores = data[1].valores.reverse();
+        if(data[1]) data[1].valores = data[1].valores.reverse();
         return data;
       })
     )
