@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuariosComponent implements OnInit {
 
-  pathImagen: string = NOT_FOUND;
+  pathImagen: string = "/assets/images/person.svg";
 
   user: UsuarioI;
   servicio: any = {
@@ -30,5 +30,3 @@ export class UsuariosComponent implements OnInit {
   }
 
 }
-
-const NOT_FOUND = "https://toppng.com/uploads/preview/user-font-awesome-nuevo-usuario-icono-11563566658mjtfvilgcs.png";

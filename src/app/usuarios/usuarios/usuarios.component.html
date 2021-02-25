@@ -1,27 +1,31 @@
 <div class="servicios-container">
     <div class="usuarios-sidenav">
-        <mat-nav-list>
-            <ng-container *ngIf="usuariosApi.todos | async as usuarios; else loading">
-                <div style="width: 100%;" *ngIf="usuarios.length > 0; else lenp">
-                    <div style="display: flex; flex-direction: row; cursor: pointer; margin-bottom: 10px;" *ngFor="let u of usuarios" (click)="seleccionarChat(u);">
-                        <img [src]="u?.avatar || u?.avatar != ''? u?.avatar: pathImagen" class="avatar" alt="avatar usuario">
-                        <div [ngClass]="{'item-seleccionado': user?.key == u?.key}">
-                            <div style="display: flex; flex-direction: column;">
-                                <strong>{{u.name}}</strong>
-                                <p>{{u.phoneNumber}}</p>
-                            </div>
-                            <div [ngClass]="{'indicador-seleccionado': user?.key == u?.key}"></div>
-                        </div>
-                    </div>
-                </div>
-                <ng-template #lenp>
-                    Cargando lista de usuarios..
-                </ng-template>
+        <mat-toolbar>
+            <h3>Usuarios</h3>
+        </mat-toolbar>
+        <ng-container *ngIf="usuariosApi.todos | async as usuarios; else loading;">
+            <ng-container *ngIf="usuarios.length > 0; else lenp;">
+                <dl>
+                    <dt *ngFor="let u of usuarios">
+                  <ng-container *ngIf="u">
+                    <mat-card class="mat-elevation-z0 usuario" [ngClass]="{'item-seleccionado': user?.key == u.key}" (click)="seleccionarChat(u);" >
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+ (u.avatar ? u.avatar : pathImagen) + ')'" ></div>
+                          <mat-card-title><p>{{u.name}}</p></mat-card-title>
+                          <mat-card-subtitle> {{u.phoneNumber}} </mat-card-subtitle>
+                        </mat-card-header>
+                    </mat-card>
+                  </ng-container>
+                </dt>
+                </dl>
             </ng-container>
-            <ng-template #loading>
-                Lista vacia..
+            <ng-template #lenp>
+                Cargando lista de usuarios..
             </ng-template>
-        </mat-nav-list>
+        </ng-container>
+        <ng-template #loading>
+            Lista vacia..
+        </ng-template>
     </div>
     <div class="example-sidenav-content">
         <ng-container #contenedor_chat>

@@ -1,0 +1,22 @@
+.mat-card-header .mat-card-title {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.mat-card-subtitle {
+    font-size: smaller;
+}
+
+dl {
+    margin: 8px 0 0 0;
+    height: calc(100% - 70px);
+    overflow: auto;
+}
+
+dl {
+    background-color: white;
+}
+
+.usuario:hover {
+    background-color: whitesmoke !important;
+}
