@@ -32,6 +32,7 @@ export class CotizacionComponent implements OnInit, OnDestroy {
   filtro_pendiente: boolean;
   filtro_cerrado: boolean;
 
+  pathImagen: string = "/assets/images/person.svg"
   locale: string;
   tipo: string;
   tipos: string[] = ['albañileria', 'electricidad', 'gypsuma', 'mecanicai', 'seguridade','plomeria', 'alquiler'];

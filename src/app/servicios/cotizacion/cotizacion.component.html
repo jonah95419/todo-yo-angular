@@ -18,7 +18,7 @@
                             <div [ngClass]="{'indicador-activo': rla1sa.isActive}" class="indicador-inactivo"></div>
                             <div style="padding: 16px; width: 100%;">
                               <mat-card-header>
-                                <div mat-card-avatar [style.background-image]=" 'url('+ cotizacion.usuario?.avatar + ')' " class="example-header-image "></div>
+                                <div mat-card-avatar [style.background-image]=" 'url('+ (cotizacion.usuario?.avatar ?  cotizacion.usuario?.avatar : pathImagen)+ ')' " class="example-header-image "></div>
                                 <mat-card-title >{{cotizacion.usuario?.name}}</mat-card-title>
                                 <mat-card-subtitle>
                                   <div style="display: flex; width: 100%;">
