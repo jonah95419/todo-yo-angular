@@ -37,17 +37,16 @@
 }
 
 ::ng-deep.servicios-container {
-    width: calc(100vw - 75px);
+    width: 100%;
     height: 100%;
     display: flex;
 }
 
 ::ng-deep.cotizacion-container {
-    width: calc(100vw - 288px);
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
-    background-color: #F6F7F9;
 }
 
 ::ng-deep.example-sidenav-content {
@@ -70,7 +69,7 @@
 
 ::ng-deep.promocion-sidenav {
     min-width: 280px;
-    height: calc(100% - 70px);
+    height: 100%;
     overflow: auto;
     margin: 8px 0 0 0;
 }
@@ -160,24 +159,6 @@
 
 ::ng-deep.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
     background-color: #ffc8c8;
-}
-
-::ng-deep .chat-admin {
-    margin: 3px 3px;
-    max-width: 90%;
-    width: max-content;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-}
-
-::ng-deep .chat-user {
-    margin: 6px 3px;
-    max-width: 90%;
-    width: max-content;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
 }
 
 ::ng-deep .custom-dialog-container .mat-dialog-container {
