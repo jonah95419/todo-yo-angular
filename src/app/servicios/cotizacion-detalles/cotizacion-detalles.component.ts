@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CotizacionService } from '../service/cotizacion.service';
 import { CotizacionDetallesService } from '../service/cotizacion_detalles.service';
@@ -18,7 +18,7 @@ import { UsuariosService } from '../../usuarios/service/usuarios.service';
   templateUrl: './cotizacion-detalles.component.html',
   styleUrls: ['./cotizacion-detalles.component.css']
 })
-export class CotizacionDetallesComponent implements OnInit, OnDestroy {
+export class CotizacionDetallesComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   @ViewChild("panel_material") panel_material: MatExpansionPanel;
   @ViewChild("panel_equipos") panel_equipos: MatExpansionPanel;
@@ -65,6 +65,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
   set total(value: number) { this.total$ = value; }
 
   private _translate;
+  private _params;
 
   constructor(
     private fb: FormBuilder,
@@ -73,7 +74,8 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     private cotizacionApi: CotizacionService,
     private cotizacionDetalleApi: CotizacionDetallesService,
     private usuariosApi: UsuariosService,
-    public personalApi: PersonalService) {
+    public personalApi: PersonalService,
+    private cdRef: ChangeDetectorRef) {
     translate.setDefaultLang('es');
     translate.use('es');
   }
@@ -83,7 +85,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
     this._translate = this.translate.onLangChange
       .subscribe((langChangeEvent: LangChangeEvent) => { this.locale = langChangeEvent.lang; })
 
-    this.route.queryParams.subscribe(
+    this._params = this.route.queryParams.subscribe(
       (params: Params) => {
         const key = params.key;
         const user = params.user;
@@ -91,10 +93,15 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
+  }
+
   ngOnDestroy(): void {
-    if (this._translate !== undefined) {
+    try {
       this._translate.unsubscribe();
-    }
+      this._params.unsubscribe();
+    } catch (error) { }
   }
 
   actualizarEstado = (event: MatSlideToggleChange, usuario: string) => this.cotizacionApi.actualizarEstadoCotizacion(usuario, this.key, event.checked);
@@ -206,7 +213,7 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
       .pipe(
         map(data => new ObtenerCotizacionDetalles(key, user, data[0], data[1], data[2], data[3]).combinarTablas()),
         filter(Boolean),
-        map( (data: any) => {
+        map((data: any) => {
           data.detalles = data.detalles.filter(d => Number(d.cant) !== 0);
           return data;
         }),
@@ -232,8 +239,8 @@ export class CotizacionDetallesComponent implements OnInit, OnDestroy {
 
 
   private calcularTotal = (detalles: any): number => detalles
-  .map((t: any) => Number(t.subtotal) * Number(t.cant))
-  .reduce((acc: number, value: number) => acc + value, 0)
+    .map((t: any) => Number(t.subtotal) * Number(t.cant))
+    .reduce((acc: number, value: number) => acc + value, 0)
 
 }
 

@@ -1,206 +1,208 @@
 <div class="contendenor-servicio-cotizacion">
-    <div class="contenedor-descripcion">
-        <mat-toolbar>
-            <h3>Descripción</h3>
-        </mat-toolbar>
-        <ng-container *ngIf="cotizacion$ | async as cotizacion; else loading">
-            <div class="contenedor-detalles">
-                <div class="detalles">
-                    <p>
-                        <ng-container>
-                            <div class="detalle">
-                                <div class="subtitle-detalle">
-                                    Id:
-                                </div>
-                                {{cotizacion.cotizacion.id_local}}
-                            </div>
-                        </ng-container>
-                    </p>
-                    <p>
-                        <ng-container>
-                            <div class="detalle">
-                                <div class="subtitle-detalle">
-                                    Fecha:
-                                </div>
-                                {{cotizacion.cotizacion.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}
-                            </div>
-                        </ng-container>
-                    </p>
-                    <p>
-                        <ng-container>
-                            <div class="detalle">
-                                <div class="subtitle-detalle">
-                                    Estado:
-                                </div>
-                                <mat-slide-toggle [checked]="cotizacion.cotizacion.estado" (change)="actualizarEstado($event, cotizacion.key_u)"></mat-slide-toggle>
-                            </div>
-                        </ng-container>
-                    </p>
-                    <p>
-                        <ng-container>
-                            <div class="detalle">
-                                <div class="subtitle-detalle"> Descripcion:</div>
-                                {{cotizacion.cotizacion.descripcion}}
-                            </div>
-                        </ng-container>
-                    </p>
-                    <p>
-                        <ng-container>
-                            <div class="detalle">
-                                <div class="subtitle-detalle">
-                                    Adjuntos:
-                                </div>
-                                <div style="width: 250px; height: 50px; ">
-                                    <ng-image-slider #nav [images]="imageObject" [imagePopup]="true" [infinite]="false" [autoSlide]="1" [imageSize]="{width: '25%', height: 50}" slideImage="1"></ng-image-slider>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </p>
-                </div>
-                <mat-toolbar>
-                    <h3>Detalles</h3>
-                    <span class="example-spacer"></span>
-                    <button mat-mini-fab matTooltip="personal" (click)="detalle(false, true, true);" [disabled]="btn_detalle_personal">
-            <mat-icon class="example-icon" aria-hidden="false" aria-label="personal">engineering</mat-icon>
-          </button>
-                    <button mat-mini-fab matTooltip="material" (click)="detalle(true, false, true);" [disabled]="btn_detalle_material">
-            <mat-icon class="example-icon" aria-hidden="false" aria-label="material" >construction</mat-icon>
-          </button>
-                    <button mat-mini-fab matTooltip="equipo" (click)="detalle(true, true, false);" [disabled]="btn_detalle_equipo">
-            <mat-icon class="example-icon" aria-hidden="false" aria-label="equipo" >electrical_services</mat-icon>
-          </button>
-                </mat-toolbar>
-                <mat-expansion-panel #panel_personal class="mat-elevation-z0">
-                    <form [formGroup]="personalForm" (ngSubmit)="submitPersonal(cotizacion.key_u)" novalidate>
-                        <div class="fields-container">
-                            <div style="display: flex;">
-                                <mat-form-field appearance="fill" style="width: 65px;">
-                                    <mat-label>Cant.</mat-label>
-                                    <input type="number" class="form-control" formControlName="cantidad" matInput required>
-                                    <mat-error *ngIf="getErrorCantPersonal()">{{getErrorCantPersonal()}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" style="margin: 0 3px;">
-                                    <mat-label>Seleccionar..</mat-label>
-                                    <mat-select [errorStateMatcher]="matcher" formControlName="detalle" required>
-                                        <mat-option>Ninguno.</mat-option>
-                                        <mat-option [value]="item.key" *ngFor="let item of personalApi.todos | async as personal">{{item.cargo}}</mat-option>
-                                    </mat-select>
-                                    <mat-error *ngIf="getErrorDetallePersonal()">{{getErrorDetallePersonal()}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" style="width: 80px;">
-                                    <mat-label>Subt.</mat-label>
-                                    <input type="number" class="form-control" formControlName="subtotal" matInput required>
-                                    <mat-error *ngIf="getErrorSubtotalPersonal()">{{getErrorSubtotalPersonal()}}</mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div style="display: flex;">
-                                <a style="margin-left: auto;" mat-button (click)="cancelarDetalle();">cancelar</a>
-                                <button mat-stroked-button type="submit"> agregar</button>
-                            </div>
-                        </div>
-                    </form>
-
-                </mat-expansion-panel>
-                <mat-expansion-panel #panel_material class="mat-elevation-z0">
-                    <form [formGroup]="materialForm" (ngSubmit)="submitMaterial(cotizacion.key_u)" novalidate>
-                        <div class="fields-container">
-                            <div style="display: flex;">
-                                <mat-form-field appearance="fill" style="width: 65px;">
-                                    <mat-label>Cant.</mat-label>
-                                    <input type="number" class="form-control" matInput formControlName="cantidad" required>
-                                    <mat-error *ngIf="getErrorCantMaterial()">{{getErrorCantMaterial()}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" style="margin: 0 3px;">
-                                    <mat-label>Descripción del material</mat-label>
-                                    <input type="text" class="form-control" matInput formControlName="detalle" required>
-                                    <mat-error *ngIf="getErrorDetalleMaterial()">{{getErrorDetalleMaterial()}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" style="width: 80px;">
-                                    <mat-label>P/Uni.</mat-label>
-                                    <input type="number" class="form-control" matInput formControlName="subtotal" required>
-                                    <mat-error *ngIf="getErrorSubtotalMaterial()">{{getErrorSubtotalMaterial()}}</mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div style="display: flex;">
-                                <a mat-button style="margin-left: auto;" (click)="cancelarDetalle();">cancelar</a>
-                                <button mat-stroked-button type="submit"> agregar</button>
-                            </div>
-                        </div>
-                    </form>
-                </mat-expansion-panel>
-                <mat-expansion-panel #panel_equipos class="mat-elevation-z0">
-                    <form [formGroup]="equipoForm" (ngSubmit)="submitEquipos(cotizacion.key_u)" novalidate>
-                        <div class="fields-container">
-                            <div style="display: flex;">
-                                <mat-form-field appearance="fill" style="width: 65px;">
-                                    <mat-label>Cant.</mat-label>
-                                    <input type="number" class="form-control" matInput formControlName="cantidad" required>
-                                    <mat-error *ngIf="getErrorCantEquipo()">{{getErrorCantEquipo()}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" style="margin: 0 3px;">
-                                    <mat-label>Descripción del equipo</mat-label>
-                                    <input type="text" class="form-control" matInput formControlName="detalle" required>
-                                    <mat-error *ngIf="getErrorDetalleEquipo()">{{getErrorDetalleEquipo()}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" style="width: 80px;">
-                                    <mat-label>Subt.</mat-label>
-                                    <input type="number" class="form-control" matInput formControlName="subtotal" required>
-                                    <mat-error *ngIf="getErrorSubtotalEquipo()">{{getErrorSubtotalEquipo()}}</mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div style="display: flex;">
-                                <a mat-button style="margin-left: auto;" (click)="cancelarDetalle();">cancelar</a>
-                                <button mat-stroked-button type="submit"> agregar</button>
-                            </div>
-                        </div>
-                    </form>
-                </mat-expansion-panel>
-                <div class="contenedor">
-                    <table mat-table [dataSource]="dataSource">
-
-                        <ng-container matColumnDef="cant">
-                            <th mat-header-row *matHeaderCellDef> Cant. </th>
-                            <td mat-cell *matCellDef="let element"> {{ element.key == "interestelar"? "": element.cant}} </td>
-                            <td mat-footer-cell *matFooterCellDef> </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="detalle">
-                            <th mat-header-row *matHeaderCellDef> Detalle </th>
-                            <td mat-cell *matCellDef="let element" [style.font-weight]="element.key == 'interestelar'? 'bold':'null'"> {{element.detalle}} </td>
-                            <td mat-footer-cell *matFooterCellDef> Total</td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="subtotal">
-                            <th mat-header-row *matHeaderCellDef style="text-align: right;"> Subt. </th>
-                            <td mat-cell *matCellDef="let e" matTooltip="{{e.subtotal == 0? '':e.subtotal | currency}} {{e.key == 'interestelar'? '': 'x'}} {{e.cant == 0? '':e.cant}}"> {{e.key == "interestelar"? "": e.subtotal * e.cant | currency}} </td>
-                            <td mat-footer-cell *matFooterCellDef> {{total | currency}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="accion">
-                            <th mat-header-row *matHeaderCellDef> </th>
-                            <td mat-cell *matCellDef="let element">
-                                <mat-icon *ngIf="element.key != 'interestelar'" style="font-size: small; margin-top: 12px;" matTooltip="eliminar" (click)="eliminarDetalle(cotizacion.key_u, element.tipo, element.key)">clear</mat-icon>
-                            </td>
-                            <td mat-footer-cell *matFooterCellDef> </td>
-                        </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-
-                    </table>
-                </div>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav opened mode="side" position="end">
+            <div class="contenedor-chat">
+                <app-chat [key]="key" [usuario]="usuario"></app-chat>
             </div>
-        </ng-container>
-        <ng-template #loading>
-            <div style="padding: 12px;">
-                Cargando detalles de la cotización...
-            </div>
-        </ng-template>
-    </div>
-    <ng-container #contenedor_chat>
-        <div style="min-width: 250px; width: 45%; padding: 6px;">
-            <app-chat [key]="key" [usuario]="usuario"></app-chat>
+        </mat-sidenav>
+        <div class="contenedor-descripcion">
+            <mat-toolbar>
+                <h3>Descripción</h3>
+            </mat-toolbar>
+            <ng-container *ngIf="cotizacion$ | async as cotizacion; else loading">
+                <div class="contenedor-detalles">
+                    <div class="detalles">
+                        <p>
+                            <ng-container>
+                                <div class="detalle">
+                                    <div class="subtitle-detalle">
+                                        Id:
+                                    </div>
+                                    {{cotizacion.cotizacion.id_local}}
+                                </div>
+                            </ng-container>
+                        </p>
+                        <p>
+                            <ng-container>
+                                <div class="detalle">
+                                    <div class="subtitle-detalle">
+                                        Fecha:
+                                    </div>
+                                    {{cotizacion.cotizacion.fecha | date : 'MMM d, y h:mm:ss a':undefined:locale}}
+                                </div>
+                            </ng-container>
+                        </p>
+                        <p>
+                            <ng-container>
+                                <div class="detalle">
+                                    <div class="subtitle-detalle">
+                                        Estado:
+                                    </div>
+                                    <mat-slide-toggle [checked]="cotizacion.cotizacion.estado" (change)="actualizarEstado($event, cotizacion.key_u)"></mat-slide-toggle>
+                                </div>
+                            </ng-container>
+                        </p>
+                        <p>
+                            <ng-container>
+                                <div class="detalle">
+                                    <div class="subtitle-detalle"> Descripcion:</div>
+                                    {{cotizacion.cotizacion.descripcion}}
+                                </div>
+                            </ng-container>
+                        </p>
+                        <p>
+                            <ng-container>
+                                <div class="detalle">
+                                    <div class="subtitle-detalle">
+                                        Adjuntos:
+                                    </div>
+                                    <div style="width: 250px; height: 50px; ">
+                                        <ng-image-slider #nav [images]="imageObject" [imagePopup]="true" [infinite]="false" [autoSlide]="1" [imageSize]="{width: '25%', height: 50}" slideImage="1"></ng-image-slider>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </p>
+                    </div>
+                    <mat-toolbar>
+                        <h3>Detalles</h3>
+                        <span class="example-spacer"></span>
+                        <button mat-mini-fab matTooltip="personal" (click)="detalle(false, true, true);" [disabled]="btn_detalle_personal">
+          <mat-icon class="example-icon" aria-hidden="false" aria-label="personal">engineering</mat-icon>
+        </button>
+                        <button mat-mini-fab matTooltip="material" (click)="detalle(true, false, true);" [disabled]="btn_detalle_material">
+          <mat-icon class="example-icon" aria-hidden="false" aria-label="material" >construction</mat-icon>
+        </button>
+                        <button mat-mini-fab matTooltip="equipo" (click)="detalle(true, true, false);" [disabled]="btn_detalle_equipo">
+          <mat-icon class="example-icon" aria-hidden="false" aria-label="equipo" >electrical_services</mat-icon>
+        </button>
+                    </mat-toolbar>
+                    <mat-expansion-panel #panel_personal class="mat-elevation-z0">
+                        <form [formGroup]="personalForm" (ngSubmit)="submitPersonal(cotizacion.key_u)" novalidate>
+                            <div class="fields-container">
+                                <div style="display: flex;">
+                                    <mat-form-field appearance="fill" style="width: 65px;">
+                                        <mat-label>Cant.</mat-label>
+                                        <input type="number" class="form-control" formControlName="cantidad" matInput required>
+                                        <mat-error *ngIf="getErrorCantPersonal()">{{getErrorCantPersonal()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" style="margin: 0 3px;">
+                                        <mat-label>Seleccionar..</mat-label>
+                                        <mat-select [errorStateMatcher]="matcher" formControlName="detalle" required>
+                                            <mat-option>Ninguno.</mat-option>
+                                            <mat-option [value]="item.key" *ngFor="let item of personalApi.todos | async as personal">{{item.cargo}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="getErrorDetallePersonal()">{{getErrorDetallePersonal()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" style="width: 80px;">
+                                        <mat-label>Subt.</mat-label>
+                                        <input type="number" class="form-control" formControlName="subtotal" matInput required>
+                                        <mat-error *ngIf="getErrorSubtotalPersonal()">{{getErrorSubtotalPersonal()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div style="display: flex;">
+                                    <a style="margin-left: auto;" mat-button (click)="cancelarDetalle();">cancelar</a>
+                                    <button mat-stroked-button type="submit"> agregar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel #panel_material class="mat-elevation-z0">
+                        <form [formGroup]="materialForm" (ngSubmit)="submitMaterial(cotizacion.key_u)" novalidate>
+                            <div class="fields-container">
+                                <div style="display: flex;">
+                                    <mat-form-field appearance="fill" style="width: 65px;">
+                                        <mat-label>Cant.</mat-label>
+                                        <input type="number" class="form-control" matInput formControlName="cantidad" required>
+                                        <mat-error *ngIf="getErrorCantMaterial()">{{getErrorCantMaterial()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" style="margin: 0 3px;">
+                                        <mat-label>Descripción del material</mat-label>
+                                        <input type="text" class="form-control" matInput formControlName="detalle" required>
+                                        <mat-error *ngIf="getErrorDetalleMaterial()">{{getErrorDetalleMaterial()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" style="width: 80px;">
+                                        <mat-label>P/Uni.</mat-label>
+                                        <input type="number" class="form-control" matInput formControlName="subtotal" required>
+                                        <mat-error *ngIf="getErrorSubtotalMaterial()">{{getErrorSubtotalMaterial()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div style="display: flex;">
+                                    <a mat-button style="margin-left: auto;" (click)="cancelarDetalle();">cancelar</a>
+                                    <button mat-stroked-button type="submit"> agregar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel #panel_equipos class="mat-elevation-z0">
+                        <form [formGroup]="equipoForm" (ngSubmit)="submitEquipos(cotizacion.key_u)" novalidate>
+                            <div class="fields-container">
+                                <div style="display: flex;">
+                                    <mat-form-field appearance="fill" style="width: 65px;">
+                                        <mat-label>Cant.</mat-label>
+                                        <input type="number" class="form-control" matInput formControlName="cantidad" required>
+                                        <mat-error *ngIf="getErrorCantEquipo()">{{getErrorCantEquipo()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" style="margin: 0 3px;">
+                                        <mat-label>Descripción del equipo</mat-label>
+                                        <input type="text" class="form-control" matInput formControlName="detalle" required>
+                                        <mat-error *ngIf="getErrorDetalleEquipo()">{{getErrorDetalleEquipo()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" style="width: 80px;">
+                                        <mat-label>Subt.</mat-label>
+                                        <input type="number" class="form-control" matInput formControlName="subtotal" required>
+                                        <mat-error *ngIf="getErrorSubtotalEquipo()">{{getErrorSubtotalEquipo()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div style="display: flex;">
+                                    <a mat-button style="margin-left: auto;" (click)="cancelarDetalle();">cancelar</a>
+                                    <button mat-stroked-button type="submit"> agregar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </mat-expansion-panel>
+                    <div class="contenedor">
+                        <table mat-table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="cant">
+                                <th mat-header-row *matHeaderCellDef> Cant. </th>
+                                <td mat-cell *matCellDef="let element"> {{ element.key == "interestelar"? "": element.cant}} </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="detalle">
+                                <th mat-header-row *matHeaderCellDef> Detalle </th>
+                                <td mat-cell *matCellDef="let element" [style.font-weight]="element.key == 'interestelar'? 'bold':'null'"> {{element.detalle}} </td>
+                                <td mat-footer-cell *matFooterCellDef> Total</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="subtotal">
+                                <th mat-header-row *matHeaderCellDef style="text-align: right;"> Subt. </th>
+                                <td mat-cell *matCellDef="let e" matTooltip="{{e.subtotal == 0? '':e.subtotal | currency}} {{e.key == 'interestelar'? '': 'x'}} {{e.cant == 0? '':e.cant}}"> {{e.key == "interestelar"? "": e.subtotal * e.cant | currency}} </td>
+                                <td mat-footer-cell *matFooterCellDef> {{total | currency}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="accion">
+                                <th mat-header-row *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <mat-icon *ngIf="element.key != 'interestelar'" style="font-size: small; margin-top: 12px;" matTooltip="eliminar" (click)="eliminarDetalle(cotizacion.key_u, element.tipo, element.key)">clear</mat-icon>
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+                        </table>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #loading>
+                <div style="padding: 12px;">
+                    Cargando detalles de la cotización...
+                </div>
+            </ng-template>
         </div>
-    </ng-container>
+    </mat-sidenav-container>
 </div>

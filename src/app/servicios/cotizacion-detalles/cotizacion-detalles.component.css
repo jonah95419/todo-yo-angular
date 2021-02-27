@@ -1,14 +1,35 @@
 .contendenor-servicio-cotizacion {
-    width: calc(100vw - 580px);
+    width: 100%;
     height: 100%;
     display: flex;
-    z-index: 10;
+    flex-direction: row;
+    background-color: #730603;
 }
 
 .contenedor-descripcion {
     min-width: 350px;
-    width: 65%;
-    padding: 6px;
+    height: 99%;
+    width: auto;
+    padding: 6px 6px 4px 6px;
+}
+
+.contenedor-chat {
+    width: 320px;
+}
+
+.example-container {
+    width: inherit;
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding: 20px;
 }
 
 .contenedor-detalles {
@@ -65,43 +86,12 @@ tr.mat-footer-row {
     font-weight: bold;
 }
 
-.mat-column-cant {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 28% !important;
-    text-align: left;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-    padding-left: 6px;
-    padding-right: 6px;
-}
-
-.mat-column-subtotal {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 28% !important;
-    text-align: right;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-    padding-left: 6px;
-    padding-right: 6px;
-}
-
+.mat-column-cant,
+.mat-column-subtotal,
 .mat-column-accion {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 28% !important;
-    text-align: right;
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
@@ -111,4 +101,13 @@ tr.mat-footer-row {
     hyphens: auto;
     padding-left: 6px;
     padding-right: 6px;
+}
+
+.mat-column-cant {
+    text-align: left;
+}
+
+.mat-column-accion,
+.mat-column-subtotal {
+    text-align: right;
 }
