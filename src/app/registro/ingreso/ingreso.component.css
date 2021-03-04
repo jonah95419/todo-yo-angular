@@ -1,0 +1,195 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+}
+
+.col-left {
+    width: 85%;
+    min-width: 150px;
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.img {
+    width: inherit;
+    display: block;
+    transition: filter .5s ease;
+    margin: auto;
+    backface-visibility: hidden;
+    filter: blur(0.1px);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.container-img {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+
+.middle-img {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+}
+
+.container-img:hover .img {
+    filter: blur(4px);
+}
+
+.container-img:hover .middle-img {
+    opacity: 1;
+}
+
+.text-img {
+    background-color: #730603;
+    color: white;
+    font-size: 16px;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+}
+
+.text-img mat-icon {
+    margin: 0 0.5rem;
+}
+
+.col-left .container-title {
+    display: -webkit-inline-box;
+}
+
+.col-left .container-title img {
+    height: 5.5rem;
+}
+
+.col-left .container-title .separador {
+    width: 0.25rem;
+    height: 5.5rem;
+    background-color: #730603;
+    margin: 0 1rem;
+}
+
+.col-left .container-title .title {
+    display: block;
+}
+
+.col-left .container-title .title h1 {
+    color: #730603;
+    font-weight: bolder;
+}
+
+.col-left .container-title .title .title-todo-yo {
+    text-transform: uppercase;
+    font-size: xx-large;
+}
+
+.col-right {
+    width: 380px;
+    position: relative;
+    display: flex;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #730603;
+}
+
+.box-login {
+    width: 300px;
+    position: fixed;
+    height: fit-content;
+    margin: auto 0;
+    padding: 0.5rem;
+    background-color: #730603;
+    color: white;
+    transition-property: width, transform, box-shadow, background, color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+.box-login mat-card {
+    background-color: #730603;
+    color: white;
+    transition-property: background-color, color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    -webkit-text-fill-color: white
+}
+
+.box-login mat-card mat-card-footer {
+    visibility: hidden;
+    transition-property: visibility;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+.box-login mat-card mat-card-header {
+    margin: 1rem;
+}
+
+.col-right .box-login mat-card img {
+    height: 5.5rem;
+    width: auto;
+    display: block;
+    margin: 1rem auto;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white!important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: white!important;
+}
+
+::ng-deep .mat-form-field-label {
+    color: rgba(0, 0, 0, .6)!important;
+}
+
+input:-webkit-autofill {
+    -webkit-background-clip: text;
+}
+
+.col-right .contact {
+    position: absolute;
+    bottom: 0;
+    left: 6px;
+    right: 6px;
+    color: aliceblue;
+    text-align: center;
+}
+
+.box-login:hover {
+    width: 420px;
+    background-color: white;
+    color: black;
+    transform: translate(-8.5rem, 2rem);
+    box-shadow: 6px 6px 15px rgba(34, 34, 34, 0.26);
+}
+
+.box-login:hover mat-card {
+    background-color: white;
+    -webkit-text-fill-color: black;
+}
+
+.box-login:hover mat-card mat-card-footer {
+    visibility: visible;
+}
+
+.box-login:hover ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: black!important;
+}
+
+.box-login:hover ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: black!important;
+}

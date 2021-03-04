@@ -1,24 +1,54 @@
-<div class="container-fluid" style="display: flex; width: 100vw; height: 100vh;" *ngIf="!authenticationService.isLoggedIn">
-    <mat-card style="margin: auto; max-width: 400px;" class="mat-elevation-z12">
-        <mat-card-header>
-            <mat-card-title style="color: #730603;">Bienvenido!</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="assets/images/image.jpg" alt="fotografia de todo-yo">
-        <mat-card-content>
-            <div style="display: flex; flex-direction: column;">
-                <mat-form-field>
-                    <input type="text" matInput class="formControl" placeholder="Correo electrónico" [(ngModel)]="email">
-                    <mat-icon matSuffix style="cursor: pointer;">email</mat-icon>
-                </mat-form-field>
-                <mat-form-field>
-                    <input type="password" matInput class="formControl" placeholder="Contraseña" [(ngModel)]="password">
-                    <mat-icon matSuffix style="cursor: pointer;">vpn_key</mat-icon>
-                </mat-form-field>
+<div class="container">
+    <div class="col-left">
+        <div class="container-title">
+            <img src="assets/images/icono.png" alt="fotografia de todo-yo">
+            <div class="separador"></div>
+            <div class="title">
+                <h1>Bienvenido de vuelta a</h1>
+                <h1 class="title-todo-yo">TODO YO - WEB</h1>
             </div>
+        </div>
+        <div class="container-img">
+            <img class="img" src="assets/images/todo-yo-wallpaper-web.jpg" alt="wallpaper todo-yo">
+            <div class="middle-img">
+                <a href="https://play.google.com/store/apps/details?id=com.jssalazar.todoyo" mat-raised-button class="text-img" target="_blank" rel="noopener noreferrer">Ver en Google Play<mat-icon>open_in_new</mat-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-right">
+        <div class="box-login">
+            <ng-container *ngIf="!authenticationService.isLoggedIn">
+                <mat-card class="mat-elevation-z0">
+                    <img mat-card-image src="assets/images/icono.png" alt="fotografia de todo-yo">
+                    <mat-card-header align=center>
+                        <mat-card-title>Iniciar Sesión</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div style="display: flex; flex-direction: column;">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Correo electrónico</mat-label>
+                                <input type="text" matInput class="formControl" autocomplete="off" placeholder="Correo electrónico" [(ngModel)]="email">
+                                <mat-icon matSuffix>email</mat-icon>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Contraseña</mat-label>
+                                <input type="password" matInput class="formControl" autocomplete="off" placeholder="Contraseña" [(ngModel)]="password">
+                                <mat-icon matSuffix>vpn_key</mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <a matTooltip="Por favor comunicate con el administrador del sistema.">Olvidé mi contraseña</a>
+                    </mat-card-actions>
+                    <mat-card-footer align=end>
+                        <button mat-stroked-button (click)="signIn()">Continuar</button>
+                    </mat-card-footer>
 
-        </mat-card-content>
-        <mat-card-actions align=end>
-            <button mat-stroked-button style="background-color:  #730603; color: white;" (click)="signIn()">Iniciar sesión </button>
-        </mat-card-actions>
-    </mat-card>
+                </mat-card>
+            </ng-container>
+        </div>
+        <div class="contact">
+            <p>Todos los derechos reservados. | El uso indebido de la marca e información de ©Todo-Yo es penalizado. | Imágenes sujetas a derechos de autor. | Sistema desarrollado por <strong><a href="https:www.feleniah.com"  target="_blank" rel="noopener noreferrer">©FELENIAH.</a></strong></p>
+        </div>
+    </div>
 </div>
